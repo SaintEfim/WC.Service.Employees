@@ -1,8 +1,8 @@
-﻿using WC.Library.Data.Models;
+﻿using WC.Library.Domain.Models;
 
-namespace WC.Service.Employees.Data.Models;
+namespace WC.Service.Employees.Domain.Models;
 
-public class EmployeeEntity : EntityBase
+public class EmployeeModel : ModelBase
 {
     public string Name { get; set; } = string.Empty;
     public string Surname { get; set; } = string.Empty;
@@ -12,7 +12,7 @@ public class EmployeeEntity : EntityBase
     public string Position { get; set; } = string.Empty;
     public string Role { get; set; } = "User";
 
-    public List<ColleagueEntity>? Colleagues { get; set; } = [];
+    public List<ColleagueModel>? Colleagues { get; set; } = [];
 
     public DateTime CreatedAt { get; init; }
     public DateTime? UpdatedAt { get; init; }
