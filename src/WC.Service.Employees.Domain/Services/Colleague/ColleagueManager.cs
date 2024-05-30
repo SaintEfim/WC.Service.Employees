@@ -8,7 +8,8 @@ using WC.Service.Employees.Domain.Models;
 
 namespace WC.Service.Employees.Domain.Services.Colleague;
 
-public class ColleagueManager : DataManagerBase<ColleagueManager, IColleagueRepository, ColleagueModel, ColleagueEntity>
+public class ColleagueManager :
+    DataManagerBase<ColleagueManager, IColleagueRepository, ColleagueModel, ColleagueEntity>, IColleagueManager
 {
     public ColleagueManager(IMapper mapper, ILogger<ColleagueManager> logger, IColleagueRepository repository,
         IEnumerable<IValidator> validators) : base(mapper, logger, repository, validators)

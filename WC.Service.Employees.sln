@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WC.Service.Employees.Domain
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WC.Service.Employees.Domain", "src\WC.Service.Employees.Domain\WC.Service.Employees.Domain.csproj", "{72002D56-A736-4AB3-84CD-96B0A57BD8B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WC.Service.Employees.API", "src\WC.Service.Employees.API\WC.Service.Employees.API.csproj", "{C39E9BEE-7943-4CE3-A2C5-45E1A7E05626}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{72002D56-A736-4AB3-84CD-96B0A57BD8B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72002D56-A736-4AB3-84CD-96B0A57BD8B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72002D56-A736-4AB3-84CD-96B0A57BD8B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C39E9BEE-7943-4CE3-A2C5-45E1A7E05626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C39E9BEE-7943-4CE3-A2C5-45E1A7E05626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C39E9BEE-7943-4CE3-A2C5-45E1A7E05626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C39E9BEE-7943-4CE3-A2C5-45E1A7E05626}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

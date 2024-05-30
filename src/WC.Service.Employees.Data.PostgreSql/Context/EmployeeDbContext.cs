@@ -3,8 +3,13 @@ using WC.Service.Employees.Data.Models;
 
 namespace WC.Service.Employees.Data.PostgreSql.Context;
 
-public class EmployeeDbContext : DbContext
+public sealed class EmployeeDbContext : DbContext
 {
+    public EmployeeDbContext(DbContextOptions<EmployeeDbContext> options) : base(options)
+    {
+        // Database.Migrate();
+    }
+    
     public DbSet<EmployeeEntity> Employees { get; set; } = null!;
     public DbSet<ColleagueEntity> Colleagues { get; set; } = null!;
 
