@@ -5,12 +5,12 @@ using WC.Service.Employees.Data.PostgreSql;
 
 namespace WC.Service.Employees.Domain;
 
-public class EmployessDomainModule : Module
+public class EmployeesDomainModule : Module
 {
     protected override void Load(
         ContainerBuilder builder)
     {
-        builder.RegisterModule<EmployessDataPostgreSqlModel>();
+        builder.RegisterModule<EmployeesDataPostgreSqlModel>();
 
         builder.RegisterAssemblyTypes(ThisAssembly)
             .AsClosedTypesOf(typeof(IDataProvider<>))

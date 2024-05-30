@@ -5,7 +5,7 @@ using WC.Service.Employees.Data.PostgreSql.Context;
 
 namespace WC.Service.Employees.Data.PostgreSql;
 
-public class EmployessDataPostgreSqlModel : Module
+public class EmployeesDataPostgreSqlModel : Module
 {
     protected override void Load(
         ContainerBuilder builder)

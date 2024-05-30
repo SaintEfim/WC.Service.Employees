@@ -7,7 +7,8 @@ using WC.Service.Employees.Domain.Models;
 
 namespace WC.Service.Employees.Domain.Services.Employee;
 
-public class EmployeeProvider : DataProviderBase<EmployeeProvider, IEmployeeRepository, EmployeeModel, EmployeeEntity>
+public class EmployeeProvider : DataProviderBase<EmployeeProvider, IEmployeeRepository, EmployeeModel, EmployeeEntity>,
+    IEmployeeProvider
 {
     public EmployeeProvider(IMapper mapper, ILogger<EmployeeProvider> logger, IEmployeeRepository repository) : base(
         mapper, logger, repository)
