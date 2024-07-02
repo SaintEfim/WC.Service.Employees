@@ -10,7 +10,7 @@ public class EmployeesDomainModule : Module
     protected override void Load(
         ContainerBuilder builder)
     {
-        builder.RegisterModule<EmployeesDataPostgreSqlModel>();
+        builder.RegisterModule<EmployeesDataPostgreSqlModule>();
 
         builder.RegisterAssemblyTypes(ThisAssembly)
             .AsClosedTypesOf(typeof(IDataProvider<>))

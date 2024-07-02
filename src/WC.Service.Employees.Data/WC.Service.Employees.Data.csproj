@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="WC.Library.Data" Version="1.0.2" />
+      <ProjectReference Include="..\WC.Service.Employees.Data.Abstractions\WC.Service.Employees.Data.Abstractions.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\WC.Service.Employees.Data.Abstractions\WC.Service.Employees.Data.Abstractions.csproj" />
+      <PackageReference Include="WC.Library.Data" Version="1.0.5" />
     </ItemGroup>
 
 </Project>
