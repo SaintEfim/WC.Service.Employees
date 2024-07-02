@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using WC.Library.Data.PostgreSql.Context;
 
 namespace WC.Service.Employees.Data.PostgreSql.Context;
@@ -7,7 +8,8 @@ public sealed class EmployeeDnContextFactory : PostgreSqlDbContextFactoryBase<Em
 {
     protected override string ConnectionString => "ServiceDB";
 
-    public EmployeeDnContextFactory(IConfiguration configuration) : base(configuration)
+    public EmployeeDnContextFactory(IConfiguration configuration, IHostEnvironment environment) : base(configuration,
+        environment)
     {
     }
 }

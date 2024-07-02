@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using FluentValidation;
 using WC.Service.Employees.Domain;
 using StartupBase = WC.Library.Web.Startup.StartupBase;
 
@@ -15,10 +14,7 @@ internal sealed class Startup : StartupBase
         ContainerBuilder builder)
     {
         base.ConfigureContainer(builder);
+        
         builder.RegisterModule<EmployeesDomainModule>();
-
-        builder.RegisterAssemblyTypes(typeof(Program).Assembly)
-            .AsClosedTypesOf(typeof(IValidator<>))
-            .AsImplementedInterfaces();
     }
 }

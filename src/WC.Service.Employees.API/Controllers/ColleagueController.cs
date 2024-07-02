@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using NSwag.Annotations;
 using WC.Library.Web.Controllers;
 using WC.Library.Web.Models;
 using WC.Service.Employees.API.Models.Colleague;
 using WC.Service.Employees.Domain.Models;
 using WC.Service.Employees.Domain.Services.Colleague;
-using Swashbuckle.AspNetCore.Annotations;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace WC.Service.Employees.API.Controllers;
@@ -15,13 +14,13 @@ namespace WC.Service.Employees.API.Controllers;
 /// <summary>
 ///     The colleague management controller.
 /// </summary>
-[Route("api/[controller]")]
+[Route("api/v1/colleagues")]
 public class ColleagueController : CrudApiControllerBase<ColleagueController, IColleagueManager, IColleagueProvider,
     ColleagueModel, ColleagueDto>
 {
     /// <inheritdoc />
-    public ColleagueController(IMapper mapper, ILogger<ColleagueController> logger, IEnumerable<IValidator> validators,
-        IColleagueManager manager, IColleagueProvider provider) : base(mapper, logger, validators, manager, provider)
+    public ColleagueController(IMapper mapper, ILogger<ColleagueController> logger,
+        IColleagueManager manager, IColleagueProvider provider) : base(mapper, logger, manager, provider)
     {
     }
 
@@ -30,8 +29,8 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     /// </summary>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpGet]
-    [SwaggerOperation(OperationId = nameof(ColleagueGet))]
-    [SwaggerResponse(Status200OK, Type = typeof(List<ColleagueDto>))]
+    [OpenApiOperation(nameof(ColleagueGet))]
+    [SwaggerResponse(Status200OK, typeof(List<ColleagueDto>))]
     public async Task<ActionResult<List<ColleagueDto>>> ColleagueGet(CancellationToken cancellationToken = default)
     {
         return Ok(await GetMany(cancellationToken));
@@ -42,10 +41,10 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     /// </summary>
     /// <param name="id">The ID of the colleague to retrieve.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
-    [HttpGet("{id:guid}")]
-    [SwaggerOperation(OperationId = nameof(ColleagueGetById))]
-    [SwaggerResponse(Status200OK)]
-    [SwaggerResponse(Status404NotFound, Type = typeof(ErrorDto))]
+    [HttpGet("{id:guid}", Name = nameof(ColleagueGetById))]
+    [OpenApiOperation(nameof(ColleagueGetById))]
+    [SwaggerResponse(Status200OK, typeof(ColleagueDto))]
+    [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
     public async Task<ActionResult<ColleagueDto>> ColleagueGetById(Guid id,
         CancellationToken cancellationToken = default)
     {
@@ -58,12 +57,13 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     /// <param name="colleague">The colleague data.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpPost]
-    [SwaggerOperation(OperationId = nameof(ColleagueCreate))]
-    [SwaggerResponse(Status200OK)]
-    public async Task<IActionResult> ColleagueCreate(ColleagueDto colleague,
+    [OpenApiOperation(nameof(ColleagueCreate))]
+    [SwaggerResponse(Status200OK, typeof(ColleagueDto))]
+    public async Task<IActionResult> ColleagueCreate([FromBody] ColleagueCreateDto colleague,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await Create(colleague, cancellationToken));
+        return await Create<ColleagueCreateDto, CreateActionResultDto>(colleague, nameof(ColleagueGetById),
+            cancellationToken);
     }
 
     /// <summary>
@@ -73,9 +73,9 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     /// <param name="patchDocument">The JSON patch document containing updates.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpPatch("{id:guid}")]
-    [SwaggerOperation(OperationId = nameof(ColleagueUpdate))]
-    [SwaggerResponse(Status200OK)]
-    [SwaggerResponse(Status404NotFound, Type = typeof(ErrorDto))]
+    [OpenApiOperation(nameof(ColleagueUpdate))]
+    [SwaggerResponse(Status200OK, typeof(void))]
+    [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
     public async Task<IActionResult> ColleagueUpdate(Guid id, [FromBody] JsonPatchDocument<ColleagueDto> patchDocument,
         CancellationToken cancellationToken = default)
     {
@@ -88,12 +88,11 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     /// <param name="id">The ID of the colleague to delete.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpDelete("{id:guid}")]
-    [SwaggerOperation(OperationId = nameof(ColleagueDelete))]
-    [SwaggerResponse(Status200OK)]
-    [SwaggerResponse(Status204NoContent, Type = typeof(ErrorDto))]
-    [SwaggerResponse(Status404NotFound, Type = typeof(ErrorDto))]
-    [SwaggerResponse(Status400BadRequest, Type = typeof(ErrorDto))]
-    [SwaggerResponse(Status409Conflict, Type = typeof(ErrorDto))]
+    [SwaggerResponse(Status200OK, typeof(void))]
+    [SwaggerResponse(Status204NoContent, typeof(ErrorDto))]
+    [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
+    [SwaggerResponse(Status400BadRequest, typeof(ErrorDto))]
+    [SwaggerResponse(Status409Conflict, typeof(ErrorDto))]
     public async Task<IActionResult> ColleagueDelete(Guid id, CancellationToken cancellationToken = default)
     {
         return Ok(await Delete(id, cancellationToken));

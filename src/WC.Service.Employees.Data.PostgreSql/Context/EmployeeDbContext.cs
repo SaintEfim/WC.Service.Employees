@@ -1,15 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using WC.Service.Employees.Data.Models;
 
 namespace WC.Service.Employees.Data.PostgreSql.Context;
 
 public sealed class EmployeeDbContext : DbContext
 {
-    public EmployeeDbContext(DbContextOptions<EmployeeDbContext> options) : base(options)
+    public EmployeeDbContext(DbContextOptions<EmployeeDbContext> options, IHostEnvironment environment) : base(options)
     {
-        // Database.Migrate();
+        if (environment.IsDevelopment())
+        {
+            // Database.Migrate();
+        }
     }
-    
+
     public DbSet<EmployeeEntity> Employees { get; set; } = null!;
     public DbSet<ColleagueEntity> Colleagues { get; set; } = null!;
 
