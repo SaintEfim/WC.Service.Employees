@@ -27,13 +27,15 @@ public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmp
     /// <summary>
     /// Retrieves a list of employees.
     /// </summary>
+    /// <param name="withIncludes"></param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpGet]
     [OpenApiOperation(nameof(EmployeeGet))]
     [SwaggerResponse(Status200OK, typeof(List<EmployeeDto>))]
-    public async Task<ActionResult<List<EmployeeDto>>> EmployeeGet(CancellationToken cancellationToken = default)
+    public async Task<ActionResult<List<EmployeeDto>>> EmployeeGet(bool withIncludes = false,
+        CancellationToken cancellationToken = default)
     {
-        return Ok(await GetMany(cancellationToken));
+        return Ok(await GetMany(withIncludes, cancellationToken));
     }
 
     /// <summary>
@@ -49,21 +51,6 @@ public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmp
         CancellationToken cancellationToken = default)
     {
         return Ok(await GetOneById(id, cancellationToken));
-    }
-
-    /// <summary>
-    /// Creates a new employee.
-    /// </summary>
-    /// <param name="employee">The employee data.</param>
-    /// <param name="cancellationToken">The operation cancellation token.</param>
-    [HttpPost]
-    [OpenApiOperation(nameof(EmployeeCreate))]
-    [SwaggerResponse(Status201Created, typeof(CreateActionResultDto))]
-    public async Task<IActionResult> EmployeeCreate([FromBody] EmployeeCreateDto employee,
-        CancellationToken cancellationToken = default)
-    {
-        return await Create<EmployeeCreateDto, CreateActionResultDto>(employee, nameof(EmployeeGetById),
-            cancellationToken);
     }
 
     /// <summary>

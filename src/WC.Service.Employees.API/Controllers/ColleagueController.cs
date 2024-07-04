@@ -27,13 +27,15 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     /// <summary>
     /// Retrieves a list of colleagues.
     /// </summary>
+    /// <param name="withIncludes"></param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpGet]
     [OpenApiOperation(nameof(ColleagueGet))]
     [SwaggerResponse(Status200OK, typeof(List<ColleagueDto>))]
-    public async Task<ActionResult<List<ColleagueDto>>> ColleagueGet(CancellationToken cancellationToken = default)
+    public async Task<ActionResult<List<ColleagueDto>>> ColleagueGet(bool withIncludes = false,
+        CancellationToken cancellationToken = default)
     {
-        return Ok(await GetMany(cancellationToken));
+        return Ok(await GetMany(withIncludes, cancellationToken));
     }
 
     /// <summary>
