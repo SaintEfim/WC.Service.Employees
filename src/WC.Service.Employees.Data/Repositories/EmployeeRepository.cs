@@ -14,4 +14,10 @@ public class EmployeeRepository<TDbContext> :
         logger)
     {
     }
+
+    protected override IQueryable<EmployeeEntity> FillRelatedRecords(
+        IQueryable<EmployeeEntity> query)
+    {
+        return query.Include(x => x.Position).Include(x => x.Colleagues);
+    }
 }

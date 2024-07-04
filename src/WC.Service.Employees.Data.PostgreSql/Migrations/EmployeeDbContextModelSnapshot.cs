@@ -49,9 +49,6 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
@@ -67,9 +64,8 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     b.Property<string>("Patronymic")
                         .HasColumnType("text");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid>("PositionId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Role")
                         .IsRequired()
@@ -79,12 +75,29 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                    b.HasKey("Id");
+
+                    b.HasIndex("PositionId");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("WC.Service.Employees.Data.Models.PositionEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Positions");
                 });
 
             modelBuilder.Entity("WC.Service.Employees.Data.Models.ColleagueEntity", b =>
@@ -108,7 +121,23 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
 
             modelBuilder.Entity("WC.Service.Employees.Data.Models.EmployeeEntity", b =>
                 {
+                    b.HasOne("WC.Service.Employees.Data.Models.PositionEntity", "Position")
+                        .WithMany("Employees")
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Position");
+                });
+
+            modelBuilder.Entity("WC.Service.Employees.Data.Models.EmployeeEntity", b =>
+                {
                     b.Navigation("Colleagues");
+                });
+
+            modelBuilder.Entity("WC.Service.Employees.Data.Models.PositionEntity", b =>
+                {
+                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }

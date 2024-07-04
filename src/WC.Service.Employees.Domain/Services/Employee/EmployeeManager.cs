@@ -12,7 +12,8 @@ public class EmployeeManager : DataManagerBase<EmployeeManager, IEmployeeReposit
     IEmployeeManager
 {
     public EmployeeManager(IMapper mapper, ILogger<EmployeeManager> logger, IEmployeeRepository repository,
-        IEnumerable<IValidator> validators) : base(mapper, logger, repository, validators)
+        IEnumerable<IValidator> validators) : base(mapper, logger, repository,
+        validators)
     {
     }
 }

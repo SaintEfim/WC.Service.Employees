@@ -1,7 +1,7 @@
 using Grpc.Core;
 using WC.Service.Employees.Domain.Models;
 using WC.Service.Employees.Domain.Services.Employee;
-using WC.Service.Registration.gRPC.Client.Clients;
+using WC.Service.Employees.gRPC.Server.Services;
 
 namespace WC.Service.Employees.gRPC.Services;
 
@@ -23,7 +23,7 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
             Patronymic = entity.Employee.Patronymic,
             Email = entity.Employee.Email,
             Password = entity.Employee.Password,
-            Position = entity.Employee.Position
+            PositionId = Guid.Parse(entity.Employee.PositionId)
         });
 
         return new EmployeeCreateResponse

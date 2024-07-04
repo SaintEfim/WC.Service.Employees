@@ -10,12 +10,13 @@ public sealed class EmployeeDbContext : DbContext
     {
         if (environment.IsDevelopment())
         {
-            // Database.Migrate();
+            Database.Migrate();
         }
     }
 
     public DbSet<EmployeeEntity> Employees { get; set; } = null!;
     public DbSet<ColleagueEntity> Colleagues { get; set; } = null!;
+    public DbSet<PositionEntity> Positions { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
