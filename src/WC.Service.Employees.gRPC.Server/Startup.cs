@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using WC.Library.Web.Startup;
 using WC.Service.Employees.Domain;
-using WC.Service.Employees.gRPC.Services;
+using WC.Service.Employees.gRPC.Server.Services;
 
-namespace WC.Service.Employees.gRPC;
+namespace WC.Service.Employees.gRPC.Server;
 
 internal sealed class Startup : StartupGrpcBase
 {
@@ -14,7 +14,6 @@ internal sealed class Startup : StartupGrpcBase
     public override void ConfigureContainer(ContainerBuilder builder)
     {
         base.ConfigureContainer(builder);
-
         builder.RegisterModule<EmployeesDomainModule>();
     }
 

@@ -27,7 +27,7 @@ public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmp
     /// <summary>
     /// Retrieves a list of employees.
     /// </summary>
-    /// <param name="withIncludes"></param>
+    /// <param name="withIncludes">Specifies whether related entities should be included in the query.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpGet]
     [OpenApiOperation(nameof(EmployeeGet))]

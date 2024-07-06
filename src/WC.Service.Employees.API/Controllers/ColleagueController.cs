@@ -27,7 +27,7 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     /// <summary>
     /// Retrieves a list of colleagues.
     /// </summary>
-    /// <param name="withIncludes"></param>
+    /// <param name="withIncludes">Specifies whether related entities should be included in the query.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpGet]
     [OpenApiOperation(nameof(ColleagueGet))]

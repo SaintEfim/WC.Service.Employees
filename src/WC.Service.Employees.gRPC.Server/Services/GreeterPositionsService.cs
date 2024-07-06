@@ -1,8 +1,7 @@
 using Grpc.Core;
 using WC.Service.Employees.Domain.Services.Position;
-using WC.Service.Employees.gRPC.Server.Services;
 
-namespace WC.Service.Employees.gRPC.Services;
+namespace WC.Service.Employees.gRPC.Server.Services;
 
 public class GreeterPositionsService : GreeterPositions.GreeterPositionsBase
 {

@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <PackageId>WC.Service.Employees.gRPC.Client</PackageId>
+        <Version>1.0.2</Version>
+        <Authors>SaintEfim</Authors>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Protobuf Include="Protos\greet_employees_client.proto" GrpcServices="Client" />
+        <Protobuf Include="Protos\greet_positions_client.proto">
+            <GrpcServices>Client</GrpcServices>
+            <Access>Public</Access>
+            <ProtoCompile>True</ProtoCompile>
+            <CompileOutputs>True</CompileOutputs>
+            <OutputDir>obj\Debug\net8.0\</OutputDir>
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="8.0.0" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.63.0" />
+        <PackageReference Include="Grpc.Net.Client" Version="2.63.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\WC.Service.Employees.gRPC.Client.Abstractions\WC.Service.Employees.gRPC.Client.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>
