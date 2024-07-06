@@ -1,9 +1,8 @@
 using Grpc.Core;
 using WC.Service.Employees.Domain.Models;
 using WC.Service.Employees.Domain.Services.Employee;
-using WC.Service.Employees.gRPC.Server.Services;
 
-namespace WC.Service.Employees.gRPC.Services;
+namespace WC.Service.Employees.gRPC.Server.Services;
 
 public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
 {

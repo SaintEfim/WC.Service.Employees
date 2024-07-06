@@ -27,7 +27,7 @@ public class PositionController : CrudApiControllerBase<PositionController, IPos
     /// <summary>
     ///     Retrieves a list of positions.
     /// </summary>
-    /// <param name="withIncludes"></param>
+    /// <param name="withIncludes">Specifies whether related entities should be included in the query.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     /// <returns></returns>
     [HttpGet]
