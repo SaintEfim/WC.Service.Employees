@@ -15,7 +15,7 @@ public class PositionProvider : DataProviderBase<PositionProvider, IPositionRepo
     {
     }
 
-    public async Task<PositionModel?> SearchPosition(string positionName,
+    public async Task<PositionModel?> GetOneByName(string positionName,
         CancellationToken cancellationToken = default)
     {
         var positions = await Repository.Get(cancellationToken: cancellationToken);

@@ -4,8 +4,13 @@ option csharp_namespace = "WC.Service.Employees.gRPC.Server.Services";
 
 package employees;
 
+import "google/protobuf/empty.proto";
+
 service GreeterEmployees {
+  rpc Get (google.protobuf.Empty) returns (EmployeeListResponse);
+  rpc GetOneByEmail (EmployeeGetByEmailRequest) returns (EmployeeGetByEmailResponse);
   rpc Create (EmployeeCreateRequest) returns (EmployeeCreateResponse);
+  rpc Update (EmployeeUpdateRequest) returns (EmployeeUpdateResponse);
 }
 
 message Employee {
@@ -16,6 +21,19 @@ message Employee {
   string email = 5;
   string password = 6;
   string positionId = 7;
+  string role = 8;
+}
+
+message EmployeeListResponse {
+  repeated Employee employee = 1;
+}
+
+message EmployeeGetByEmailRequest {
+  string email = 1;
+}
+
+message EmployeeGetByEmailResponse {
+  Employee employee = 1;
 }
 
 message EmployeeCreateRequest {
@@ -23,5 +41,13 @@ message EmployeeCreateRequest {
 }
 
 message EmployeeCreateResponse {
+  string id = 1;
+}
+
+message EmployeeUpdateRequest {
+  Employee employee = 1;
+}
+
+message EmployeeUpdateResponse {
   string id = 1;
 }

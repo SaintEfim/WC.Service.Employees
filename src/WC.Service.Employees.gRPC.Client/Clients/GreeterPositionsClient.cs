@@ -1,6 +1,6 @@
 ﻿using Grpc.Net.Client;
 using WC.Service.Employees.gRPC.Client.Models.Position;
-using WC.Service.Registration.gRPC.Client.Clients;
+using WC.Service.Employees.gRPC.Server.Services;
 
 namespace WC.Service.Employees.gRPC.Client.Clients;
 
@@ -14,11 +14,11 @@ public class GreeterPositionsClient : IGreeterPositionsClient
         _client = new GreeterPositions.GreeterPositionsClient(channel);
     }
 
-    public async Task<SearchPositionResponseModel> SearchPosition(SearchPositionRequestModel request,
+    public async Task<GetOneByNamePositionResponseModel> GetOneByName(GetOneByNamePositionRequestModel request,
         CancellationToken cancellationToken)
     {
         var searchResult =
-            await _client.SearchPositionAsync(new SearchPositionRequest
+            await _client.GetOneByNamePositionAsync(new SearchPositionRequest
             {
                 Position = new Position
                 {
@@ -26,9 +26,11 @@ public class GreeterPositionsClient : IGreeterPositionsClient
                 }
             }, cancellationToken: cancellationToken);
 
-        return new SearchPositionResponseModel
+        return new GetOneByNamePositionResponseModel
         {
-            Id = Guid.Parse(searchResult.Id)
+            Id = Guid.Parse(searchResult.Id),
+            Name = null!,
+            Description = null
         };
     }
 }

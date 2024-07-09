@@ -5,5 +5,13 @@ namespace WC.Service.Employees.gRPC.Client.Clients;
 
 public interface IGreeterEmployeesClient
 {
-    Task<CreateResultModel> Create(EmployeeCreateModel entity, CancellationToken cancellationToken = default);
+    Task<ICollection<EmployeeListResponseModel>> Get(CancellationToken cancellationToken = default);
+
+    Task<GetOneByEmailEmployeeResponseModel> GetOneByEmail(GetOneByEmailEmployeeRequestModel request,
+        CancellationToken cancellationToken = default);
+
+    Task<CreateResultModel> Create(EmployeeCreateRequestModel request, CancellationToken cancellationToken = default);
+
+    Task<CreateResultModel> Update(EmployeeUpdateRequestModel request,
+        CancellationToken cancellationToken = default);
 }

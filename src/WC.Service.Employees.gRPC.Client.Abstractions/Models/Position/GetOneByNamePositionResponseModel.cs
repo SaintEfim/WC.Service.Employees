@@ -1,6 +1,6 @@
 ﻿namespace WC.Service.Employees.gRPC.Client.Models.Position;
 
-public class SearchPositionResponseModel
+public class GetOneByNamePositionResponseModel
 {
     public required Guid Id { get; set; }
 
