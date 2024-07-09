@@ -14,4 +14,12 @@ public class EmployeeProvider : DataProviderBase<EmployeeProvider, IEmployeeRepo
         mapper, logger, repository)
     {
     }
+
+    public async Task<EmployeeModel?> GetOneByEmail(string email, CancellationToken cancellationToken = default)
+    {
+        var employees = await Repository.Get(cancellationToken: cancellationToken);
+        var employee = employees.SingleOrDefault(x => x.Email == email);
+
+        return Mapper.Map<EmployeeModel>(employee);
+    }
 }

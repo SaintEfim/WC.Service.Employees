@@ -12,17 +12,17 @@ public class GreeterPositionsService : GreeterPositions.GreeterPositionsBase
         _provider = provider;
     }
 
-    public override async Task<SearchPositionResponse> SearchPosition(SearchPositionRequest request,
+    public override async Task<GetOneByNamePositionResponse> GetOneByName(GetOneByNamePositionRequest request,
         ServerCallContext context)
     {
-        var position = await _provider.SearchPosition(request.Position.Name);
+        var position = await _provider.GetOneByName(request.Position.Name);
 
         if (position == null)
         {
             throw new RpcException(new Status(StatusCode.NotFound, "Position not found"));
         }
 
-        return new SearchPositionResponse
+        return new GetOneByNamePositionResponse
         {
             Id = position.Id.ToString(),
             Name = position.Name,
