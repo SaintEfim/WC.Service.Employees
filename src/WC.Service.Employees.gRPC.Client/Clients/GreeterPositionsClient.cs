@@ -17,7 +17,7 @@ public class GreeterPositionsClient : IGreeterPositionsClient
         CancellationToken cancellationToken)
     {
         var searchResult =
-            await _client.GetOneByNamePositionAsync(new GetOneByNamePositionRequest
+            await _client.GetOneByNameAsync(new GetOneByNamePositionRequest
             {
                 Position = new Position
                 {
