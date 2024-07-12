@@ -1,6 +1,5 @@
 ﻿using Grpc.Net.Client;
 using WC.Service.Employees.gRPC.Client.Models.Position;
-using WC.Service.Employees.gRPC.Server.Services;
 
 namespace WC.Service.Employees.gRPC.Client.Clients;
 

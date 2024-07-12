@@ -1,5 +1,6 @@
 ﻿using WC.Library.Domain.Models;
-using WC.Service.Employees.gRPC.Client.Models.Employee;
+using WC.Service.Employees.gRPC.Client.Models.Employee.Request;
+using WC.Service.Employees.gRPC.Client.Models.Employee.Response;
 
 namespace WC.Service.Employees.gRPC.Client.Clients;
 

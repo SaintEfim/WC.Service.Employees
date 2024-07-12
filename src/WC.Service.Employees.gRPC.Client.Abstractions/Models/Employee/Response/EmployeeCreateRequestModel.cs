@@ -1,9 +1,7 @@
-﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee;
+﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee.Response;
 
-public class EmployeeUpdateRequestModel
+public class EmployeeCreateRequestModel
 {
-    public required Guid Id { get; set; }
-
     public required string Name { get; set; } = string.Empty;
 
     public required string Surname { get; set; } = string.Empty;
@@ -15,6 +13,4 @@ public class EmployeeUpdateRequestModel
     public required string Password { get; set; } = string.Empty;
 
     public required Guid PositionId { get; set; }
-
-    public required string Role { get; set; } = string.Empty;
 }

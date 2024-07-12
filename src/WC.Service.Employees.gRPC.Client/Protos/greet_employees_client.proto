@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "WC.Service.Employees.gRPC.Server.Services";
+option csharp_namespace = "WC.Service.Employees.gRPC.Client.Clients";
 
 package employees;
 

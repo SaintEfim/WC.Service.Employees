@@ -1,8 +1,8 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
 using WC.Library.Domain.Models;
-using WC.Service.Employees.gRPC.Client.Models.Employee;
-using WC.Service.Employees.gRPC.Server.Services;
+using WC.Service.Employees.gRPC.Client.Models.Employee.Request;
+using WC.Service.Employees.gRPC.Client.Models.Employee.Response;
 
 namespace WC.Service.Employees.gRPC.Client.Clients;
 

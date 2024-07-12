@@ -1,4 +1,4 @@
-﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee;
+﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee.Request;
 
 public class GetOneByEmailEmployeeRequestModel
 {
