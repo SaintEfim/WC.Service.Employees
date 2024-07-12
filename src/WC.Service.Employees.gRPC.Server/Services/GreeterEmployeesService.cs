@@ -62,6 +62,17 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
         return response;
     }
 
+    public override async Task<DoesEmployeeWithEmailExistResponse> DoesEmployeeWithEmailExist(
+        DoesEmployeeWithEmailExistRequest request, ServerCallContext context)
+    {
+        var exists = await _provider.DoesEmployeeWithEmailExist(request.Email, context.CancellationToken);
+        
+        return new DoesEmployeeWithEmailExistResponse
+        {
+            Exists = exists
+        };
+    }
+
     public override async Task<EmployeeCreateResponse> Create(EmployeeCreateRequest request, ServerCallContext context)
     {
         var createItem = await _manager.Create(new EmployeeModel

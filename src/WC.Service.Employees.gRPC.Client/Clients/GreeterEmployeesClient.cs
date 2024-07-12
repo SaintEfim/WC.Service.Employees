@@ -58,6 +58,20 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
         };
     }
 
+    public async Task<DoesEmployeeWithEmailExistResponseModel> DoesEmployeeWithEmailExist(
+        DoesEmployeeWithEmailExistRequestModel request, CancellationToken cancellationToken)
+    {
+        var result = await _client.DoesEmployeeWithEmailExistAsync(new DoesEmployeeWithEmailExistRequest
+        {
+            Email = request.Email
+        }, cancellationToken: cancellationToken);
+
+        return new DoesEmployeeWithEmailExistResponseModel
+        {
+            Exists = result.Exists
+        };
+    }
+
     public async Task<CreateResultModel> Create(EmployeeCreateRequestModel request,
         CancellationToken cancellationToken)
     {

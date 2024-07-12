@@ -11,6 +11,9 @@ public interface IGreeterEmployeesClient
     Task<GetOneByEmailEmployeeResponseModel> GetOneByEmail(GetOneByEmailEmployeeRequestModel request,
         CancellationToken cancellationToken = default);
 
+    Task<DoesEmployeeWithEmailExistResponseModel> DoesEmployeeWithEmailExist(
+        DoesEmployeeWithEmailExistRequestModel request, CancellationToken cancellationToken = default);
+
     Task<CreateResultModel> Create(EmployeeCreateRequestModel request, CancellationToken cancellationToken = default);
 
     Task<CreateResultModel> Update(EmployeeUpdateRequestModel request,
