@@ -5,18 +5,18 @@ option csharp_namespace = "WC.Service.Employees.gRPC.Client.Clients";
 package positions;
 
 service GreeterPositions {
-  rpc GetOneByNamePosition(SearchPositionRequest) returns (SearchPositionResponse);
+  rpc GetOneByNamePosition(GetOneByNamePositionRequest) returns (GetOneByNamePositionResponse);
 }
 
 message Position {
   string name = 1;
 }
 
-message SearchPositionRequest {
+message GetOneByNamePositionRequest {
   Position position = 1;
 }
 
-message SearchPositionResponse {
+message GetOneByNamePositionResponse {
   string id = 1;
   string name = 2;
   string description = 3;
