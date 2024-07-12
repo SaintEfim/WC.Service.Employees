@@ -15,7 +15,7 @@ public class GreeterPositionsService : GreeterPositions.GreeterPositionsBase
     public override async Task<GetOneByNamePositionResponse> GetOneByName(GetOneByNamePositionRequest request,
         ServerCallContext context)
     {
-        var position = await _provider.GetOneByName(request.Position.Name);
+        var position = await _provider.GetOneByName(request.Position.Name, context.CancellationToken);
 
         if (position == null)
         {

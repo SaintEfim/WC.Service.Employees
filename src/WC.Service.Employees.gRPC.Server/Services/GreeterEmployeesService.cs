@@ -38,7 +38,7 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
     public override async Task<EmployeeGetByEmailResponse> GetOneByEmail(EmployeeGetByEmailRequest request,
         ServerCallContext context)
     {
-        var employee = await _provider.GetOneByEmail(request.Email);
+        var employee = await _provider.GetOneByEmail(request.Email, context.CancellationToken);
         if (employee == null)
         {
             throw new RpcException(new Status(StatusCode.NotFound, "Employee not found"));
@@ -66,7 +66,7 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
         DoesEmployeeWithEmailExistRequest request, ServerCallContext context)
     {
         var exists = await _provider.DoesEmployeeWithEmailExist(request.Email, context.CancellationToken);
-        
+
         return new DoesEmployeeWithEmailExistResponse
         {
             Exists = exists
@@ -83,7 +83,7 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
             Email = request.Employee.Email,
             Password = request.Employee.Password,
             PositionId = Guid.Parse(request.Employee.PositionId)
-        });
+        }, context.CancellationToken);
 
         return new EmployeeCreateResponse
         {
@@ -102,7 +102,7 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
             Email = request.Employee.Email,
             Password = request.Employee.Password,
             PositionId = Guid.Parse(request.Employee.PositionId)
-        });
+        }, context.CancellationToken);
 
         return new EmployeeUpdateResponse
         {
