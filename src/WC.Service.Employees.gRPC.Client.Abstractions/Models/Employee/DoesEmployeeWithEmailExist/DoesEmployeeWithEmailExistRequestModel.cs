@@ -1,4 +1,4 @@
-﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee.Request;
+﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee.DoesEmployeeWithEmailExist;
 
 public class DoesEmployeeWithEmailExistRequestModel
 {

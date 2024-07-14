@@ -91,9 +91,9 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
         };
     }
 
-    public override async Task<EmployeeUpdateResponse> Update(EmployeeUpdateRequest request, ServerCallContext context)
+    public override async Task<Empty> Update(EmployeeUpdateRequest request, ServerCallContext context)
     {
-        var updateItem = await _manager.Update(new EmployeeModel
+        await _manager.Update(new EmployeeModel
         {
             Id = Guid.Parse(request.Employee.Id),
             Name = request.Employee.Name,
@@ -103,10 +103,14 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
             Password = request.Employee.Password,
             PositionId = Guid.Parse(request.Employee.PositionId)
         }, context.CancellationToken);
+        
+        return new Empty();
+    }
 
-        return new EmployeeUpdateResponse
-        {
-            Id = updateItem.Id.ToString()
-        };
+    public override async Task<Empty> Delete(EmployeeDeleteRequest request, ServerCallContext context)
+    {
+        await _manager.Delete(Guid.Parse(request.Id), context.CancellationToken);
+        
+        return new Empty();
     }
 }

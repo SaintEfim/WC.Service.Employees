@@ -1,8 +1,9 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
 using WC.Library.Domain.Models;
-using WC.Service.Employees.gRPC.Client.Models.Employee.Request;
-using WC.Service.Employees.gRPC.Client.Models.Employee.Response;
+using WC.Service.Employees.gRPC.Client.Models.Employee;
+using WC.Service.Employees.gRPC.Client.Models.Employee.DoesEmployeeWithEmailExist;
+using WC.Service.Employees.gRPC.Client.Models.Employee.GetOneByEmailEmployee;
 
 namespace WC.Service.Employees.gRPC.Client.Clients;
 
@@ -95,28 +96,31 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
         };
     }
 
-    public async Task<CreateResultModel> Update(EmployeeUpdateRequestModel request,
+    public async Task Update(EmployeeUpdateRequestModel request,
         CancellationToken cancellationToken)
     {
-        var updateResult =
-            await _client.UpdateAsync(new EmployeeUpdateRequest
-            {
-                Employee = new Employee
-                {
-                    Id = request.Id.ToString(),
-                    Name = request.Name,
-                    Surname = request.Surname,
-                    Patronymic = request.Patronymic,
-                    Email = request.Email,
-                    Password = request.Password,
-                    PositionId = request.PositionId.ToString(),
-                    Role = request.Role
-                }
-            }, cancellationToken: cancellationToken);
-
-        return new CreateResultModel
+        await _client.UpdateAsync(new EmployeeUpdateRequest
         {
-            Id = Guid.Parse(updateResult.Id)
-        };
+            Employee = new Employee
+            {
+                Id = request.Id.ToString(),
+                Name = request.Name,
+                Surname = request.Surname,
+                Patronymic = request.Patronymic,
+                Email = request.Email,
+                Password = request.Password,
+                PositionId = request.PositionId.ToString(),
+                Role = request.Role
+            }
+        }, cancellationToken: cancellationToken);
+    }
+
+    public async Task Delete(EmployeeDeleteRequestModel request,
+        CancellationToken cancellationToken)
+    {
+        await _client.DeleteAsync(new EmployeeDeleteRequest
+        {
+            Id = request.Id.ToString()
+        }, cancellationToken: cancellationToken);
     }
 }

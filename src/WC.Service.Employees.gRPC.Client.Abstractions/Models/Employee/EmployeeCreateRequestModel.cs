@@ -1,9 +1,9 @@
-﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee.Request;
+﻿using JetBrains.Annotations;
 
-public class EmployeeUpdateRequestModel
+namespace WC.Service.Employees.gRPC.Client.Models.Employee;
+
+public class EmployeeCreateRequestModel
 {
-    public required Guid Id { get; set; }
-
     public required string Name { get; set; } = string.Empty;
 
     public required string Surname { get; set; } = string.Empty;
@@ -14,7 +14,5 @@ public class EmployeeUpdateRequestModel
 
     public required string Password { get; set; } = string.Empty;
 
-    public required Guid PositionId { get; set; }
-
-    public required string Role { get; set; } = string.Empty;
+    public required Guid PositionId { get; [UsedImplicitly] set; }
 }
