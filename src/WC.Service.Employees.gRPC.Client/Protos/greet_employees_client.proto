@@ -11,7 +11,8 @@ service GreeterEmployees {
   rpc GetOneByEmail (EmployeeGetByEmailRequest) returns (EmployeeGetByEmailResponse);
   rpc DoesEmployeeWithEmailExist (DoesEmployeeWithEmailExistRequest) returns (DoesEmployeeWithEmailExistResponse);
   rpc Create (EmployeeCreateRequest) returns (EmployeeCreateResponse);
-  rpc Update (EmployeeUpdateRequest) returns (EmployeeUpdateResponse);
+  rpc Update (EmployeeUpdateRequest) returns (google.protobuf.Empty);
+  rpc Delete (EmployeeDeleteRequest) returns (google.protobuf.Empty);
 }
 
 message Employee {
@@ -57,6 +58,6 @@ message EmployeeUpdateRequest {
   Employee employee = 1;
 }
 
-message EmployeeUpdateResponse {
+message EmployeeDeleteRequest {
   string id = 1;
 }

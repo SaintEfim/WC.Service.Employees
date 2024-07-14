@@ -1,6 +1,7 @@
 ﻿using WC.Library.Domain.Models;
-using WC.Service.Employees.gRPC.Client.Models.Employee.Request;
-using WC.Service.Employees.gRPC.Client.Models.Employee.Response;
+using WC.Service.Employees.gRPC.Client.Models.Employee;
+using WC.Service.Employees.gRPC.Client.Models.Employee.DoesEmployeeWithEmailExist;
+using WC.Service.Employees.gRPC.Client.Models.Employee.GetOneByEmailEmployee;
 
 namespace WC.Service.Employees.gRPC.Client.Clients;
 
@@ -16,6 +17,9 @@ public interface IGreeterEmployeesClient
 
     Task<CreateResultModel> Create(EmployeeCreateRequestModel request, CancellationToken cancellationToken = default);
 
-    Task<CreateResultModel> Update(EmployeeUpdateRequestModel request,
+    Task Update(EmployeeUpdateRequestModel request,
+        CancellationToken cancellationToken = default);
+
+    Task Delete(EmployeeDeleteRequestModel request,
         CancellationToken cancellationToken = default);
 }
