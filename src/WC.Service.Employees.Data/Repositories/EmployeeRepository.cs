@@ -18,6 +18,9 @@ public class EmployeeRepository<TDbContext> :
     protected override IQueryable<EmployeeEntity> FillRelatedRecords(
         IQueryable<EmployeeEntity> query)
     {
-        return query.Include(x => x.Position).Include(x => x.Colleagues);
+        return query.Include(x => x.Position)
+            .Include(x => x.Colleagues)!
+            .ThenInclude(x => x.ColleagueEmployee)
+            .ThenInclude(x => x.Position);
     }
 }

@@ -1,15 +1,13 @@
-﻿using WC.Library.Web.Models;
-using WC.Service.Employees.API.Models.Employee;
+﻿using System.ComponentModel.DataAnnotations;
+using WC.Library.Web.Models;
 
 namespace WC.Service.Employees.API.Models.Colleague;
 
 public class ColleagueDto : DtoBase
 {
+    [Required]
     public Guid EmployeeId { get; set; }
     
+    [Required] 
     public Guid ColleagueEmployeeId { get; set; }
-
-    public EmployeeDto Employee { get; set; } = null!;
-    
-    public EmployeeDto ColleagueEmployee { get; set; } = null!;
 }

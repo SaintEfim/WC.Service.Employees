@@ -16,7 +16,7 @@ public class EmployeeEntity : EntityBase
 
     public Guid PositionId { get; set; }
 
-    public virtual PositionEntity Position { get; set; } = null!;
+    public PositionEntity Position { get; set; } = null!;
 
     public string Role { get; set; } = "User";
 

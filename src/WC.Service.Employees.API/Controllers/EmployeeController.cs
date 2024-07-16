@@ -16,7 +16,7 @@ namespace WC.Service.Employees.API.Controllers;
 /// </summary>
 [Route("api/v1/employees")]
 public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmployeeManager, IEmployeeProvider,
-    EmployeeModel, EmployeeDto>
+    EmployeeModel, EmployeeDto, EmployeeDetailDto>
 {
     /// <inheritdoc />
     public EmployeeController(IMapper mapper, ILogger<EmployeeController> logger,
@@ -45,12 +45,12 @@ public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmp
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpGet("{id:guid}", Name = nameof(EmployeeGetById))]
     [OpenApiOperation(nameof(EmployeeGetById))]
-    [SwaggerResponse(Status200OK, typeof(EmployeeDto))]
+    [SwaggerResponse(Status200OK, typeof(EmployeeDetailDto))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    public async Task<ActionResult<EmployeeDto>> EmployeeGetById(Guid id,
+    public async Task<ActionResult<EmployeeDetailDto>> EmployeeGetById(Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetOneById(id, cancellationToken));
+        return Ok(await GetOneById(id, true, cancellationToken));
     }
 
     /// <summary>

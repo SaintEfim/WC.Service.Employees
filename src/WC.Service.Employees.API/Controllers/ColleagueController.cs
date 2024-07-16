@@ -16,7 +16,7 @@ namespace WC.Service.Employees.API.Controllers;
 /// </summary>
 [Route("api/v1/colleagues")]
 public class ColleagueController : CrudApiControllerBase<ColleagueController, IColleagueManager, IColleagueProvider,
-    ColleagueModel, ColleagueDto>
+    ColleagueModel, ColleagueDto, ColleagueDetailDto>
 {
     /// <inheritdoc />
     public ColleagueController(IMapper mapper, ILogger<ColleagueController> logger,
@@ -45,12 +45,12 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpGet("{id:guid}", Name = nameof(ColleagueGetById))]
     [OpenApiOperation(nameof(ColleagueGetById))]
-    [SwaggerResponse(Status200OK, typeof(ColleagueDto))]
+    [SwaggerResponse(Status200OK, typeof(ColleagueDetailDto))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    public async Task<ActionResult<ColleagueDto>> ColleagueGetById(Guid id,
+    public async Task<ActionResult<ColleagueDetailDto>> ColleagueGetById(Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetOneById(id, cancellationToken));
+        return Ok(await GetOneById(id, true, cancellationToken));
     }
 
     /// <summary>
