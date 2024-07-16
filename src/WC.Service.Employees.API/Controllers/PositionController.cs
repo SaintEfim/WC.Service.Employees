@@ -52,7 +52,7 @@ public class PositionController : CrudApiControllerBase<PositionController, IPos
     public async Task<ActionResult<PositionDto>> PositionGetById(Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetOneById(id, cancellationToken));
+        return Ok(await GetOneById(id, true, cancellationToken));
     }
 
     /// <summary>

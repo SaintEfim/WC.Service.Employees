@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WC.Service.Employees.Data.PostgreSql.Context;
@@ -11,9 +12,11 @@ using WC.Service.Employees.Data.PostgreSql.Context;
 namespace WC.Service.Employees.Data.PostgreSql.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    partial class EmployeeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240715073312_fixed_colleague")]
+    partial class fixed_colleague
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,7 +106,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
             modelBuilder.Entity("WC.Service.Employees.Data.Models.ColleagueEntity", b =>
                 {
                     b.HasOne("WC.Service.Employees.Data.Models.EmployeeEntity", "ColleagueEmployee")
-                        .WithMany()
+                        .WithMany("ColleagueOf")
                         .HasForeignKey("ColleagueEmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -132,6 +135,8 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
 
             modelBuilder.Entity("WC.Service.Employees.Data.Models.EmployeeEntity", b =>
                 {
+                    b.Navigation("ColleagueOf");
+
                     b.Navigation("Colleagues");
                 });
 
