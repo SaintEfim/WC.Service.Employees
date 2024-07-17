@@ -18,14 +18,14 @@ namespace WC.Service.Employees.API.Controllers;
 public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmployeeManager, IEmployeeProvider,
     EmployeeModel, EmployeeDto, EmployeeDetailDto>
 {
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public EmployeeController(IMapper mapper, ILogger<EmployeeController> logger,
         IEmployeeManager manager, IEmployeeProvider provider) : base(mapper, logger, manager, provider)
     {
     }
 
     /// <summary>
-    /// Retrieves a list of employees.
+    ///     Retrieves a list of employees.
     /// </summary>
     /// <param name="withIncludes">Specifies whether related entities should be included in the query.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
@@ -39,7 +39,7 @@ public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmp
     }
 
     /// <summary>
-    /// Retrieves a employee by its ID.
+    ///     Retrieves a employee by its ID.
     /// </summary>
     /// <param name="id">The ID of the employee to retrieve.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
@@ -54,7 +54,7 @@ public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmp
     }
 
     /// <summary>
-    /// Updates a employee by ID.
+    ///     Updates a employee by ID.
     /// </summary>
     /// <param name="id">The ID of the employee to update.</param>
     /// <param name="patchDocument">The JSON patch document containing updates.</param>
@@ -70,7 +70,7 @@ public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmp
     }
 
     /// <summary>
-    /// Deletes a employee by ID.
+    ///     Deletes a employee by ID.
     /// </summary>
     /// <param name="id">The ID of the employee to delete.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>

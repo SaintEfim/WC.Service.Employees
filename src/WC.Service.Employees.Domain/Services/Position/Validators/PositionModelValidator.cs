@@ -4,7 +4,7 @@ using WC.Service.Employees.Domain.Models;
 
 namespace WC.Service.Employees.Domain.Services.Position.Validators;
 
-public class PositionModelValidator : AbstractValidator<PositionModel>
+public sealed class PositionModelValidator : AbstractValidator<PositionModel>
 {
     public PositionModelValidator()
     {
