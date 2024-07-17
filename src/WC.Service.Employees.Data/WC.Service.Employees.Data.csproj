@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="WC.Library.Data" Version="1.0.7" />
+      <PackageReference Include="WC.Library.Data" Version="1.0.8" />
     </ItemGroup>
 
 </Project>
