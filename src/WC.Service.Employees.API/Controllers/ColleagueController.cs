@@ -18,14 +18,14 @@ namespace WC.Service.Employees.API.Controllers;
 public class ColleagueController : CrudApiControllerBase<ColleagueController, IColleagueManager, IColleagueProvider,
     ColleagueModel, ColleagueDto, ColleagueDetailDto>
 {
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public ColleagueController(IMapper mapper, ILogger<ColleagueController> logger,
         IColleagueManager manager, IColleagueProvider provider) : base(mapper, logger, manager, provider)
     {
     }
 
     /// <summary>
-    /// Retrieves a list of colleagues.
+    ///     Retrieves a list of colleagues.
     /// </summary>
     /// <param name="withIncludes">Specifies whether related entities should be included in the query.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
@@ -39,7 +39,7 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     }
 
     /// <summary>
-    /// Retrieves a colleague by its ID.
+    ///     Retrieves a colleague by its ID.
     /// </summary>
     /// <param name="id">The ID of the colleague to retrieve.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
@@ -54,7 +54,7 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     }
 
     /// <summary>
-    /// Creates a new colleague.
+    ///     Creates a new colleague.
     /// </summary>
     /// <param name="colleague">The colleague data.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
@@ -69,7 +69,7 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     }
 
     /// <summary>
-    /// Updates a colleague by ID.
+    ///     Updates a colleague by ID.
     /// </summary>
     /// <param name="id">The ID of the colleague to update.</param>
     /// <param name="patchDocument">The JSON patch document containing updates.</param>
@@ -85,7 +85,7 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     }
 
     /// <summary>
-    /// Deletes a colleague by ID.
+    ///     Deletes a colleague by ID.
     /// </summary>
     /// <param name="id">The ID of the colleague to delete.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>

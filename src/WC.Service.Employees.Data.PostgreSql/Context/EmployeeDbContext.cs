@@ -8,10 +8,7 @@ public sealed class EmployeeDbContext : DbContext
 {
     public EmployeeDbContext(DbContextOptions<EmployeeDbContext> options, IHostEnvironment environment) : base(options)
     {
-        if (environment.IsDevelopment())
-        {
-            Database.Migrate();
-        }
+        if (environment.IsDevelopment()) Database.Migrate();
     }
 
     public DbSet<EmployeeEntity> Employees { get; set; } = null!;

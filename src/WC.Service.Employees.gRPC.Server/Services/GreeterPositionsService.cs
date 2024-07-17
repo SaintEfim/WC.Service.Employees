@@ -1,4 +1,5 @@
 using Grpc.Core;
+using WC.Library.Shared.Exceptions;
 using WC.Service.Employees.Domain.Services.Position;
 
 namespace WC.Service.Employees.gRPC.Server.Services;
@@ -17,10 +18,7 @@ public class GreeterPositionsService : GreeterPositions.GreeterPositionsBase
     {
         var position = await _provider.GetOneByName(request.Position.Name, context.CancellationToken);
 
-        if (position == null)
-        {
-            throw new RpcException(new Status(StatusCode.NotFound, "Position not found"));
-        }
+        if (position == null) throw new NotFoundException("Position not found");
 
         return new GetOneByNamePositionResponse
         {

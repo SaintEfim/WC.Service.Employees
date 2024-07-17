@@ -6,10 +6,10 @@ namespace WC.Service.Employees.Data.PostgreSql.Context;
 
 public sealed class EmployeeDnContextFactory : PostgreSqlDbContextFactoryBase<EmployeeDbContext>
 {
-    protected override string ConnectionString => "ServiceDB";
-
     public EmployeeDnContextFactory(IConfiguration configuration, IHostEnvironment environment) : base(configuration,
         environment)
     {
     }
+
+    protected override string ConnectionString => "ServiceDB";
 }

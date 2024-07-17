@@ -3,7 +3,7 @@ using WC.Service.Employees.Domain.Models;
 
 namespace WC.Service.Employees.Domain.Services.Employee.Validators;
 
-public class EmployeeModelValidator : AbstractValidator<EmployeeModel>
+public sealed class EmployeeModelValidator : AbstractValidator<EmployeeModel>
 {
     public EmployeeModelValidator()
     {

@@ -22,7 +22,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Models.ColleagueEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Model.ColleagueEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     b.ToTable("Colleagues");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Models.EmployeeEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Model.EmployeeEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,7 +82,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Models.PositionEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Model.PositionEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -100,15 +100,15 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     b.ToTable("Positions");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Models.ColleagueEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Model.ColleagueEntity", b =>
                 {
-                    b.HasOne("WC.Service.Employees.Data.Models.EmployeeEntity", "ColleagueEmployee")
+                    b.HasOne("WC.Service.Employees.Data.Model.EmployeeEntity", "ColleagueEmployee")
                         .WithMany()
                         .HasForeignKey("ColleagueEmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("WC.Service.Employees.Data.Models.EmployeeEntity", "Employee")
+                    b.HasOne("WC.Service.Employees.Data.Model.EmployeeEntity", "Employee")
                         .WithMany("Colleagues")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -119,9 +119,9 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Models.EmployeeEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Model.EmployeeEntity", b =>
                 {
-                    b.HasOne("WC.Service.Employees.Data.Models.PositionEntity", "Position")
+                    b.HasOne("WC.Service.Employees.Data.Model.PositionEntity", "Position")
                         .WithMany("Employees")
                         .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -130,12 +130,12 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     b.Navigation("Position");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Models.EmployeeEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Model.EmployeeEntity", b =>
                 {
                     b.Navigation("Colleagues");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Models.PositionEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Model.PositionEntity", b =>
                 {
                     b.Navigation("Employees");
                 });

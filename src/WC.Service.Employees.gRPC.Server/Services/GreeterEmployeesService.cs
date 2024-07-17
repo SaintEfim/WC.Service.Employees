@@ -39,10 +39,7 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
         ServerCallContext context)
     {
         var employee = await _provider.GetOneByEmail(request.Email, context.CancellationToken);
-        if (employee == null)
-        {
-            throw new RpcException(new Status(StatusCode.NotFound, "Employee not found"));
-        }
+        if (employee == null) throw new RpcException(new Status(StatusCode.NotFound, "Employee not found"));
 
         var response = new EmployeeGetByEmailResponse
         {
@@ -103,14 +100,14 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
             Password = request.Employee.Password,
             PositionId = Guid.Parse(request.Employee.PositionId)
         }, context.CancellationToken);
-        
+
         return new Empty();
     }
 
     public override async Task<Empty> Delete(EmployeeDeleteRequest request, ServerCallContext context)
     {
         await _manager.Delete(Guid.Parse(request.Id), context.CancellationToken);
-        
+
         return new Empty();
     }
 }

@@ -5,8 +5,7 @@ namespace WC.Service.Employees.API.Models.Position;
 
 public class PositionDto : DtoBase
 {
-    [Required]
-    public string Name { get; set; } = string.Empty;
+    [Required] public string Name { get; set; } = string.Empty;
 
     public string? Description { get; set; }
 }

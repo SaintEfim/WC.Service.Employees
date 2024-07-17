@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using WC.Library.Domain.Validators;
 using WC.Service.Employees.Domain.Models;
 
-namespace WC.Service.Employees.Domain.Services.Employee.Validators.Create;
+namespace WC.Service.Employees.Domain.Services.Employee.Validators;
 
-public class EmployeeCreateValidator : AbstractValidator<EmployeeModel>, IDomainCreateValidator
+public sealed class EmployeeCreateValidator : AbstractValidator<EmployeeModel>, IDomainCreateValidator
 {
     public EmployeeCreateValidator(IServiceProvider provider)
     {

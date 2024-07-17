@@ -11,8 +11,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" />
-      <PackageReference Include="WC.Library.Domain.Abstractions" Version="1.0.7" />
+        <PackageReference Include="JetBrains.Annotations" Version="2024.2.0"/>
+        <PackageReference Include="WC.Library.Domain.Abstractions" Version="1.0.7"/>
     </ItemGroup>
 
 </Project>

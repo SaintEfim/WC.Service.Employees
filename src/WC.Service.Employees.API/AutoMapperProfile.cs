@@ -12,7 +12,7 @@ public class AutoMapperProfile : Profile
     public AutoMapperProfile()
     {
         CreateMap<ColleagueModel, ColleagueDto>();
-        
+
         CreateMap<ColleagueModel, ColleagueDetailDto>();
 
         CreateMap<ColleagueCreateDto, ColleagueModel>();
@@ -20,11 +20,11 @@ public class AutoMapperProfile : Profile
         CreateMap<ColleagueModel, CreateActionResultDto>();
 
         CreateMap<EmployeeModel, EmployeeDto>();
-        
+
         CreateMap<EmployeeModel, EmployeeDetailDto>();
 
         CreateMap<EmployeeModel, CreateActionResultDto>();
-        
+
         CreateMap<PositionModel, PositionDto>();
 
         CreateMap<PositionCreateDto, PositionModel>();

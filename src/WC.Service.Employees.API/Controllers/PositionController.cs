@@ -18,7 +18,7 @@ namespace WC.Service.Employees.API.Controllers;
 public class PositionController : CrudApiControllerBase<PositionController, IPositionManager, IPositionProvider,
     PositionModel, PositionDto>
 {
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public PositionController(IMapper mapper, ILogger<PositionController> logger,
         IPositionManager manager, IPositionProvider provider) : base(mapper, logger, manager, provider)
     {
@@ -69,7 +69,7 @@ public class PositionController : CrudApiControllerBase<PositionController, IPos
         CancellationToken cancellationToken = default)
     {
         return Create<PositionCreateDto, CreateActionResultDto>(payload, nameof(PositionGetById),
-            cancellationToken: cancellationToken);
+            cancellationToken);
     }
 
     /// <summary>
