@@ -1,27 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <Folder Include="logs\"/>
-        <Folder Include="obj\Debug\net8.0\Protos\"/>
-        <Protobuf Include="Protos\greet_employees.proto" GrpcServices="Server"/>
-        <Protobuf Include="Protos\greet_positions.proto" GrpcServices="Server"/>
-    </ItemGroup>
+  <ItemGroup>
+    <Folder Include="logs\"/>
+    <Folder Include="obj\Debug\net8.0\Protos\"/>
+    <Protobuf Include="Protos\greet_employees.proto" GrpcServices="Server"/>
+    <Protobuf Include="Protos\greet_positions.proto" GrpcServices="Server"/>
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Google.Protobuf" Version="3.27.2"/>
-        <PackageReference Include="Grpc.AspNetCore" Version="2.64.0" />
-        <PackageReference Include="WC.Library.Web" Version="1.0.23" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.27.2"/>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.64.0"/>
+    <PackageReference Include="WC.Library.Web" Version="1.0.23"/>
+  </ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\WC.Service.Employees.Domain.Abstractions\WC.Service.Employees.Domain.Abstractions.csproj"/>
-        <ProjectReference Include="..\WC.Service.Employees.Domain\WC.Service.Employees.Domain.csproj"/>
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WC.Service.Employees.Domain.Abstractions\WC.Service.Employees.Domain.Abstractions.csproj"/>
+    <ProjectReference Include="..\WC.Service.Employees.Domain\WC.Service.Employees.Domain.csproj"/>
+  </ItemGroup>
 
 </Project>
