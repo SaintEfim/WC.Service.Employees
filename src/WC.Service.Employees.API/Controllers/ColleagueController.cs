@@ -67,7 +67,7 @@ public class ColleagueController
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpPost]
     [OpenApiOperation(nameof(ColleagueCreate))]
-    [SwaggerResponse(Status200OK, typeof(ColleagueDto))]
+    [SwaggerResponse(Status201Created, typeof(CreateActionResultDto))]
     public async Task<IActionResult> ColleagueCreate(
         [FromBody] ColleagueCreateDto colleague,
         CancellationToken cancellationToken = default)

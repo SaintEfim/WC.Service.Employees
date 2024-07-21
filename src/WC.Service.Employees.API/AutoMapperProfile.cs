@@ -23,8 +23,6 @@ public class AutoMapperProfile : Profile
 
         CreateMap<EmployeeModel, EmployeeDetailDto>();
 
-        CreateMap<EmployeeModel, CreateActionResultDto>();
-
         CreateMap<PositionModel, PositionDto>();
 
         CreateMap<PositionCreateDto, PositionModel>();
