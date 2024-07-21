@@ -6,8 +6,10 @@ namespace WC.Service.Employees.Data.PostgreSql.Context;
 
 public sealed class EmployeeDnContextFactory : PostgreSqlDbContextFactoryBase<EmployeeDbContext>
 {
-    public EmployeeDnContextFactory(IConfiguration configuration, IHostEnvironment environment) : base(configuration,
-        environment)
+    public EmployeeDnContextFactory(
+        IConfiguration configuration,
+        IHostEnvironment environment)
+        : base(configuration, environment)
     {
     }
 
