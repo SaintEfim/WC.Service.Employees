@@ -7,12 +7,14 @@ public class GreeterPositionsService : GreeterPositions.GreeterPositionsBase
 {
     private readonly IPositionProvider _provider;
 
-    public GreeterPositionsService(IPositionProvider provider)
+    public GreeterPositionsService(
+        IPositionProvider provider)
     {
         _provider = provider;
     }
 
-    public override async Task<GetOneByNamePositionResponse> GetOneByName(GetOneByNamePositionRequest request,
+    public override async Task<GetOneByNamePositionResponse> GetOneByName(
+        GetOneByNamePositionRequest request,
         ServerCallContext context)
     {
         var position = await _provider.GetOneByName(request.Position.Name, context.CancellationToken);

@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <RootNamespace>WC.Service.Employees.Domain</RootNamespace>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>WC.Service.Employees.Domain</RootNamespace>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="WC.Library.Domain.Abstractions" Version="1.0.7"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WC.Library.Domain.Abstractions" Version="1.0.7"/>
+  </ItemGroup>
 
 </Project>

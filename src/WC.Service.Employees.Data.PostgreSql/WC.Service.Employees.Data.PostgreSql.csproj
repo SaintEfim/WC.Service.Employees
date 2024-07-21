@@ -1,25 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Autofac" Version="8.0.0"/>
-        <PackageReference Include="AutoMapper" Version="13.0.1"/>
-        <PackageReference Include="WC.Library.Data.Abstractions" Version="1.0.4"/>
-        <PackageReference Include="WC.Library.Data.PostgreSql" Version="1.0.4"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.0.0"/>
+    <PackageReference Include="AutoMapper" Version="13.0.1"/>
+    <PackageReference Include="WC.Library.Data.Abstractions" Version="1.0.4"/>
+    <PackageReference Include="WC.Library.Data.PostgreSql" Version="1.0.4"/>
+  </ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\WC.Service.Employees.Data.Abstractions\WC.Service.Employees.Data.Abstractions.csproj"/>
-        <ProjectReference Include="..\WC.Service.Employees.Data\WC.Service.Employees.Data.csproj"/>
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WC.Service.Employees.Data.Abstractions\WC.Service.Employees.Data.Abstractions.csproj"/>
+    <ProjectReference Include="..\WC.Service.Employees.Data\WC.Service.Employees.Data.csproj"/>
+  </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Migrations\"/>
-    </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\"/>
+  </ItemGroup>
 
 </Project>

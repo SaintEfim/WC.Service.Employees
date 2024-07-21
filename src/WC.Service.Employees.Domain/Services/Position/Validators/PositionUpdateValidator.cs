@@ -5,9 +5,12 @@ using WC.Service.Employees.Domain.Models;
 
 namespace WC.Service.Employees.Domain.Services.Position.Validators;
 
-public sealed class PositionUpdateValidator : AbstractValidator<PositionModel>, IDomainUpdateValidator
+public sealed class PositionUpdateValidator
+    : AbstractValidator<PositionModel>,
+        IDomainUpdateValidator
 {
-    public PositionUpdateValidator(IServiceProvider provider)
+    public PositionUpdateValidator(
+        IServiceProvider provider)
     {
         ClassLevelCascadeMode = CascadeMode.Stop;
 

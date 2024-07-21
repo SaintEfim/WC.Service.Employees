@@ -1,8 +1,6 @@
-﻿using JetBrains.Annotations;
-
-namespace WC.Service.Employees.gRPC.Client.Models.Employee.DoesEmployeeWithEmailExist;
+﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee.DoesEmployeeWithEmailExist;
 
 public class DoesEmployeeWithEmailExistResponseModel
 {
-    public required bool Exists { [UsedImplicitly] get; set; }
+    public required bool Exists { get; set; }
 }

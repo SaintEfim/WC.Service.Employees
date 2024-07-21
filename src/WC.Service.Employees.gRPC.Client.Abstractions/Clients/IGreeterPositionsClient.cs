@@ -4,6 +4,7 @@ namespace WC.Service.Employees.gRPC.Client.Clients;
 
 public interface IGreeterPositionsClient
 {
-    Task<GetOneByNamePositionResponseModel> GetOneByName(GetOneByNamePositionRequestModel request,
+    Task<GetOneByNamePositionResponseModel> GetOneByName(
+        GetOneByNamePositionRequestModel request,
         CancellationToken cancellationToken = default);
 }

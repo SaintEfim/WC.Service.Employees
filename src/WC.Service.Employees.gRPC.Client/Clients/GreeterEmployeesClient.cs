@@ -11,7 +11,8 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
 {
     private readonly GreeterEmployees.GreeterEmployeesClient _client;
 
-    public GreeterEmployeesClient(IEmployeesClientConfiguration configuration)
+    public GreeterEmployeesClient(
+        IEmployeesClientConfiguration configuration)
     {
         var channel = GrpcChannel.ForAddress(configuration.GetBaseUrl());
         _client = new GreeterEmployees.GreeterEmployeesClient(channel);
@@ -22,17 +23,19 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
     {
         var response = await _client.GetAsync(new Empty(), cancellationToken: cancellationToken);
 
-        var employees = response.Employee.Select(e => new EmployeeListResponseModel
-        {
-            Id = Guid.Parse(e.Id),
-            Name = e.Name,
-            Surname = e.Surname,
-            Patronymic = e.Patronymic,
-            Email = e.Email,
-            Password = e.Password,
-            PositionId = Guid.Parse(e.PositionId),
-            Role = e.Role
-        }).ToList();
+        var employees = response.Employee
+            .Select(e => new EmployeeListResponseModel
+            {
+                Id = Guid.Parse(e.Id),
+                Name = e.Name,
+                Surname = e.Surname,
+                Patronymic = e.Patronymic,
+                Email = e.Email,
+                Password = e.Password,
+                PositionId = Guid.Parse(e.PositionId),
+                Role = e.Role
+            })
+            .ToList();
 
         return employees;
     }
@@ -41,10 +44,8 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
         GetOneByEmailEmployeeRequestModel request,
         CancellationToken cancellationToken)
     {
-        var employee = await _client.GetOneByEmailAsync(new EmployeeGetByEmailRequest
-        {
-            Email = request.Email
-        }, cancellationToken: cancellationToken);
+        var employee = await _client.GetOneByEmailAsync(new EmployeeGetByEmailRequest { Email = request.Email },
+            cancellationToken: cancellationToken);
 
         return new GetOneByEmailEmployeeResponseModel
         {
@@ -60,24 +61,21 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
     }
 
     public async Task<DoesEmployeeWithEmailExistResponseModel> DoesEmployeeWithEmailExist(
-        DoesEmployeeWithEmailExistRequestModel request, CancellationToken cancellationToken)
-    {
-        var result = await _client.DoesEmployeeWithEmailExistAsync(new DoesEmployeeWithEmailExistRequest
-        {
-            Email = request.Email
-        }, cancellationToken: cancellationToken);
-
-        return new DoesEmployeeWithEmailExistResponseModel
-        {
-            Exists = result.Exists
-        };
-    }
-
-    public async Task<CreateResultModel> Create(EmployeeCreateRequestModel request,
+        DoesEmployeeWithEmailExistRequestModel request,
         CancellationToken cancellationToken)
     {
-        var createResult =
-            await _client.CreateAsync(new EmployeeCreateRequest
+        var result = await _client.DoesEmployeeWithEmailExistAsync(
+            new DoesEmployeeWithEmailExistRequest { Email = request.Email }, cancellationToken: cancellationToken);
+
+        return new DoesEmployeeWithEmailExistResponseModel { Exists = result.Exists };
+    }
+
+    public async Task<CreateResultModel> Create(
+        EmployeeCreateRequestModel request,
+        CancellationToken cancellationToken)
+    {
+        var createResult = await _client.CreateAsync(
+            new EmployeeCreateRequest
             {
                 Employee = new Employee
                 {
@@ -90,13 +88,11 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
                 }
             }, cancellationToken: cancellationToken);
 
-        return new CreateResultModel
-        {
-            Id = Guid.Parse(createResult.Id)
-        };
+        return new CreateResultModel { Id = Guid.Parse(createResult.Id) };
     }
 
-    public async Task Update(EmployeeUpdateRequestModel request,
+    public async Task Update(
+        EmployeeUpdateRequestModel request,
         CancellationToken cancellationToken)
     {
         await _client.UpdateAsync(new EmployeeUpdateRequest
@@ -115,12 +111,11 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
         }, cancellationToken: cancellationToken);
     }
 
-    public async Task Delete(EmployeeDeleteRequestModel request,
+    public async Task Delete(
+        EmployeeDeleteRequestModel request,
         CancellationToken cancellationToken)
     {
-        await _client.DeleteAsync(new EmployeeDeleteRequest
-        {
-            Id = request.Id.ToString()
-        }, cancellationToken: cancellationToken);
+        await _client.DeleteAsync(new EmployeeDeleteRequest { Id = request.Id.ToString() },
+            cancellationToken: cancellationToken);
     }
 }

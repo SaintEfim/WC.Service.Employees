@@ -8,10 +8,13 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
-        CreateMap<ColleagueModel, ColleagueEntity>().ReverseMap();
+        CreateMap<ColleagueModel, ColleagueEntity>()
+            .ReverseMap();
 
-        CreateMap<EmployeeModel, EmployeeEntity>().ReverseMap();
+        CreateMap<EmployeeModel, EmployeeEntity>()
+            .ReverseMap();
 
-        CreateMap<PositionModel, PositionEntity>().ReverseMap();
+        CreateMap<PositionModel, PositionEntity>()
+            .ReverseMap();
     }
 }

@@ -15,12 +15,17 @@ namespace WC.Service.Employees.API.Controllers;
 ///     The employee management controller.
 /// </summary>
 [Route("api/v1/employees")]
-public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmployeeManager, IEmployeeProvider,
-    EmployeeModel, EmployeeDto, EmployeeDetailDto>
+public class EmployeeController
+    : CrudApiControllerBase<EmployeeController, IEmployeeManager, IEmployeeProvider, EmployeeModel, EmployeeDto,
+        EmployeeDetailDto>
 {
     /// <inheritdoc/>
-    public EmployeeController(IMapper mapper, ILogger<EmployeeController> logger,
-        IEmployeeManager manager, IEmployeeProvider provider) : base(mapper, logger, manager, provider)
+    public EmployeeController(
+        IMapper mapper,
+        ILogger<EmployeeController> logger,
+        IEmployeeManager manager,
+        IEmployeeProvider provider)
+        : base(mapper, logger, manager, provider)
     {
     }
 
@@ -32,7 +37,8 @@ public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmp
     [HttpGet]
     [OpenApiOperation(nameof(EmployeeGet))]
     [SwaggerResponse(Status200OK, typeof(List<EmployeeDto>))]
-    public async Task<ActionResult<List<EmployeeDto>>> EmployeeGet(bool withIncludes = false,
+    public async Task<ActionResult<List<EmployeeDto>>> EmployeeGet(
+        bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {
         return Ok(await GetMany(withIncludes, cancellationToken));
@@ -47,7 +53,8 @@ public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmp
     [OpenApiOperation(nameof(EmployeeGetById))]
     [SwaggerResponse(Status200OK, typeof(EmployeeDetailDto))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    public async Task<ActionResult<EmployeeDetailDto>> EmployeeGetById(Guid id,
+    public async Task<ActionResult<EmployeeDetailDto>> EmployeeGetById(
+        Guid id,
         CancellationToken cancellationToken = default)
     {
         return Ok(await GetOneById(id, true, cancellationToken));
@@ -63,7 +70,9 @@ public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmp
     [OpenApiOperation(nameof(EmployeeUpdate))]
     [SwaggerResponse(Status200OK, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    public async Task<IActionResult> EmployeeUpdate(Guid id, [FromBody] JsonPatchDocument<EmployeeDto> patchDocument,
+    public async Task<IActionResult> EmployeeUpdate(
+        Guid id,
+        [FromBody] JsonPatchDocument<EmployeeDto> patchDocument,
         CancellationToken cancellationToken = default)
     {
         return Ok(await Update(id, patchDocument, cancellationToken));
@@ -81,7 +90,9 @@ public class EmployeeController : CrudApiControllerBase<EmployeeController, IEmp
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
     [SwaggerResponse(Status400BadRequest, typeof(ErrorDto))]
     [SwaggerResponse(Status409Conflict, typeof(ErrorDto))]
-    public async Task<IActionResult> EmployeeDelete(Guid id, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> EmployeeDelete(
+        Guid id,
+        CancellationToken cancellationToken = default)
     {
         return Ok(await Delete(id, cancellationToken));
     }

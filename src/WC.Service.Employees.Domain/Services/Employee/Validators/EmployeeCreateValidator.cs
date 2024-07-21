@@ -5,9 +5,12 @@ using WC.Service.Employees.Domain.Models;
 
 namespace WC.Service.Employees.Domain.Services.Employee.Validators;
 
-public sealed class EmployeeCreateValidator : AbstractValidator<EmployeeModel>, IDomainCreateValidator
+public sealed class EmployeeCreateValidator
+    : AbstractValidator<EmployeeModel>,
+        IDomainCreateValidator
 {
-    public EmployeeCreateValidator(IServiceProvider provider)
+    public EmployeeCreateValidator(
+        IServiceProvider provider)
     {
         ClassLevelCascadeMode = CascadeMode.Stop;
 
