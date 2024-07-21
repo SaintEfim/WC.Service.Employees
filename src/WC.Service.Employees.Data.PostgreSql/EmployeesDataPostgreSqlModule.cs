@@ -18,7 +18,8 @@ public class EmployeesDataPostgreSqlModule : Module
             .AsSelf()
             .SingleInstance();
 
-        builder.Register(c => c.Resolve<EmployeeDnContextFactory>().CreateDbContext())
+        builder.Register(c => c.Resolve<EmployeeDnContextFactory>()
+                .CreateDbContext())
             .As<EmployeeDbContext>()
             .As<DbContext>()
             .InstancePerLifetimeScope();

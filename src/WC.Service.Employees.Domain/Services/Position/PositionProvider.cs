@@ -7,15 +7,20 @@ using WC.Service.Employees.Domain.Models;
 
 namespace WC.Service.Employees.Domain.Services.Position;
 
-public class PositionProvider : DataProviderBase<PositionProvider, IPositionRepository, PositionModel, PositionEntity>,
-    IPositionProvider
+public class PositionProvider
+    : DataProviderBase<PositionProvider, IPositionRepository, PositionModel, PositionEntity>,
+        IPositionProvider
 {
-    public PositionProvider(IMapper mapper, ILogger<PositionProvider> logger, IPositionRepository repository) : base(
-        mapper, logger, repository)
+    public PositionProvider(
+        IMapper mapper,
+        ILogger<PositionProvider> logger,
+        IPositionRepository repository)
+        : base(mapper, logger, repository)
     {
     }
 
-    public async Task<PositionModel?> GetOneByName(string positionName,
+    public async Task<PositionModel?> GetOneByName(
+        string positionName,
         CancellationToken cancellationToken = default)
     {
         var positions = await Repository.Get(cancellationToken: cancellationToken);

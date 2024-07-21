@@ -1,6 +1,4 @@
-﻿using JetBrains.Annotations;
-
-namespace WC.Service.Employees.gRPC.Client.Models.Employee;
+﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee;
 
 public class EmployeeCreateRequestModel
 {
@@ -14,5 +12,5 @@ public class EmployeeCreateRequestModel
 
     public required string Password { get; set; } = string.Empty;
 
-    public required Guid PositionId { get; [UsedImplicitly] set; }
+    public required Guid PositionId { get; set; }
 }

@@ -7,19 +7,26 @@ namespace WC.Service.Employees.gRPC.Client.Clients;
 
 public interface IGreeterEmployeesClient
 {
-    Task<ICollection<EmployeeListResponseModel>> Get(CancellationToken cancellationToken = default);
+    Task<ICollection<EmployeeListResponseModel>> Get(
+        CancellationToken cancellationToken = default);
 
-    Task<GetOneByEmailEmployeeResponseModel> GetOneByEmail(GetOneByEmailEmployeeRequestModel request,
+    Task<GetOneByEmailEmployeeResponseModel> GetOneByEmail(
+        GetOneByEmailEmployeeRequestModel request,
         CancellationToken cancellationToken = default);
 
     Task<DoesEmployeeWithEmailExistResponseModel> DoesEmployeeWithEmailExist(
-        DoesEmployeeWithEmailExistRequestModel request, CancellationToken cancellationToken = default);
-
-    Task<CreateResultModel> Create(EmployeeCreateRequestModel request, CancellationToken cancellationToken = default);
-
-    Task Update(EmployeeUpdateRequestModel request,
+        DoesEmployeeWithEmailExistRequestModel request,
         CancellationToken cancellationToken = default);
 
-    Task Delete(EmployeeDeleteRequestModel request,
+    Task<CreateResultModel> Create(
+        EmployeeCreateRequestModel request,
+        CancellationToken cancellationToken = default);
+
+    Task Update(
+        EmployeeUpdateRequestModel request,
+        CancellationToken cancellationToken = default);
+
+    Task Delete(
+        EmployeeDeleteRequestModel request,
         CancellationToken cancellationToken = default);
 }

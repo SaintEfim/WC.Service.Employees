@@ -8,11 +8,16 @@ using WC.Service.Employees.Domain.Models;
 
 namespace WC.Service.Employees.Domain.Services.Position;
 
-public class PositionManager : DataManagerBase<PositionManager, IPositionRepository, PositionModel, PositionEntity>,
-    IPositionManager
+public class PositionManager
+    : DataManagerBase<PositionManager, IPositionRepository, PositionModel, PositionEntity>,
+        IPositionManager
 {
-    public PositionManager(IMapper mapper, ILogger<PositionManager> logger, IPositionRepository repository,
-        IEnumerable<IValidator> validators) : base(mapper, logger, repository, validators)
+    public PositionManager(
+        IMapper mapper,
+        ILogger<PositionManager> logger,
+        IPositionRepository repository,
+        IEnumerable<IValidator> validators)
+        : base(mapper, logger, repository, validators)
     {
     }
 }

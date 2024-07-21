@@ -7,7 +7,9 @@ using WC.Service.Employees.Domain.Services.Position.Validators;
 
 namespace WC.Service.Employees.Domain.Services.Employee.Validators;
 
-public sealed class EmployeeUpdateValidator : AbstractValidator<EmployeeModel>, IDomainUpdateValidator
+public sealed class EmployeeUpdateValidator
+    : AbstractValidator<EmployeeModel>,
+        IDomainUpdateValidator
 {
     public EmployeeUpdateValidator()
     {

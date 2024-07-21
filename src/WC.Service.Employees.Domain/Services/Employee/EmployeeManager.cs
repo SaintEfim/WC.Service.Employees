@@ -8,12 +8,16 @@ using WC.Service.Employees.Domain.Models;
 
 namespace WC.Service.Employees.Domain.Services.Employee;
 
-public class EmployeeManager : DataManagerBase<EmployeeManager, IEmployeeRepository, EmployeeModel, EmployeeEntity>,
-    IEmployeeManager
+public class EmployeeManager
+    : DataManagerBase<EmployeeManager, IEmployeeRepository, EmployeeModel, EmployeeEntity>,
+        IEmployeeManager
 {
-    public EmployeeManager(IMapper mapper, ILogger<EmployeeManager> logger, IEmployeeRepository repository,
-        IEnumerable<IValidator> validators) : base(mapper, logger, repository,
-        validators)
+    public EmployeeManager(
+        IMapper mapper,
+        ILogger<EmployeeManager> logger,
+        IEmployeeRepository repository,
+        IEnumerable<IValidator> validators)
+        : base(mapper, logger, repository, validators)
     {
     }
 }

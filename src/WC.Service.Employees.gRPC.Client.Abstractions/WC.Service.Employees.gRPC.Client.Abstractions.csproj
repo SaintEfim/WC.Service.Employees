@@ -1,18 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <RootNamespace>WC.Service.Employees.gRPC.Client</RootNamespace>
-        <PackageId>WC.Service.Employees.gRPC.Client.Abstractions</PackageId>
-        <Version>1.0.7</Version>
-        <Authors>SaintEfim</Authors>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>WC.Service.Employees.gRPC.Client</RootNamespace>
+    <PackageId>WC.Service.Employees.gRPC.Client.Abstractions</PackageId>
+    <Version>1.0.8</Version>
+    <Authors>SaintEfim</Authors>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2024.2.0"/>
-        <PackageReference Include="WC.Library.Domain.Abstractions" Version="1.0.7"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WC.Library.Domain.Abstractions" Version="1.0.7"/>
+  </ItemGroup>
 
 </Project>

@@ -5,13 +5,15 @@ using WC.Service.Employees.Data.Models;
 
 namespace WC.Service.Employees.Data.Repositories;
 
-public class PositionRepository<TDbContext> :
-    RepositoryBase<PositionRepository<TDbContext>, TDbContext, PositionEntity>,
-    IPositionRepository
+public class PositionRepository<TDbContext>
+    : RepositoryBase<PositionRepository<TDbContext>, TDbContext, PositionEntity>,
+        IPositionRepository
     where TDbContext : DbContext
 {
-    protected PositionRepository(TDbContext context, ILogger<PositionRepository<TDbContext>> logger) : base(context,
-        logger)
+    protected PositionRepository(
+        TDbContext context,
+        ILogger<PositionRepository<TDbContext>> logger)
+        : base(context, logger)
     {
     }
 }
