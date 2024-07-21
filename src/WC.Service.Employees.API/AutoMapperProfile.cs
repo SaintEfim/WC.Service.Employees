@@ -11,6 +11,13 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
+        MapColleagueModels();
+        MapEmployeeModels();
+        MapPositionModels();
+    }
+
+    private void MapColleagueModels()
+    {
         CreateMap<ColleagueModel, ColleagueDto>();
 
         CreateMap<ColleagueModel, ColleagueDetailDto>();
@@ -18,11 +25,17 @@ public class AutoMapperProfile : Profile
         CreateMap<ColleagueCreateDto, ColleagueModel>();
 
         CreateMap<ColleagueModel, CreateActionResultDto>();
+    }
 
+    private void MapEmployeeModels()
+    {
         CreateMap<EmployeeModel, EmployeeDto>();
 
         CreateMap<EmployeeModel, EmployeeDetailDto>();
+    }
 
+    private void MapPositionModels()
+    {
         CreateMap<PositionModel, PositionDto>();
 
         CreateMap<PositionCreateDto, PositionModel>();
