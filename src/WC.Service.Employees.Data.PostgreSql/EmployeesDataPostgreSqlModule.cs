@@ -14,11 +14,11 @@ public class EmployeesDataPostgreSqlModule : Module
             .AsClosedTypesOf(typeof(IRepository<>))
             .AsImplementedInterfaces();
 
-        builder.RegisterType<EmployeeDbContextFactory>()
+        builder.RegisterType<EmployeeDnContextFactory>()
             .AsSelf()
             .SingleInstance();
 
-        builder.Register(c => c.Resolve<EmployeeDbContextFactory>().CreateDbContext())
+        builder.Register(c => c.Resolve<EmployeeDnContextFactory>().CreateDbContext())
             .As<EmployeeDbContext>()
             .As<DbContext>()
             .InstancePerLifetimeScope();

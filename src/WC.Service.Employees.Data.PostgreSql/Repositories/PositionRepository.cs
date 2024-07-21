@@ -6,9 +6,10 @@ namespace WC.Service.Employees.Data.PostgreSql.Repositories;
 
 public class PositionRepository : PositionRepository<EmployeeDbContext>
 {
-    public PositionRepository(EmployeeDbContext context, ILogger<PositionRepository> logger) :
-        base(
-            context, logger)
+    public PositionRepository(
+        EmployeeDbContext context,
+        ILogger<PositionRepository> logger)
+        : base(context, logger)
     {
     }
 }

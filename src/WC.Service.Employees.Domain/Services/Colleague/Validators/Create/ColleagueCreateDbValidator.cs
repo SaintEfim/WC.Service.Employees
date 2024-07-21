@@ -7,20 +7,25 @@ namespace WC.Service.Employees.Domain.Services.Colleague.Validators.Create;
 
 public sealed class ColleagueCreateDbValidator : AbstractValidator<ColleagueModel>
 {
-    public ColleagueCreateDbValidator(IEmployeeProvider provider)
+    public ColleagueCreateDbValidator(
+        IEmployeeProvider provider)
     {
         RuleFor(x => x.EmployeeId)
-            .MustAsync(async (employeeId, cancellationToken) =>
-                await EmployeeExists(employeeId, provider, cancellationToken))
+            .MustAsync(async (
+                employeeId,
+                cancellationToken) => await EmployeeExists(employeeId, provider, cancellationToken))
             .WithMessage("The employee does not exist.");
 
         RuleFor(x => x.ColleagueEmployeeId)
-            .MustAsync(async (colleagueEmployeeId, cancellationToken) =>
-                await EmployeeExists(colleagueEmployeeId, provider, cancellationToken))
+            .MustAsync(async (
+                colleagueEmployeeId,
+                cancellationToken) => await EmployeeExists(colleagueEmployeeId, provider, cancellationToken))
             .WithMessage("The colleague employee does not exist.");
     }
 
-    private static async Task<bool> EmployeeExists(Guid employeeId, IEmployeeProvider provider,
+    private static async Task<bool> EmployeeExists(
+        Guid employeeId,
+        IEmployeeProvider provider,
         CancellationToken cancellationToken)
     {
         try

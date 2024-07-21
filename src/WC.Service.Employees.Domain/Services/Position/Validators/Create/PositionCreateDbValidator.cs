@@ -5,10 +5,14 @@ namespace WC.Service.Employees.Domain.Services.Position.Validators.Create;
 
 public sealed class PositionCreateDbValidator : AbstractValidator<PositionModel>
 {
-    public PositionCreateDbValidator(IPositionProvider positionProvider)
+    public PositionCreateDbValidator(
+        IPositionProvider positionProvider)
     {
         RuleFor(x => x)
-            .CustomAsync(async (positionModel, context, cancellationToken) =>
+            .CustomAsync(async (
+                positionModel,
+                context,
+                cancellationToken) =>
             {
                 var positions = await positionProvider.Get(cancellationToken: cancellationToken);
 

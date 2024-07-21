@@ -6,7 +6,10 @@ namespace WC.Service.Employees.Data.PostgreSql.Context;
 
 public sealed class EmployeeDbContext : DbContext
 {
-    public EmployeeDbContext(DbContextOptions<EmployeeDbContext> options, IHostEnvironment environment) : base(options)
+    public EmployeeDbContext(
+        DbContextOptions<EmployeeDbContext> options,
+        IHostEnvironment environment)
+        : base(options)
     {
         if (environment.IsDevelopment()) Database.Migrate();
     }
@@ -15,7 +18,8 @@ public sealed class EmployeeDbContext : DbContext
     public DbSet<ColleagueEntity> Colleagues { get; set; } = null!;
     public DbSet<PositionEntity> Positions { get; set; } = null!;
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(
+        ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ColleagueEntity>()
             .HasOne(f => f.Employee)

@@ -6,9 +6,10 @@ namespace WC.Service.Employees.Data.PostgreSql.Repositories;
 
 public class ColleagueRepository : ColleagueRepository<EmployeeDbContext>
 {
-    public ColleagueRepository(EmployeeDbContext context, ILogger<ColleagueRepository> logger) :
-        base(
-            context, logger)
+    public ColleagueRepository(
+        EmployeeDbContext context,
+        ILogger<ColleagueRepository> logger)
+        : base(context, logger)
     {
     }
 }

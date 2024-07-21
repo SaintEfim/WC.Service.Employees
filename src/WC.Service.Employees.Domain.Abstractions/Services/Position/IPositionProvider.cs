@@ -5,5 +5,7 @@ namespace WC.Service.Employees.Domain.Services.Position;
 
 public interface IPositionProvider : IDataProvider<PositionModel>
 {
-    Task<PositionModel?> GetOneByName(string positionName, CancellationToken cancellationToken = default);
+    Task<PositionModel?> GetOneByName(
+        string positionName,
+        CancellationToken cancellationToken = default);
 }

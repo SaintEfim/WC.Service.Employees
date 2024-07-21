@@ -1,8 +1,6 @@
-﻿using JetBrains.Annotations;
-
-namespace WC.Service.Employees.gRPC.Client.Models.Employee;
+﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee;
 
 public class EmployeeDeleteRequestModel
 {
-    public required Guid Id { get; [UsedImplicitly] set; }
+    public required Guid Id { get; set; }
 }

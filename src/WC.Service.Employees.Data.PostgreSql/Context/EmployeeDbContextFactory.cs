@@ -4,9 +4,9 @@ using WC.Library.Data.PostgreSql.Context;
 
 namespace WC.Service.Employees.Data.PostgreSql.Context;
 
-public sealed class EmployeeDbContextFactory : PostgreSqlDbContextFactoryBase<EmployeeDbContext>
+public sealed class EmployeeDnContextFactory : PostgreSqlDbContextFactoryBase<EmployeeDbContext>
 {
-    public EmployeeDbContextFactory(IConfiguration configuration, IHostEnvironment environment) : base(configuration,
+    public EmployeeDnContextFactory(IConfiguration configuration, IHostEnvironment environment) : base(configuration,
         environment)
     {
     }

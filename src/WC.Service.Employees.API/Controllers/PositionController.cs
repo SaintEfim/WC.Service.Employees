@@ -15,12 +15,16 @@ namespace WC.Service.Employees.API.Controllers;
 ///     The position management controller.
 /// </summary>
 [Route("api/v1/positions")]
-public class PositionController : CrudApiControllerBase<PositionController, IPositionManager, IPositionProvider,
-    PositionModel, PositionDto>
+public class PositionController
+    : CrudApiControllerBase<PositionController, IPositionManager, IPositionProvider, PositionModel, PositionDto>
 {
     /// <inheritdoc/>
-    public PositionController(IMapper mapper, ILogger<PositionController> logger,
-        IPositionManager manager, IPositionProvider provider) : base(mapper, logger, manager, provider)
+    public PositionController(
+        IMapper mapper,
+        ILogger<PositionController> logger,
+        IPositionManager manager,
+        IPositionProvider provider)
+        : base(mapper, logger, manager, provider)
     {
     }
 
@@ -33,7 +37,8 @@ public class PositionController : CrudApiControllerBase<PositionController, IPos
     [HttpGet]
     [OpenApiOperation(nameof(PositionGet))]
     [SwaggerResponse(Status200OK, typeof(List<PositionDto>))]
-    public async Task<ActionResult<List<PositionDto>>> PositionGet(bool withIncludes = false,
+    public async Task<ActionResult<List<PositionDto>>> PositionGet(
+        bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {
         return Ok(await GetMany(withIncludes, cancellationToken));
@@ -49,7 +54,8 @@ public class PositionController : CrudApiControllerBase<PositionController, IPos
     [OpenApiOperation(nameof(PositionGetById))]
     [SwaggerResponse(Status200OK, typeof(PositionDto))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    public async Task<ActionResult<PositionDto>> PositionGetById(Guid id,
+    public async Task<ActionResult<PositionDto>> PositionGetById(
+        Guid id,
         CancellationToken cancellationToken = default)
     {
         return Ok(await GetOneById(id, true, cancellationToken));
@@ -68,8 +74,7 @@ public class PositionController : CrudApiControllerBase<PositionController, IPos
         [FromBody] PositionCreateDto payload,
         CancellationToken cancellationToken = default)
     {
-        return Create<PositionCreateDto, CreateActionResultDto>(payload, nameof(PositionGetById),
-            cancellationToken);
+        return Create<PositionCreateDto, CreateActionResultDto>(payload, nameof(PositionGetById), cancellationToken);
     }
 
     /// <summary>
@@ -83,7 +88,9 @@ public class PositionController : CrudApiControllerBase<PositionController, IPos
     [OpenApiOperation(nameof(PositionUpdate))]
     [SwaggerResponse(Status200OK, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    public async Task<IActionResult> PositionUpdate(Guid id, [FromBody] JsonPatchDocument<PositionDto> patchDocument,
+    public async Task<IActionResult> PositionUpdate(
+        Guid id,
+        [FromBody] JsonPatchDocument<PositionDto> patchDocument,
         CancellationToken cancellationToken = default)
     {
         return Ok(await Update(id, patchDocument, cancellationToken));
@@ -102,7 +109,9 @@ public class PositionController : CrudApiControllerBase<PositionController, IPos
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
     [SwaggerResponse(Status400BadRequest, typeof(ErrorDto))]
     [SwaggerResponse(Status409Conflict, typeof(ErrorDto))]
-    public async Task<IActionResult> PositionDelete(Guid id, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> PositionDelete(
+        Guid id,
+        CancellationToken cancellationToken = default)
     {
         return Ok(await Delete(id, cancellationToken));
     }

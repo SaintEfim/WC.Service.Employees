@@ -10,13 +10,17 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
     private readonly IEmployeeManager _manager;
     private readonly IEmployeeProvider _provider;
 
-    public GreeterEmployeesService(IEmployeeManager manager, IEmployeeProvider provider)
+    public GreeterEmployeesService(
+        IEmployeeManager manager,
+        IEmployeeProvider provider)
     {
         _manager = manager;
         _provider = provider;
     }
 
-    public override async Task<EmployeeListResponse> Get(Empty request, ServerCallContext context)
+    public override async Task<EmployeeListResponse> Get(
+        Empty request,
+        ServerCallContext context)
     {
         var employees = await _provider.Get();
 
@@ -35,7 +39,8 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
         return employeeList;
     }
 
-    public override async Task<EmployeeGetByEmailResponse> GetOneByEmail(EmployeeGetByEmailRequest request,
+    public override async Task<EmployeeGetByEmailResponse> GetOneByEmail(
+        EmployeeGetByEmailRequest request,
         ServerCallContext context)
     {
         var employee = await _provider.GetOneByEmail(request.Email, context.CancellationToken);
@@ -60,17 +65,17 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
     }
 
     public override async Task<DoesEmployeeWithEmailExistResponse> DoesEmployeeWithEmailExist(
-        DoesEmployeeWithEmailExistRequest request, ServerCallContext context)
+        DoesEmployeeWithEmailExistRequest request,
+        ServerCallContext context)
     {
         var exists = await _provider.DoesEmployeeWithEmailExist(request.Email, context.CancellationToken);
 
-        return new DoesEmployeeWithEmailExistResponse
-        {
-            Exists = exists
-        };
+        return new DoesEmployeeWithEmailExistResponse { Exists = exists };
     }
 
-    public override async Task<EmployeeCreateResponse> Create(EmployeeCreateRequest request, ServerCallContext context)
+    public override async Task<EmployeeCreateResponse> Create(
+        EmployeeCreateRequest request,
+        ServerCallContext context)
     {
         var createItem = await _manager.Create(new EmployeeModel
         {
@@ -82,13 +87,12 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
             PositionId = Guid.Parse(request.Employee.PositionId)
         }, context.CancellationToken);
 
-        return new EmployeeCreateResponse
-        {
-            Id = createItem.Id.ToString()
-        };
+        return new EmployeeCreateResponse { Id = createItem.Id.ToString() };
     }
 
-    public override async Task<Empty> Update(EmployeeUpdateRequest request, ServerCallContext context)
+    public override async Task<Empty> Update(
+        EmployeeUpdateRequest request,
+        ServerCallContext context)
     {
         await _manager.Update(new EmployeeModel
         {
@@ -104,7 +108,9 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
         return new Empty();
     }
 
-    public override async Task<Empty> Delete(EmployeeDeleteRequest request, ServerCallContext context)
+    public override async Task<Empty> Delete(
+        EmployeeDeleteRequest request,
+        ServerCallContext context)
     {
         await _manager.Delete(Guid.Parse(request.Id), context.CancellationToken);
 

@@ -15,12 +15,17 @@ namespace WC.Service.Employees.API.Controllers;
 ///     The colleague management controller.
 /// </summary>
 [Route("api/v1/colleagues")]
-public class ColleagueController : CrudApiControllerBase<ColleagueController, IColleagueManager, IColleagueProvider,
-    ColleagueModel, ColleagueDto, ColleagueDetailDto>
+public class ColleagueController
+    : CrudApiControllerBase<ColleagueController, IColleagueManager, IColleagueProvider, ColleagueModel, ColleagueDto,
+        ColleagueDetailDto>
 {
     /// <inheritdoc/>
-    public ColleagueController(IMapper mapper, ILogger<ColleagueController> logger,
-        IColleagueManager manager, IColleagueProvider provider) : base(mapper, logger, manager, provider)
+    public ColleagueController(
+        IMapper mapper,
+        ILogger<ColleagueController> logger,
+        IColleagueManager manager,
+        IColleagueProvider provider)
+        : base(mapper, logger, manager, provider)
     {
     }
 
@@ -32,7 +37,8 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     [HttpGet]
     [OpenApiOperation(nameof(ColleagueGet))]
     [SwaggerResponse(Status200OK, typeof(List<ColleagueDto>))]
-    public async Task<ActionResult<List<ColleagueDto>>> ColleagueGet(bool withIncludes = false,
+    public async Task<ActionResult<List<ColleagueDto>>> ColleagueGet(
+        bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {
         return Ok(await GetMany(withIncludes, cancellationToken));
@@ -47,7 +53,8 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     [OpenApiOperation(nameof(ColleagueGetById))]
     [SwaggerResponse(Status200OK, typeof(ColleagueDetailDto))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    public async Task<ActionResult<ColleagueDetailDto>> ColleagueGetById(Guid id,
+    public async Task<ActionResult<ColleagueDetailDto>> ColleagueGetById(
+        Guid id,
         CancellationToken cancellationToken = default)
     {
         return Ok(await GetOneById(id, true, cancellationToken));
@@ -61,7 +68,8 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     [HttpPost]
     [OpenApiOperation(nameof(ColleagueCreate))]
     [SwaggerResponse(Status200OK, typeof(ColleagueDto))]
-    public async Task<IActionResult> ColleagueCreate([FromBody] ColleagueCreateDto colleague,
+    public async Task<IActionResult> ColleagueCreate(
+        [FromBody] ColleagueCreateDto colleague,
         CancellationToken cancellationToken = default)
     {
         return await Create<ColleagueCreateDto, CreateActionResultDto>(colleague, nameof(ColleagueGetById),
@@ -78,7 +86,9 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     [OpenApiOperation(nameof(ColleagueUpdate))]
     [SwaggerResponse(Status200OK, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    public async Task<IActionResult> ColleagueUpdate(Guid id, [FromBody] JsonPatchDocument<ColleagueDto> patchDocument,
+    public async Task<IActionResult> ColleagueUpdate(
+        Guid id,
+        [FromBody] JsonPatchDocument<ColleagueDto> patchDocument,
         CancellationToken cancellationToken = default)
     {
         return Ok(await Update(id, patchDocument, cancellationToken));
@@ -95,7 +105,9 @@ public class ColleagueController : CrudApiControllerBase<ColleagueController, IC
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
     [SwaggerResponse(Status400BadRequest, typeof(ErrorDto))]
     [SwaggerResponse(Status409Conflict, typeof(ErrorDto))]
-    public async Task<IActionResult> ColleagueDelete(Guid id, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> ColleagueDelete(
+        Guid id,
+        CancellationToken cancellationToken = default)
     {
         return Ok(await Delete(id, cancellationToken));
     }
