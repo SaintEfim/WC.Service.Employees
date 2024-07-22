@@ -19,7 +19,10 @@ public class GreeterPositionsService : GreeterPositions.GreeterPositionsBase
     {
         var position = await _provider.GetOneByName(request.Position.Name, context.CancellationToken);
 
-        if (position == null) throw new RpcException(new Status(StatusCode.NotFound, "Position not found"));
+        if (position == null)
+        {
+            throw new RpcException(new Status(StatusCode.NotFound, "Position not found"));
+        }
 
         return new GetOneByNamePositionResponse
         {
