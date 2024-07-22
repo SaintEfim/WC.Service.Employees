@@ -88,12 +88,12 @@ public class PositionController
     [OpenApiOperation(nameof(PositionUpdate))]
     [SwaggerResponse(Status200OK, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    public async Task<IActionResult> PositionUpdate(
+    public Task<IActionResult> PositionUpdate(
         Guid id,
         [FromBody] JsonPatchDocument<PositionDto> patchDocument,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await Update(id, patchDocument, cancellationToken));
+        return Update(id, patchDocument, cancellationToken);
     }
 
     /// <summary>
@@ -104,15 +104,13 @@ public class PositionController
     /// <returns></returns>
     [HttpDelete("{id:guid}")]
     [OpenApiOperation(nameof(PositionDelete))]
-    [SwaggerResponse(Status200OK, typeof(void))]
-    [SwaggerResponse(Status204NoContent, typeof(ErrorDto))]
+    [SwaggerResponse(Status204NoContent, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    [SwaggerResponse(Status400BadRequest, typeof(ErrorDto))]
     [SwaggerResponse(Status409Conflict, typeof(ErrorDto))]
-    public async Task<IActionResult> PositionDelete(
+    public Task<IActionResult> PositionDelete(
         Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await Delete(id, cancellationToken));
+        return Delete(id, cancellationToken);
     }
 }

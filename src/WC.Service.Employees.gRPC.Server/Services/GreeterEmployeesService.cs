@@ -44,7 +44,10 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
         ServerCallContext context)
     {
         var employee = await _provider.GetOneByEmail(request.Email, context.CancellationToken);
-        if (employee == null) throw new RpcException(new Status(StatusCode.NotFound, "Employee not found"));
+        if (employee == null)
+        {
+            throw new RpcException(new Status(StatusCode.NotFound, "Employee not found"));
+        }
 
         var response = new EmployeeGetByEmailResponse
         {

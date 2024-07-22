@@ -19,8 +19,10 @@ public sealed class PositionCreateDbValidator : AbstractValidator<PositionModel>
                 var duplicatePosition = positions.Any(x => x.Name == positionModel.Name);
 
                 if (duplicatePosition)
+                {
                     context.AddFailure(nameof(PositionModel.Name),
                         $"Position with this {positionModel.Name} already exists.");
+                }
             });
     }
 }

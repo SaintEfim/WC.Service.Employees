@@ -68,11 +68,11 @@ public class ColleagueController
     [HttpPost]
     [OpenApiOperation(nameof(ColleagueCreate))]
     [SwaggerResponse(Status201Created, typeof(CreateActionResultDto))]
-    public async Task<IActionResult> ColleagueCreate(
+    public Task<IActionResult> ColleagueCreate(
         [FromBody] ColleagueCreateDto colleague,
         CancellationToken cancellationToken = default)
     {
-        return await Create<ColleagueCreateDto, CreateActionResultDto>(colleague, nameof(ColleagueGetById),
+        return Create<ColleagueCreateDto, CreateActionResultDto>(colleague, nameof(ColleagueGetById),
             cancellationToken);
     }
 
@@ -86,12 +86,12 @@ public class ColleagueController
     [OpenApiOperation(nameof(ColleagueUpdate))]
     [SwaggerResponse(Status200OK, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    public async Task<IActionResult> ColleagueUpdate(
+    public Task<IActionResult> ColleagueUpdate(
         Guid id,
         [FromBody] JsonPatchDocument<ColleagueDto> patchDocument,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await Update(id, patchDocument, cancellationToken));
+        return Update(id, patchDocument, cancellationToken);
     }
 
     /// <summary>
@@ -100,15 +100,13 @@ public class ColleagueController
     /// <param name="id">The ID of the colleague to delete.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpDelete("{id:guid}")]
-    [SwaggerResponse(Status200OK, typeof(void))]
-    [SwaggerResponse(Status204NoContent, typeof(ErrorDto))]
+    [SwaggerResponse(Status204NoContent, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    [SwaggerResponse(Status400BadRequest, typeof(ErrorDto))]
     [SwaggerResponse(Status409Conflict, typeof(ErrorDto))]
-    public async Task<IActionResult> ColleagueDelete(
+    public Task<IActionResult> ColleagueDelete(
         Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await Delete(id, cancellationToken));
+        return Delete(id, cancellationToken);
     }
 }
