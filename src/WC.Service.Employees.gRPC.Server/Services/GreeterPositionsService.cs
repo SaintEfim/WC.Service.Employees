@@ -27,8 +27,7 @@ public class GreeterPositionsService : GreeterPositions.GreeterPositionsBase
         return new GetOneByNamePositionResponse
         {
             Id = position.Id.ToString(),
-            Name = position.Name,
-            Description = position.Description
+            Name = position.Name
         };
     }
 }
