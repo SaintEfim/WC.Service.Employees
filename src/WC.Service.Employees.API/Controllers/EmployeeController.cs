@@ -70,12 +70,12 @@ public class EmployeeController
     [OpenApiOperation(nameof(EmployeeUpdate))]
     [SwaggerResponse(Status200OK, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    public async Task<IActionResult> EmployeeUpdate(
+    public Task<IActionResult> EmployeeUpdate(
         Guid id,
         [FromBody] JsonPatchDocument<EmployeeDto> patchDocument,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await Update(id, patchDocument, cancellationToken));
+        return Update(id, patchDocument, cancellationToken);
     }
 
     /// <summary>
@@ -85,15 +85,13 @@ public class EmployeeController
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpDelete("{id:guid}")]
     [OpenApiOperation(nameof(EmployeeDelete))]
-    [SwaggerResponse(Status200OK, typeof(void))]
-    [SwaggerResponse(Status204NoContent, typeof(ErrorDto))]
+    [SwaggerResponse(Status204NoContent, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
-    [SwaggerResponse(Status400BadRequest, typeof(ErrorDto))]
     [SwaggerResponse(Status409Conflict, typeof(ErrorDto))]
-    public async Task<IActionResult> EmployeeDelete(
+    public Task<IActionResult> EmployeeDelete(
         Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await Delete(id, cancellationToken));
+        return Delete(id, cancellationToken);
     }
 }
