@@ -3,7 +3,7 @@ using WC.Service.Employees.gRPC.Client.Clients;
 
 namespace WC.Service.Employees.gRPC.Client;
 
-public class EmployeeClientModule : Module
+public class EmployeesClientModule : Module
 {
     protected override void Load(
         ContainerBuilder builder)
