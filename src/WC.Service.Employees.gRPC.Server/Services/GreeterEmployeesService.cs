@@ -31,49 +31,30 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
             Name = e.Name,
             Surname = e.Surname,
             Patronymic = e.Patronymic,
-            Email = e.Email,
-            Password = e.Password,
             PositionId = e.PositionId.ToString()
         }));
 
         return employeeList;
     }
 
-    public override async Task<EmployeeGetByEmailResponse> GetOneByEmail(
-        EmployeeGetByEmailRequest request,
+    public override async Task<EmployeeGetByIdResponse> GetOneById(
+        EmployeeGetByIdRequest request,
         ServerCallContext context)
     {
-        var employee = await _provider.GetOneByEmail(request.Email, context.CancellationToken);
-        if (employee == null)
-        {
-            throw new RpcException(new Status(StatusCode.NotFound, "Employee not found"));
-        }
+        var employee = await _provider.GetOneById(Guid.Parse(request.Id), cancellationToken: context.CancellationToken);
 
-        var response = new EmployeeGetByEmailResponse
+        return new EmployeeGetByIdResponse
         {
             Employee = new Employee
             {
-                Id = employee.Id.ToString(),
+                Id = employee!.Id.ToString(),
                 Name = employee.Name,
                 Surname = employee.Surname,
                 Patronymic = employee.Patronymic,
-                Email = employee.Email,
-                Password = employee.Password,
                 PositionId = employee.PositionId.ToString(),
                 Role = employee.Role
             }
         };
-
-        return response;
-    }
-
-    public override async Task<DoesEmployeeWithEmailExistResponse> DoesEmployeeWithEmailExist(
-        DoesEmployeeWithEmailExistRequest request,
-        ServerCallContext context)
-    {
-        var exists = await _provider.DoesEmployeeWithEmailExist(request.Email, context.CancellationToken);
-
-        return new DoesEmployeeWithEmailExistResponse { Exists = exists };
     }
 
     public override async Task<EmployeeCreateResponse> Create(
@@ -85,8 +66,6 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
             Name = request.Employee.Name,
             Surname = request.Employee.Surname,
             Patronymic = request.Employee.Patronymic,
-            Email = request.Employee.Email,
-            Password = request.Employee.Password,
             PositionId = Guid.Parse(request.Employee.PositionId)
         }, context.CancellationToken);
 
@@ -103,8 +82,6 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
             Name = request.Employee.Name,
             Surname = request.Employee.Surname,
             Patronymic = request.Employee.Patronymic,
-            Email = request.Employee.Email,
-            Password = request.Employee.Password,
             PositionId = Guid.Parse(request.Employee.PositionId)
         }, context.CancellationToken);
 

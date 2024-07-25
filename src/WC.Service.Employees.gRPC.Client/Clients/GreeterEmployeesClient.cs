@@ -2,8 +2,7 @@
 using Grpc.Net.Client;
 using WC.Library.Domain.Models;
 using WC.Service.Employees.gRPC.Client.Models.Employee;
-using WC.Service.Employees.gRPC.Client.Models.Employee.DoesEmployeeWithEmailExist;
-using WC.Service.Employees.gRPC.Client.Models.Employee.GetOneByEmailEmployee;
+using WC.Service.Employees.gRPC.Client.Models.Employee.GetOneById;
 
 namespace WC.Service.Employees.gRPC.Client.Clients;
 
@@ -30,8 +29,6 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
                 Name = e.Name,
                 Surname = e.Surname,
                 Patronymic = e.Patronymic,
-                Email = e.Email,
-                Password = e.Password,
                 PositionId = Guid.Parse(e.PositionId),
                 Role = e.Role
             })
@@ -40,34 +37,22 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
         return employees;
     }
 
-    public async Task<GetOneByEmailEmployeeResponseModel> GetOneByEmail(
-        GetOneByEmailEmployeeRequestModel request,
-        CancellationToken cancellationToken)
+    public async Task<EmployeeGetByIdResponseModel> GetOneById(
+        EmployeeGetByIdRequestModel request,
+        CancellationToken cancellationToken = default)
     {
-        var employee = await _client.GetOneByEmailAsync(new EmployeeGetByEmailRequest { Email = request.Email },
+        var response = await _client.GetOneByIdAsync(new EmployeeGetByIdRequest { Id = request.Id.ToString() },
             cancellationToken: cancellationToken);
 
-        return new GetOneByEmailEmployeeResponseModel
+        return new EmployeeGetByIdResponseModel
         {
-            Id = Guid.Parse(employee.Employee.Id),
-            Name = employee.Employee.Name,
-            Surname = employee.Employee.Surname,
-            Patronymic = employee.Employee.Patronymic,
-            Email = employee.Employee.Email,
-            Password = employee.Employee.Password,
-            PositionId = Guid.Parse(employee.Employee.PositionId),
-            Role = employee.Employee.Role
+            Id = Guid.Parse(response.Employee.Id),
+            Name = response.Employee.Name,
+            Surname = response.Employee.Surname,
+            Patronymic = response.Employee.Patronymic,
+            PositionId = Guid.Parse(response.Employee.PositionId),
+            Role = response.Employee.Role
         };
-    }
-
-    public async Task<DoesEmployeeWithEmailExistResponseModel> DoesEmployeeWithEmailExist(
-        DoesEmployeeWithEmailExistRequestModel request,
-        CancellationToken cancellationToken)
-    {
-        var result = await _client.DoesEmployeeWithEmailExistAsync(
-            new DoesEmployeeWithEmailExistRequest { Email = request.Email }, cancellationToken: cancellationToken);
-
-        return new DoesEmployeeWithEmailExistResponseModel { Exists = result.Exists };
     }
 
     public async Task<CreateResultModel> Create(
@@ -82,8 +67,6 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
                     Name = request.Name,
                     Surname = request.Surname,
                     Patronymic = request.Patronymic,
-                    Email = request.Email,
-                    Password = request.Password,
                     PositionId = request.PositionId.ToString()
                 }
             }, cancellationToken: cancellationToken);
@@ -103,8 +86,6 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
                 Name = request.Name,
                 Surname = request.Surname,
                 Patronymic = request.Patronymic,
-                Email = request.Email,
-                Password = request.Password,
                 PositionId = request.PositionId.ToString(),
                 Role = request.Role
             }

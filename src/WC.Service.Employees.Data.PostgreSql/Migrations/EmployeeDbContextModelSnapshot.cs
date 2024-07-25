@@ -22,7 +22,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Model.ColleagueEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Models.ColleagueEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,21 +43,13 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     b.ToTable("Colleagues");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Model.EmployeeEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Models.EmployeeEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -82,7 +74,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Model.PositionEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Models.PositionEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -100,15 +92,15 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     b.ToTable("Positions");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Model.ColleagueEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Models.ColleagueEntity", b =>
                 {
-                    b.HasOne("WC.Service.Employees.Data.Model.EmployeeEntity", "ColleagueEmployee")
+                    b.HasOne("WC.Service.Employees.Data.Models.EmployeeEntity", "ColleagueEmployee")
                         .WithMany()
                         .HasForeignKey("ColleagueEmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("WC.Service.Employees.Data.Model.EmployeeEntity", "Employee")
+                    b.HasOne("WC.Service.Employees.Data.Models.EmployeeEntity", "Employee")
                         .WithMany("Colleagues")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -119,9 +111,9 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Model.EmployeeEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Models.EmployeeEntity", b =>
                 {
-                    b.HasOne("WC.Service.Employees.Data.Model.PositionEntity", "Position")
+                    b.HasOne("WC.Service.Employees.Data.Models.PositionEntity", "Position")
                         .WithMany("Employees")
                         .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -130,12 +122,12 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     b.Navigation("Position");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Model.EmployeeEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Models.EmployeeEntity", b =>
                 {
                     b.Navigation("Colleagues");
                 });
 
-            modelBuilder.Entity("WC.Service.Employees.Data.Model.PositionEntity", b =>
+            modelBuilder.Entity("WC.Service.Employees.Data.Models.PositionEntity", b =>
                 {
                     b.Navigation("Employees");
                 });

@@ -8,21 +8,18 @@ namespace WC.Service.Employees.API.Models.Employee;
 public class EmployeeDetailDto : DtoBase
 {
     [Required]
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; } = string.Empty;
 
     [Required]
-    public string Surname { get; set; } = string.Empty;
+    public required string Surname { get; set; } = string.Empty;
 
     public string? Patronymic { get; set; } = string.Empty;
 
     [Required]
-    public string Email { get; set; } = string.Empty;
+    public required PositionDto Position { get; set; } = null!;
 
     [Required]
-    public PositionDto Position { get; set; } = null!;
-
-    [Required]
-    public string Role { get; set; } = "User";
+    public required string Role { get; set; } = "User";
 
     public List<ColleagueDetailDto>? Colleagues { get; set; } = [];
 }
