@@ -12,8 +12,8 @@ using WC.Service.Employees.Data.PostgreSql.Context;
 namespace WC.Service.Employees.Data.PostgreSql.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20240715073312_fixed_colleague")]
-    partial class fixed_colleague
+    [Migration("20240725125632_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,15 +52,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -106,7 +98,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
             modelBuilder.Entity("WC.Service.Employees.Data.Models.ColleagueEntity", b =>
                 {
                     b.HasOne("WC.Service.Employees.Data.Models.EmployeeEntity", "ColleagueEmployee")
-                        .WithMany("ColleagueOf")
+                        .WithMany()
                         .HasForeignKey("ColleagueEmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -135,8 +127,6 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
 
             modelBuilder.Entity("WC.Service.Employees.Data.Models.EmployeeEntity", b =>
                 {
-                    b.Navigation("ColleagueOf");
-
                     b.Navigation("Colleagues");
                 });
 

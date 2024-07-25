@@ -25,14 +25,6 @@ public sealed class EmployeeUpdateValidator
             .SetValidator(new NameValidator(nameof(EmployeeModel.Patronymic))!)
             .When(x => !string.IsNullOrEmpty(x.Patronymic));
 
-        RuleFor(x => x.Email)
-            .NotNull()
-            .SetValidator(new EmailValidator(nameof(EmployeeModel.Email)));
-
-        RuleFor(x => x.Password)
-            .NotNull()
-            .SetValidator(new PasswordValidator(nameof(EmployeeModel.Password)));
-
         RuleFor(x => x.Position)
             .NotNull()
             .SetValidator(new PositionModelValidator());

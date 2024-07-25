@@ -17,12 +17,6 @@ public sealed class EmployeeModelValidator : AbstractValidator<EmployeeModel>
             .NotEmpty()
             .When(x => !string.IsNullOrEmpty(x.Patronymic));
 
-        RuleFor(x => x.Email)
-            .NotEmpty();
-
-        RuleFor(x => x.Password)
-            .NotEmpty();
-
         RuleFor(x => x.PositionId)
             .NotEmpty();
     }

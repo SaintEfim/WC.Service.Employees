@@ -10,10 +10,6 @@ public class EmployeeModel : ModelBase
 
     public string? Patronymic { get; set; } = string.Empty;
 
-    public string Email { get; set; } = string.Empty;
-
-    public string Password { get; set; } = string.Empty;
-
     public Guid PositionId { get; set; }
 
     public virtual PositionModel Position { get; set; } = null!;

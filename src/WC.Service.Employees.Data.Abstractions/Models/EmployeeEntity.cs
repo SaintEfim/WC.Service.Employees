@@ -10,10 +10,6 @@ public class EmployeeEntity : EntityBase
 
     public string? Patronymic { get; set; } = string.Empty;
 
-    public required string Email { get; set; } = string.Empty;
-
-    public required string Password { get; set; } = string.Empty;
-
     public required Guid PositionId { get; set; }
 
     public required PositionEntity Position { get; set; } = null!;

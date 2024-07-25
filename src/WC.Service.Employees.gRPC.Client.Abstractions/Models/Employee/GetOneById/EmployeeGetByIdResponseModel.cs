@@ -1,6 +1,6 @@
-﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee;
+﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee.GetOneById;
 
-public class EmployeeUpdateRequestModel
+public class EmployeeGetByIdResponseModel
 {
     public required Guid Id { get; set; }
 
