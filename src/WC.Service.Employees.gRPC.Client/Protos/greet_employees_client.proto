@@ -4,57 +4,19 @@ option csharp_namespace = "WC.Service.Employees.gRPC.Client.Clients";
 
 package employees;
 
-import "google/protobuf/empty.proto";
-
 service GreeterEmployees {
-  rpc Get (google.protobuf.Empty) returns (EmployeeListResponse);
-  rpc GetOneById (EmployeeGetByIdRequest) returns (EmployeeGetByIdResponse);
   rpc Create (EmployeeCreateRequest) returns (EmployeeCreateResponse);
-  rpc Update (EmployeeUpdateRequest) returns (google.protobuf.Empty);
-  rpc Delete (EmployeeDeleteRequest) returns (google.protobuf.Empty);
-}
-
-message Employee {
-  string id = 1;
-  string name = 2;
-  string surname = 3;
-  string patronymic = 4;
-  string positionId = 5;
-  string role = 6;
-}
-
-message EmployeeListResponse {
-  repeated Employee employee = 1;
-}
-
-message EmployeeGetByIdRequest {
-  string id = 1;
-}
-
-message EmployeeGetByIdResponse {
-  Employee employee = 1;
-}
-
-message DoesEmployeeWithEmailExistRequest {
-  string email = 1;
-}
-
-message DoesEmployeeWithEmailExistResponse {
-  bool exists = 1;
 }
 
 message EmployeeCreateRequest {
-  Employee employee = 1;
+  string name = 1;
+  string surname = 2;
+  string patronymic = 3;
+  string email = 4;
+  string password = 5;
+  string positionName = 6;
 }
 
 message EmployeeCreateResponse {
-  string id = 1;
-}
-
-message EmployeeUpdateRequest {
-  Employee employee = 1;
-}
-
-message EmployeeDeleteRequest {
   string id = 1;
 }

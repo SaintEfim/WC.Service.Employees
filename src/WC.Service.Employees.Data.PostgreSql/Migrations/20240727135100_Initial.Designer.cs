@@ -12,7 +12,7 @@ using WC.Service.Employees.Data.PostgreSql.Context;
 namespace WC.Service.Employees.Data.PostgreSql.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20240725125632_Initial")]
+    [Migration("20240727135100_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -57,14 +57,11 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Patronymic")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("PositionId")
                         .HasColumnType("uuid");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -84,6 +81,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")

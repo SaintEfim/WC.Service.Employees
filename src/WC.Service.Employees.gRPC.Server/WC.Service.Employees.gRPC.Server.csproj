@@ -10,12 +10,11 @@
     <Folder Include="logs\"/>
     <Folder Include="obj\Debug\net8.0\Protos\"/>
     <Protobuf Include="Protos\greet_employees.proto" GrpcServices="Server"/>
-    <Protobuf Include="Protos\greet_positions.proto" GrpcServices="Server"/>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.27.2"/>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.64.0"/>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.65.0" />
     <PackageReference Include="WC.Library.Web" Version="1.0.25"/>
   </ItemGroup>
 
