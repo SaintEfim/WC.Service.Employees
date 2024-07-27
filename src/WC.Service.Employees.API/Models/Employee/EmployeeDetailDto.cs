@@ -13,13 +13,10 @@ public class EmployeeDetailDto : DtoBase
     [Required]
     public required string Surname { get; set; } = string.Empty;
 
-    public string? Patronymic { get; set; } = string.Empty;
+    public string? Patronymic { get; set; }
 
     [Required]
     public required PositionDto Position { get; set; } = null!;
 
-    [Required]
-    public required string Role { get; set; } = "User";
-
-    public List<ColleagueDetailDto>? Colleagues { get; set; } = [];
+    public List<ColleagueDetailDto> Colleagues { get; set; } = [];
 }

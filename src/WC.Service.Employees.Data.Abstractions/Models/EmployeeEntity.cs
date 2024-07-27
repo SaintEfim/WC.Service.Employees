@@ -4,17 +4,15 @@ namespace WC.Service.Employees.Data.Models;
 
 public class EmployeeEntity : EntityBase
 {
-    public required string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
-    public required string Surname { get; set; } = string.Empty;
+    public required string Surname { get; set; }
 
-    public string? Patronymic { get; set; } = string.Empty;
+    public string? Patronymic { get; set; }
 
     public required Guid PositionId { get; set; }
 
     public required PositionEntity Position { get; set; } = null!;
 
-    public required string Role { get; set; } = "User";
-
-    public List<ColleagueEntity>? Colleagues { get; set; } = [];
+    public List<ColleagueEntity> Colleagues { get; set; } = [];
 }

@@ -11,9 +11,5 @@ public class EmployeesClientModule : Module
         builder.RegisterType<GreeterEmployeesClient>()
             .As<IGreeterEmployeesClient>()
             .InstancePerLifetimeScope();
-
-        builder.RegisterType<GreeterPositionsClient>()
-            .As<IGreeterPositionsClient>()
-            .InstancePerLifetimeScope();
     }
 }

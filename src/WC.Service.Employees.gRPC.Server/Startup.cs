@@ -25,6 +25,5 @@ internal sealed class Startup : StartupGrpcBase
     {
         base.Configure(app);
         app.MapGrpcService<GreeterEmployeesService>();
-        app.MapGrpcService<GreeterPositionsService>();
     }
 }

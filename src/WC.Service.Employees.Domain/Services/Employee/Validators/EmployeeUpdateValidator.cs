@@ -22,7 +22,7 @@ public sealed class EmployeeUpdateValidator
             .SetValidator(new NameValidator(nameof(EmployeeModel.Surname)));
 
         RuleFor(x => x.Patronymic)
-            .SetValidator(new NameValidator(nameof(EmployeeModel.Patronymic))!)
+            .SetValidator(new NameValidator(nameof(EmployeeModel.Patronymic)))
             .When(x => !string.IsNullOrEmpty(x.Patronymic));
 
         RuleFor(x => x.Position)
