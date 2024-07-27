@@ -17,7 +17,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false)
+                    Description = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,7 +31,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Surname = table.Column<string>(type: "text", nullable: false),
-                    Patronymic = table.Column<string>(type: "text", nullable: false),
+                    Patronymic = table.Column<string>(type: "text", nullable: true),
                     PositionId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>

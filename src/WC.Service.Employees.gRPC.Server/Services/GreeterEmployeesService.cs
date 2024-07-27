@@ -25,7 +25,7 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
             Patronymic = request.Patronymic,
             Email = request.Email,
             Password = request.Password,
-            Position = new PositionModel { Name = request.Name }
+            Position = new PositionModel { Name = request.PositionName }
         }, context.CancellationToken);
 
         return new EmployeeCreateResponse { Id = createItem.Id.ToString() };

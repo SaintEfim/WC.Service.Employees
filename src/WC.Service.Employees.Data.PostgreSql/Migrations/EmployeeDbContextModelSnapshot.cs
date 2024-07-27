@@ -54,7 +54,6 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Patronymic")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("PositionId")
@@ -78,7 +77,6 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
