@@ -43,7 +43,7 @@ public class EmployeeManager
             throw new NotFoundException($"Position with name '{model.Position.Name}' not found");
         }
 
-        model.PositionId = position.Id;
+        model.Position.Id = position.Id;
         model.Position.Description = position.Description;
 
         var employee = await base.CreateAction(model, cancellationToken);

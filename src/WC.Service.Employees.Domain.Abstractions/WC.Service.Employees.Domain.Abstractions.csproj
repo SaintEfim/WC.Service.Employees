@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="WC.Library.Domain.Abstractions" Version="1.0.8"/>
-    <PackageReference Include="WC.Service.PersonalData.gRPC.Client.Abstractions" Version="1.0.6"/>
+    <PackageReference Include="WC.Library.Domain.Abstractions" Version="1.0.9" />
+    <PackageReference Include="WC.Service.PersonalData.gRPC.Client.Abstractions" Version="1.0.8" />
   </ItemGroup>
 
 </Project>
