@@ -18,5 +18,5 @@ message EmployeeCreateRequest {
 }
 
 message EmployeeCreateResponse {
-  string id = 1;
+  string employeeId = 1;
 }

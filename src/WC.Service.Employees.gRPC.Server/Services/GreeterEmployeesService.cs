@@ -28,6 +28,6 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
             Position = new PositionModel { Name = request.PositionName }
         }, context.CancellationToken);
 
-        return new EmployeeCreateResponse { Id = createItem.Id.ToString() };
+        return new EmployeeCreateResponse { EmployeeId = createItem.Id.ToString() };
     }
 }

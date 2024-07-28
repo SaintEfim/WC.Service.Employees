@@ -1,5 +1,4 @@
 ﻿using Grpc.Net.Client;
-using WC.Library.Domain.Models;
 using WC.Service.Employees.gRPC.Client.Models.Employee;
 
 namespace WC.Service.Employees.gRPC.Client.Clients;
@@ -15,7 +14,7 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
         _client = new GreeterEmployees.GreeterEmployeesClient(channel);
     }
 
-    public async Task<CreateResultModel> Create(
+    public async Task<EmployeeCreateResponseModel> Create(
         EmployeeCreateRequestModel request,
         CancellationToken cancellationToken)
     {
@@ -29,6 +28,6 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
             PositionName = request.PositionName
         }, cancellationToken: cancellationToken);
 
-        return new CreateResultModel { Id = Guid.Parse(createResult.Id) };
+        return new EmployeeCreateResponseModel { EmployeeId = Guid.Parse(createResult.EmployeeId) };
     }
 }
