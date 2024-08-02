@@ -46,15 +46,23 @@ public class EmployeeManager
         model.PositionId = position.Id;
         model.Position = null!;
 
-        var employee = await base.CreateAction(model, cancellationToken);
-
-        await _personalDataClient.Create(new PersonalDataCreateRequestModel
+        try
         {
-            EmployeeId = employee.Id,
-            Email = model.Email,
-            Password = model.Password
-        }, cancellationToken);
+            var employee = await base.CreateAction(model, cancellationToken);
 
-        return employee;
+            await _personalDataClient.Create(new PersonalDataCreateRequestModel
+            {
+                EmployeeId = employee.Id,
+                Email = model.Email,
+                Password = model.Password
+            }, cancellationToken);
+
+            return employee;
+        }
+        catch (Exception ex)
+        {
+            throw new ApplicationException(
+                $"An error occurred while processing the employee registration. Error details: {ex.Message}");
+        }
     }
 }
