@@ -11,7 +11,6 @@ COPY src/WC.Service.Employees.Domain.Abstractions/WC.Service.Employees.Domain.Ab
 RUN dotnet restore src/WC.Service.Employees.API/WC.Service.Employees.API.csproj
 
 COPY src/ .
-
 WORKDIR /src/WC.Service.Employees.API
 RUN dotnet build -c Release -o /app/build
 
@@ -21,4 +20,5 @@ RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
 ENTRYPOINT ["dotnet", "WC.Service.Employees.API.dll"]
