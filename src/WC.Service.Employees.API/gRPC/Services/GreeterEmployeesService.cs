@@ -2,7 +2,7 @@ using Grpc.Core;
 using WC.Service.Employees.Domain.Models;
 using WC.Service.Employees.Domain.Services.Employee;
 
-namespace WC.Service.Employees.gRPC.Server.Services;
+namespace WC.Service.Employees.API.gRPC.Services;
 
 public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
 {

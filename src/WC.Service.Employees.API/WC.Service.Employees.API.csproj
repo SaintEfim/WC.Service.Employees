@@ -16,12 +16,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.27.3" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.65.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.65.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="NSwag.Annotations" Version="14.1.0"/>
-    <PackageReference Include="WC.Library.Web" Version="1.0.26" />
+    <PackageReference Include="WC.Library.Web" Version="1.0.27" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +38,10 @@
   <ItemGroup>
     <ProjectReference Include="..\WC.Service.Employees.Domain.Abstractions\WC.Service.Employees.Domain.Abstractions.csproj"/>
     <ProjectReference Include="..\WC.Service.Employees.Domain\WC.Service.Employees.Domain.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="gRPC\Protos\greet_employees.proto" GrpcServices="Server"/>
   </ItemGroup>
 
 </Project>
