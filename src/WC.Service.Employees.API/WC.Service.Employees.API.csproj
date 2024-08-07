@@ -16,8 +16,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.27.3" />
-    <PackageReference Include="Grpc.AspNetCore" Version="2.65.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.27.3"/>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.65.0"/>
     <PackageReference Include="Grpc.Tools" Version="2.65.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -27,7 +27,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="NSwag.Annotations" Version="14.1.0"/>
-    <PackageReference Include="WC.Library.Web" Version="1.0.27" />
+    <PackageReference Include="WC.Library.Web" Version="1.0.27"/>
   </ItemGroup>
 
   <ItemGroup>

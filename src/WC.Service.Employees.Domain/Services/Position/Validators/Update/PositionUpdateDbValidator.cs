@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using WC.Service.Employees.Domain.Models;
 
-namespace WC.Service.Employees.Domain.Services.Position.Validators.Create;
+namespace WC.Service.Employees.Domain.Services.Position.Validators.Update;
 
-public sealed class PositionCreateDbValidator : AbstractValidator<PositionModel>
+public sealed class PositionUpdateDbValidator : AbstractValidator<PositionModel>
 {
-    public PositionCreateDbValidator(
+    public PositionUpdateDbValidator(
         IPositionProvider positionProvider)
     {
         RuleFor(x => x)
