@@ -7,8 +7,6 @@ using WC.Service.Employees.Data.Models;
 using WC.Service.Employees.Data.Repositories;
 using WC.Service.Employees.Domain.Models;
 using WC.Service.Employees.Domain.Services.Position;
-using WC.Service.PersonalData.gRPC.Client.Clients;
-using WC.Service.PersonalData.gRPC.Client.Models.Create;
 
 namespace WC.Service.Employees.Domain.Services.Employee;
 
@@ -16,7 +14,6 @@ public class EmployeeManager
     : DataManagerBase<EmployeeManager, IEmployeeRepository, EmployeeModel, EmployeeEntity>,
         IEmployeeManager
 {
-    private readonly IGreeterPersonalDataClient _personalDataClient;
     private readonly IPositionProvider _positionProvider;
 
     public EmployeeManager(
@@ -24,12 +21,10 @@ public class EmployeeManager
         ILogger<EmployeeManager> logger,
         IEmployeeRepository repository,
         IEnumerable<IValidator> validators,
-        IPositionProvider positionProvider,
-        IGreeterPersonalDataClient personalDataClient)
+        IPositionProvider positionProvider)
         : base(mapper, logger, repository, validators)
     {
         _positionProvider = positionProvider;
-        _personalDataClient = personalDataClient;
     }
 
     protected override async Task<EmployeeModel> CreateAction(
@@ -46,23 +41,6 @@ public class EmployeeManager
         model.PositionId = position.Id;
         model.Position = null!;
 
-        try
-        {
-            var employee = await base.CreateAction(model, cancellationToken);
-
-            await _personalDataClient.Create(new PersonalDataCreateRequestModel
-            {
-                EmployeeId = employee.Id,
-                Email = model.Email,
-                Password = model.Password
-            }, cancellationToken);
-
-            return employee;
-        }
-        catch (Exception ex)
-        {
-            throw new ApplicationException(
-                $"An error occurred while processing the employee registration. Error details: {ex.Message}");
-        }
+        return await base.CreateAction(model, cancellationToken);
     }
 }
