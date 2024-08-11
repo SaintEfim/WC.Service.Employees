@@ -29,6 +29,10 @@ public class AutoMapperProfile : Profile
 
     private void MapEmployeeModels()
     {
+        CreateMap<EmployeeCreateDto, EmployeeModel>();
+
+        CreateMap<EmployeeModel, CreateActionResultDto>();
+
         CreateMap<EmployeeModel, EmployeeDto>();
 
         CreateMap<EmployeeModel, EmployeeDetailDto>();

@@ -7,5 +7,5 @@ namespace WC.Service.Employees.API.Models.Colleague;
 public class ColleagueDetailDto : DtoBase
 {
     [Required]
-    public required EmployeeDetailDto ColleagueEmployee { get; set; } = null!;
+    public required EmployeeDetailDto ColleagueEmployee { get; set; }
 }

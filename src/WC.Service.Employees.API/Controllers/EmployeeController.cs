@@ -61,6 +61,22 @@ public class EmployeeController
     }
 
     /// <summary>
+    ///     Creates new employee.
+    /// </summary>
+    /// <param name="payload">The employee content.</param>
+    /// <param name="cancellationToken">The operation cancellation token</param>
+    /// <returns>The result of creation. <see cref="CreateActionResultDto"/></returns>
+    [HttpPost]
+    [OpenApiOperation(nameof(EmployeeCreate))]
+    [SwaggerResponse(Status201Created, typeof(CreateActionResultDto))]
+    public Task<IActionResult> EmployeeCreate(
+        [FromBody] EmployeeCreateDto payload,
+        CancellationToken cancellationToken = default)
+    {
+        return Create<EmployeeCreateDto, CreateActionResultDto>(payload, nameof(EmployeeGetById), cancellationToken);
+    }
+
+    /// <summary>
     ///     Updates a employee by ID.
     /// </summary>
     /// <param name="id">The ID of the employee to update.</param>
