@@ -13,10 +13,24 @@ internal sealed class Startup : StartupBase
     {
     }
 
+    public override void ConfigureServices(
+        WebApplicationBuilder builder)
+    {
+        base.ConfigureServices(builder);
+
+        builder.Services.AddStackExchangeRedisCache(options =>
+        {
+            var connection = builder.Configuration.GetConnectionString("Redis");
+
+            options.Configuration = connection;
+        });
+    }
+
     public override void ConfigureContainer(
         ContainerBuilder builder)
     {
         base.ConfigureContainer(builder);
+
         builder.RegisterModule<EmployeesDomainModule>();
     }
 
@@ -24,6 +38,7 @@ internal sealed class Startup : StartupBase
         WebApplication app)
     {
         base.Configure(app);
+
         app.MapGrpcService<GreeterEmployeesService>();
     }
 }
