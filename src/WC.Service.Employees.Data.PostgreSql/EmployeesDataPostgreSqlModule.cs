@@ -10,6 +10,8 @@ public class EmployeesDataPostgreSqlModule : Module
     protected override void Load(
         ContainerBuilder builder)
     {
+        builder.RegisterModule<EmployeesDataModule>();
+
         builder.RegisterAssemblyTypes(ThisAssembly)
             .AsClosedTypesOf(typeof(IRepository<>))
             .AsImplementedInterfaces();

@@ -41,7 +41,7 @@ public class ColleagueController
         bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetMany(withIncludes, cancellationToken));
+        return Ok(await GetMany(withIncludes, cancellationToken: cancellationToken));
     }
 
     /// <summary>
@@ -57,23 +57,23 @@ public class ColleagueController
         Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetOneById(id, true, cancellationToken));
+        return Ok(await GetOneById(id, true, cancellationToken: cancellationToken));
     }
 
     /// <summary>
     ///     Creates a new colleague.
     /// </summary>
-    /// <param name="colleague">The colleague data.</param>
+    /// <param name="payload">The colleague data.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpPost]
     [OpenApiOperation(nameof(ColleagueCreate))]
     [SwaggerResponse(Status201Created, typeof(CreateActionResultDto))]
     public Task<IActionResult> ColleagueCreate(
-        [FromBody] ColleagueCreateDto colleague,
+        [FromBody] ColleagueCreateDto payload,
         CancellationToken cancellationToken = default)
     {
-        return Create<ColleagueCreateDto, CreateActionResultDto>(colleague, nameof(ColleagueGetById),
-            cancellationToken);
+        return Create<ColleagueCreateDto, CreateActionResultDto>(payload, nameof(ColleagueGetById),
+            cancellationToken: cancellationToken);
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class ColleagueController
         [FromBody] JsonPatchDocument<ColleagueDto> patchDocument,
         CancellationToken cancellationToken = default)
     {
-        return Update(id, patchDocument, cancellationToken);
+        return Update(id, patchDocument, cancellationToken: cancellationToken);
     }
 
     /// <summary>
@@ -107,6 +107,6 @@ public class ColleagueController
         Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Delete(id, cancellationToken);
+        return Delete(id, cancellationToken: cancellationToken);
     }
 }

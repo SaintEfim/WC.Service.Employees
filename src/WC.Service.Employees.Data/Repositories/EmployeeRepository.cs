@@ -21,7 +21,8 @@ public class EmployeeRepository<TDbContext>
         IQueryable<EmployeeEntity> query)
     {
         return query.Include(x => x.Position)
-            .Include(x => x.Colleagues)!.ThenInclude(x => x.ColleagueEmployee)
+            .Include(x => x.Colleagues)
+            .ThenInclude(x => x.ColleagueEmployee)
             .ThenInclude(x => x.Position);
     }
 }

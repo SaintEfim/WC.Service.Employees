@@ -16,7 +16,7 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
 
     public async Task<EmployeeCreateResponseModel> Create(
         EmployeeCreateRequestModel request,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         var createResult = await _client.CreateAsync(new EmployeeCreateRequest
         {
@@ -25,7 +25,7 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
             Patronymic = request.Patronymic,
             Email = request.Email,
             Password = request.Password,
-            PositionName = request.PositionName
+            PositionId = request.PositionId.ToString()
         }, cancellationToken: cancellationToken);
 
         return new EmployeeCreateResponseModel { EmployeeId = Guid.Parse(createResult.EmployeeId) };
