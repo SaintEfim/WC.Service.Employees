@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>WC.Service.Employees.gRPC.Client</RootNamespace>
     <PackageId>WC.Service.Employees.gRPC.Client.Abstractions</PackageId>
-    <Version>1.0.13</Version>
+    <Version>1.0.14</Version>
     <Authors>SaintEfim</Authors>
   </PropertyGroup>
 

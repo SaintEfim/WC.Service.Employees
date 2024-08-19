@@ -6,11 +6,11 @@ public class EmployeeCreateRequestModel
 
     public required string Surname { get; set; }
 
-    public string Patronymic { get; set; } = string.Empty;
+    public string? Patronymic { get; set; }
 
-    public required string Email { get; set; } = string.Empty;
+    public required string Email { get; set; }
 
-    public required string Password { get; set; } = string.Empty;
+    public required string Password { get; set; }
 
-    public required string PositionName { get; set; }
+    public required Guid PositionId { get; set; }
 }

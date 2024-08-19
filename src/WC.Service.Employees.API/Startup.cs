@@ -13,19 +13,6 @@ internal sealed class Startup : StartupBase
     {
     }
 
-    public override void ConfigureServices(
-        WebApplicationBuilder builder)
-    {
-        base.ConfigureServices(builder);
-
-        builder.Services.AddStackExchangeRedisCache(options =>
-        {
-            var connection = builder.Configuration.GetConnectionString("Redis");
-
-            options.Configuration = connection;
-        });
-    }
-
     public override void ConfigureContainer(
         ContainerBuilder builder)
     {

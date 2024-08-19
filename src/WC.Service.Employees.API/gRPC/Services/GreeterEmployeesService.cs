@@ -1,5 +1,4 @@
 using Grpc.Core;
-using WC.Service.Employees.Domain.Models;
 using WC.Service.Employees.Domain.Services.Employee;
 
 namespace WC.Service.Employees.API.gRPC.Services;
@@ -18,13 +17,15 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
         EmployeeCreateRequest request,
         ServerCallContext context)
     {
-        var createItem = await _manager.Create(new EmployeeModel
+        var createItem = await _manager.Create(new EmployeeCreatePayload
         {
             Name = request.Name,
             Surname = request.Surname,
             Patronymic = request.Patronymic,
-            Position = new PositionModel { Name = request.PositionName }
-        }, context.CancellationToken);
+            Email = request.Email,
+            Password = request.Password,
+            PositionId = Guid.Parse(request.PositionId)
+        }, cancellationToken: context.CancellationToken);
 
         return new EmployeeCreateResponse { EmployeeId = createItem.Id.ToString() };
     }

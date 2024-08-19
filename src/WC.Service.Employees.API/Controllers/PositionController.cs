@@ -31,8 +31,8 @@ public class PositionController
     /// <summary>
     ///     Retrieves a list of positions.
     /// </summary>
-    /// <param name="withIncludes">Specifies whether related entities should be included in the query.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
+    /// <param name="withIncludes">Specifies whether related entities should be included in the query.</param>
     /// <returns></returns>
     [HttpGet]
     [OpenApiOperation(nameof(PositionGet))]
@@ -41,7 +41,7 @@ public class PositionController
         bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetMany(withIncludes, cancellationToken));
+        return Ok(await GetMany(withIncludes, cancellationToken: cancellationToken));
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ public class PositionController
         Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetOneById(id, true, cancellationToken));
+        return Ok(await GetOneById(id, true, cancellationToken: cancellationToken));
     }
 
     /// <summary>
@@ -74,7 +74,8 @@ public class PositionController
         [FromBody] PositionCreateDto payload,
         CancellationToken cancellationToken = default)
     {
-        return Create<PositionCreateDto, CreateActionResultDto>(payload, nameof(PositionGetById), cancellationToken);
+        return Create<PositionCreateDto, CreateActionResultDto>(payload, nameof(PositionGetById),
+            cancellationToken: cancellationToken);
     }
 
     /// <summary>
@@ -93,7 +94,7 @@ public class PositionController
         [FromBody] JsonPatchDocument<PositionDto> patchDocument,
         CancellationToken cancellationToken = default)
     {
-        return Update(id, patchDocument, cancellationToken);
+        return Update(id, patchDocument, cancellationToken: cancellationToken);
     }
 
     /// <summary>
@@ -111,6 +112,6 @@ public class PositionController
         Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Delete(id, cancellationToken);
+        return Delete(id, cancellationToken: cancellationToken);
     }
 }

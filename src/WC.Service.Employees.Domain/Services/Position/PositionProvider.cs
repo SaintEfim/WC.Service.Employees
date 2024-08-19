@@ -18,14 +18,4 @@ public class PositionProvider
         : base(mapper, logger, repository)
     {
     }
-
-    public async Task<PositionModel?> GetOneByName(
-        string positionName,
-        CancellationToken cancellationToken = default)
-    {
-        var positions = await Repository.Get(cancellationToken: cancellationToken);
-        var position = positions.SingleOrDefault(x => x.Name == positionName);
-
-        return Mapper.Map<PositionModel>(position);
-    }
 }

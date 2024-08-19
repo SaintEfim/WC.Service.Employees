@@ -41,7 +41,7 @@ public class EmployeeController
         bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetMany(withIncludes, cancellationToken));
+        return Ok(await GetMany(withIncludes, cancellationToken: cancellationToken));
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public class EmployeeController
         Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetOneById(id, true, cancellationToken));
+        return Ok(await GetOneById(id, true, cancellationToken: cancellationToken));
     }
 
     /// <summary>
@@ -69,11 +69,15 @@ public class EmployeeController
     [HttpPost]
     [OpenApiOperation(nameof(EmployeeCreate))]
     [SwaggerResponse(Status201Created, typeof(CreateActionResultDto))]
-    public Task<IActionResult> EmployeeCreate(
+    public async Task<IActionResult> EmployeeCreate(
         [FromBody] EmployeeCreateDto payload,
         CancellationToken cancellationToken = default)
     {
-        return Create<EmployeeCreateDto, CreateActionResultDto>(payload, nameof(EmployeeGetById), cancellationToken);
+        var createdItem = await Manager.Create(Mapper.Map<EmployeeCreatePayload>(payload),
+            cancellationToken: cancellationToken);
+
+        return CreatedAtRoute(nameof(EmployeeGetById), new { id = createdItem.Id },
+            Mapper.Map<CreateActionResultDto>(createdItem));
     }
 
     /// <summary>
@@ -91,7 +95,7 @@ public class EmployeeController
         [FromBody] JsonPatchDocument<EmployeeDto> patchDocument,
         CancellationToken cancellationToken = default)
     {
-        return Update(id, patchDocument, cancellationToken);
+        return Update(id, patchDocument, cancellationToken: cancellationToken);
     }
 
     /// <summary>
@@ -108,6 +112,6 @@ public class EmployeeController
         Guid id,
         CancellationToken cancellationToken = default)
     {
-        return Delete(id, cancellationToken);
+        return Delete(id, cancellationToken: cancellationToken);
     }
 }
