@@ -10,4 +10,8 @@
     <Authors>SaintEfim</Authors>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Grpc.Net.Client" Version="2.65.0" />
+  </ItemGroup>
+
 </Project>

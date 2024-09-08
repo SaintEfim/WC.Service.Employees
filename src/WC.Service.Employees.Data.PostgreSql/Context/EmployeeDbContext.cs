@@ -1,20 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using WC.Service.Employees.Data.Models;
+using WC.Service.Employees.Data.PostgreSql.Configuration;
 
 namespace WC.Service.Employees.Data.PostgreSql.Context;
 
 public sealed class EmployeeDbContext : DbContext
 {
     public EmployeeDbContext(
-        DbContextOptions<EmployeeDbContext> options,
-        IHostEnvironment environment)
+        DbContextOptions<EmployeeDbContext> options)
         : base(options)
     {
-        if (environment.IsDevelopment())
-        {
-            Database.Migrate();
-        }
+        Database.Migrate();
     }
 
     public DbSet<EmployeeEntity> Employees { get; set; } = null!;
@@ -24,17 +20,9 @@ public sealed class EmployeeDbContext : DbContext
     protected override void OnModelCreating(
         ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<ColleagueEntity>()
-            .HasOne(f => f.Employee)
-            .WithMany(e => e.Colleagues)
-            .HasForeignKey(f => f.EmployeeId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<ColleagueEntity>()
-            .HasOne(f => f.ColleagueEmployee)
-            .WithMany()
-            .HasForeignKey(f => f.ColleagueEmployeeId)
-            .OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.ApplyConfiguration(new EmployeeEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new ColleagueEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new PositionEntityConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }
