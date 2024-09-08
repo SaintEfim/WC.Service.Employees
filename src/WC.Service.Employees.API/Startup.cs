@@ -17,7 +17,6 @@ internal sealed class Startup : StartupBase
         ContainerBuilder builder)
     {
         base.ConfigureContainer(builder);
-
         builder.RegisterModule<EmployeesDomainModule>();
     }
 
@@ -25,7 +24,6 @@ internal sealed class Startup : StartupBase
         WebApplication app)
     {
         base.Configure(app);
-
         app.MapGrpcService<GreeterEmployeesService>();
     }
 }
