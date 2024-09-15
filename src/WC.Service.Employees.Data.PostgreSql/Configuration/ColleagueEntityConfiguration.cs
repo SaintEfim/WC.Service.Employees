@@ -18,11 +18,5 @@ public class ColleagueEntityConfiguration : IEntityTypeConfiguration<ColleagueEn
             .WithMany()
             .HasForeignKey(f => f.ColleagueEmployeeId)
             .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasIndex(x => new
-        {
-            x.EmployeeId,
-            x.ColleagueEmployeeId
-        }).IsUnique();
     }
 }

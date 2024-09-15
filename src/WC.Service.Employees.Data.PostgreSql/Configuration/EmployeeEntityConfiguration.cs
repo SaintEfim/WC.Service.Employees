@@ -17,8 +17,5 @@ public class EmployeeEntityConfiguration : IEntityTypeConfiguration<EmployeeEnti
         builder.Property(e => e.Surname)
             .HasMaxLength(CommonConstants.GenericNameMaxLength)
             .IsRequired();
-
-        builder.HasIndex(x => x.PositionId)
-            .IsUnique();
     }
 }
