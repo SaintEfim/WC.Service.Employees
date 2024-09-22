@@ -7,6 +7,7 @@ using WC.Service.Employees.Data.Models;
 using WC.Service.Employees.Data.Repositories;
 using WC.Service.Employees.Domain.Models;
 using WC.Service.PersonalData.gRPC.Client.Clients;
+using WC.Service.PersonalData.gRPC.Client.Models;
 using WC.Service.PersonalData.gRPC.Client.Models.Create;
 
 namespace WC.Service.Employees.Domain.Services.Employee;
@@ -36,25 +37,40 @@ public class EmployeeManager
         IWcTransaction? transaction = default,
         CancellationToken cancellationToken = default)
     {
-        return _transactionService.Execute((
-            wcTransaction,
-            token) => DoCreate(payload, wcTransaction, token), transaction, cancellationToken);
+        return _transactionService.Execute(async (
+            tr,
+            token) =>
+        {
+            var employee = await Create(Mapper.Map<EmployeeModel>(payload), tr, token);
+
+            await _personalDataClient.Create(new PersonalDataCreateRequestModel
+            {
+                EmployeeId = employee.Id,
+                Email = payload.Email,
+                Password = payload.Password
+            }, cancellationToken);
+
+            return employee;
+        }, transaction, cancellationToken);
     }
 
-    private async Task<EmployeeModel> DoCreate(
-        EmployeeCreatePayload payload,
+    protected override Task<EmployeeModel> DeleteAction(
+        Guid id,
         IWcTransaction? transaction = default,
         CancellationToken cancellationToken = default)
     {
-        var employee = await Create(Mapper.Map<EmployeeModel>(payload), transaction, cancellationToken);
-
-        await _personalDataClient.Create(new PersonalDataCreateRequestModel
+        return _transactionService.Execute(async (
+            tr,
+            token) =>
         {
-            EmployeeId = employee.Id,
-            Email = payload.Email,
-            Password = payload.Password
-        }, cancellationToken);
+            var employee = await Repository.Delete(id, tr, token);
 
-        return employee;
+            await _personalDataClient.Delete(new PersonalDataDeleteRequestModel
+            {
+                Id = id
+            }, token);
+
+            return Mapper.Map<EmployeeModel>(employee);
+        }, transaction, cancellationToken);
     }
 }
