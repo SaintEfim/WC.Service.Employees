@@ -5,13 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>WC.Service.Employees.gRPC.Client</RootNamespace>
-    <PackageId>WC.Service.Employees.gRPC.Client.Abstractions</PackageId>
-    <Version>1.0.14</Version>
-    <Authors>SaintEfim</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.Net.Client" Version="2.65.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.67.0" />
   </ItemGroup>
 
 </Project>
