@@ -18,7 +18,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./src/WC.Service.Employee.API/Dockerfile
+          file: ./src/WC.Service.Employees.API/Dockerfile
           push: false
           tags: test/app:latest
           cache-from: type=gha
@@ -45,9 +45,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./src/WC.Service.Employee.API/Dockerfile
+          file: ./src/WC.Service.Employees.API/Dockerfile
           push: true
-          tags: saintefim/wc-service-employee:latest
+          tags: saintefim/wc-service-employees:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -115,6 +115,6 @@ jobs:
           }
 
           # Process each package
-          publish_package "wc.service.employee.grpc.client.abstractions" "src/WC.Service.Employee.gRPC.Client.Abstractions/WC.Service.Employee.gRPC.Client.Abstractions.csproj"
-          publish_package "wc.service.employee.grpc.client" "src/WC.Service.Employee.gRPC.Client/WC.Service.Employee.gRPC.Client.csproj"
+          publish_package "wc.service.employees.grpc.client.abstractions" "src/WC.Service.Employees.gRPC.Client.Abstractions/WC.Service.Employees.gRPC.Client.Abstractions.csproj"
+          publish_package "wc.service.employees.grpc.client" "src/WC.Service.Employees.gRPC.Client/WC.Service.Employees.gRPC.Client.csproj"
 
