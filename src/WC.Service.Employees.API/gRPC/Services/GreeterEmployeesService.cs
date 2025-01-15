@@ -1,3 +1,4 @@
+using FluentValidation;
 using Grpc.Core;
 using WC.Service.Employees.Domain.Services.Employee;
 
@@ -17,16 +18,27 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
         EmployeeCreateRequest request,
         ServerCallContext context)
     {
-        var createItem = await _manager.Create(new EmployeeCreatePayload
+        try
         {
-            Name = request.Name,
-            Surname = request.Surname,
-            Patronymic = request.Patronymic,
-            Email = request.Email,
-            Password = request.Password,
-            PositionId = Guid.Parse(request.PositionId)
-        }, cancellationToken: context.CancellationToken);
+            var createItem = await _manager.Create(new EmployeeCreatePayload
+            {
+                Name = request.Name,
+                Surname = request.Surname,
+                Patronymic = request.Patronymic,
+                Email = request.Email,
+                Password = request.Password,
+                PositionId = Guid.Parse(request.PositionId)
+            }, cancellationToken: context.CancellationToken);
 
-        return new EmployeeCreateResponse { EmployeeId = createItem.Id.ToString() };
+            return new EmployeeCreateResponse { EmployeeId = createItem.Id.ToString() };
+        }
+        catch (ValidationException e)
+        {
+            throw new RpcException(new Status(StatusCode.InvalidArgument, $"{e.Message}"));
+        }
+        catch (Exception e)
+        {
+            throw new RpcException(new Status(StatusCode.Internal, $"{e.Message}"));
+        }
     }
 }
