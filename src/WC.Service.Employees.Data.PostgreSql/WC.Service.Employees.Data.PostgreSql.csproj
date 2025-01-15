@@ -9,11 +9,11 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="8.2.0" />
     <PackageReference Include="AutoMapper" Version="13.0.1"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="WC.Library.Data.PostgreSql" Version="1.0.26" />
+    <PackageReference Include="WC.Library.Data.PostgreSql" Version="1.0.28" />
     <PackageReference Include="WC.Library.Shared" Version="1.0.10" />
   </ItemGroup>
 
