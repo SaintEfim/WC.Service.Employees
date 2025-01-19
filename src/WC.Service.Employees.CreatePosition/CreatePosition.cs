@@ -17,25 +17,58 @@ public class CreatePosition
         _logger = logger;
     }
 
+    private const string PositionName = "Position";
+
     public async Task Create(
         CancellationToken cancellationToken = default)
     {
-        var registrationPayload = new PositionModel
-        {
-            Id = Guid.TryParse(Environment.GetEnvironmentVariable("ADMIN_POSITION_ID"), out var positionId)
-                ? positionId
-                : Guid.Parse("00000000-0000-0000-0000-000000000001"),
-            Name = Environment.GetEnvironmentVariable("ADMIN_POSITION_NAME") ?? "Администратор"
-        };
+        var namesPosition = (Environment.GetEnvironmentVariable("POSITION_NAMES") ?? PositionName)
+            .Split(',', StringSplitOptions.RemoveEmptyEntries)
+            .Select(domain => domain.Trim())
+            .ToArray();
 
-        try
+        var adminId  = Guid.TryParse(Environment.GetEnvironmentVariable("ADMIN_POSITION_ID"), out var positionId)
+            ? positionId
+            : Guid.Parse("00000000-0000-0000-0000-000000000001");
+
+        var myDict = new Dictionary<string, Guid>();
+
+        var currentId = adminId;
+        foreach (var name in namesPosition)
         {
-            await _positionManager.Create(registrationPayload, cancellationToken: cancellationToken);
+            if (name == PositionName)
+            {
+                myDict[name] = adminId;
+            }
+            else
+            {
+                myDict[name] = currentId;
+                currentId = currentId == adminId ? Guid.NewGuid() : new Guid(string.Concat(currentId.ToString("D").AsSpan(0, 8), "0000000000000001"));
+            }
         }
-        catch (Exception e)
+
+        foreach (var position in myDict)
         {
-            _logger.LogError(e, e.Message);
-            throw;
+            Console.WriteLine($"{position.Key}: {position.Value}");
+        }
+
+        var positionModels = myDict.Select(entry => new PositionModel
+        {
+            Id = entry.Value,
+            Name = entry.Key
+        }).ToList();
+
+        foreach (var positionModel in positionModels)
+        {
+            try
+            {
+                await _positionManager.Create(positionModel, cancellationToken: cancellationToken);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, e.Message);
+                throw;
+            }
         }
     }
 }
