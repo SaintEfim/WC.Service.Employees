@@ -22,10 +22,10 @@ public class CreatePosition
     {
         var registrationPayload = new PositionModel
         {
-            Id = Guid.TryParse(Environment.GetEnvironmentVariable("POSITION_ID"), out var positionId)
+            Id = Guid.TryParse(Environment.GetEnvironmentVariable("ADMIN_POSITION_ID"), out var positionId)
                 ? positionId
                 : Guid.Parse("00000000-0000-0000-0000-000000000001"),
-            Name = Environment.GetEnvironmentVariable("POSITION_NAME") ?? "Администратор"
+            Name = Environment.GetEnvironmentVariable("ADMIN_POSITION_NAME") ?? "Администратор"
         };
 
         try
