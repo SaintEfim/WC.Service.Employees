@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WC.Service.Employees.gRPC.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WC.Service.Employees.gRPC.Client.Abstractions", "src\WC.Service.Employees.gRPC.Client.Abstractions\WC.Service.Employees.gRPC.Client.Abstractions.csproj", "{C47532DE-DD64-4A71-81DC-247C1335DBB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WC.Service.Employees.CreatePosition", "src\WC.Service.Employees.CreatePosition\WC.Service.Employees.CreatePosition.csproj", "{757D18EC-7400-4FBA-B2F2-3A6583F1B359}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{C47532DE-DD64-4A71-81DC-247C1335DBB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C47532DE-DD64-4A71-81DC-247C1335DBB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C47532DE-DD64-4A71-81DC-247C1335DBB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{757D18EC-7400-4FBA-B2F2-3A6583F1B359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757D18EC-7400-4FBA-B2F2-3A6583F1B359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757D18EC-7400-4FBA-B2F2-3A6583F1B359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757D18EC-7400-4FBA-B2F2-3A6583F1B359}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

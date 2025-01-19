@@ -18,7 +18,7 @@ public sealed class EmployeeModelValidator : AbstractValidator<EmployeeModel>
 
         RuleFor(x => x.Patronymic)
             .SetValidator(new NameValidator(nameof(EmployeeModel.Patronymic))!)
-            .When(x => x != null);
+            .When(x => !string.IsNullOrWhiteSpace(x.Patronymic));
 
         RuleFor(x => x.PositionId)
             .NotEmpty();

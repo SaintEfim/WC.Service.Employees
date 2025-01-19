@@ -4,7 +4,7 @@ namespace WC.Service.Employees.Domain.Models;
 
 public class PositionModel : ModelBase
 {
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
     public string? Description { get; set; }
 

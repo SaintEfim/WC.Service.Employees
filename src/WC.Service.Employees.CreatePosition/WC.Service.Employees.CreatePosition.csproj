@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.2.0"/>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0"/>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.3.0"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="appsettings.Development.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\WC.Service.Employees.Domain.Abstractions\WC.Service.Employees.Domain.Abstractions.csproj" />
+      <ProjectReference Include="..\WC.Service.Employees.Domain\WC.Service.Employees.Domain.csproj" />
+    </ItemGroup>
+
+</Project>
