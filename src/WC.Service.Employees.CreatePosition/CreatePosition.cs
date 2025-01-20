@@ -17,26 +17,30 @@ public class CreatePosition
         _logger = logger;
     }
 
-    private const string PositionName = "Администратор";
+    private static readonly string AdminPositionName = Environment.GetEnvironmentVariable("POSITION_NAMES") ?? "Администратор";
 
     public async Task Create(
         CancellationToken cancellationToken = default)
     {
-        var namesPosition = (Environment.GetEnvironmentVariable("POSITION_NAMES") ?? PositionName)
+        var namesPosition = (Environment.GetEnvironmentVariable("POSITION_NAMES") ?? AdminPositionName)
             .Split(',', StringSplitOptions.RemoveEmptyEntries)
             .Select(domain => domain.Trim())
             .ToArray();
 
+        Console.WriteLine($"names,{namesPosition}");
+
         var adminId = Guid.TryParse(Environment.GetEnvironmentVariable("ADMIN_POSITION_ID"), out var positionId)
             ? positionId
             : Guid.Parse("00000000-0000-0000-0000-000000000001");
+
+        Console.WriteLine($"adminId,{adminId}");
 
         var currentNumber = 2;
         var myDict = new Dictionary<string, Guid>();
 
         foreach (var name in namesPosition)
         {
-            if (name == "Администатор")
+            if (name == AdminPositionName)
             {
                 myDict[name] = adminId;
             }
@@ -46,6 +50,11 @@ public class CreatePosition
                 myDict[name] = newId;
                 currentNumber++;
             }
+        }
+
+        foreach (var position in myDict)
+        {
+            Console.WriteLine($"{position.Key}: {position.Value}");
         }
 
         var positionModels = myDict.Select(entry => new PositionModel
