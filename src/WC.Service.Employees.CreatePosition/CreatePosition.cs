@@ -27,36 +27,33 @@ public class CreatePosition
             .Select(domain => domain.Trim())
             .ToArray();
 
-        var adminId  = Guid.TryParse(Environment.GetEnvironmentVariable("ADMIN_POSITION_ID"), out var positionId)
+        var adminId = Guid.TryParse(Environment.GetEnvironmentVariable("ADMIN_POSITION_ID"), out var positionId)
             ? positionId
             : Guid.Parse("00000000-0000-0000-0000-000000000001");
 
+        var currentNumber = 2;
         var myDict = new Dictionary<string, Guid>();
 
-        var currentId = adminId;
         foreach (var name in namesPosition)
         {
-            if (name == PositionName)
+            if (name == "Администатор")
             {
                 myDict[name] = adminId;
             }
             else
             {
-                myDict[name] = currentId;
-                currentId = currentId == adminId ? Guid.NewGuid() : new Guid(string.Concat(currentId.ToString("D").AsSpan(0, 8), "0000000000000001"));
+                var newId = new Guid($"00000000-0000-0000-0000-{currentNumber:D12}");
+                myDict[name] = newId;
+                currentNumber++;
             }
         }
 
-        foreach (var position in myDict)
-        {
-            Console.WriteLine($"{position.Key}: {position.Value}");
-        }
-
         var positionModels = myDict.Select(entry => new PositionModel
-        {
-            Id = entry.Value,
-            Name = entry.Key
-        }).ToList();
+            {
+                Id = entry.Value,
+                Name = entry.Key
+            })
+            .ToList();
 
         foreach (var positionModel in positionModels)
         {
