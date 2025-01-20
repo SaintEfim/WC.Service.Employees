@@ -27,7 +27,10 @@ public class CreatePosition
             .Select(domain => domain.Trim())
             .ToArray();
 
-        Console.WriteLine($"names,{namesPosition}");
+        foreach (var position in namesPosition)
+        {
+            Console.WriteLine($"names,{position}");
+        }
 
         var adminId = Guid.TryParse(Environment.GetEnvironmentVariable("ADMIN_POSITION_ID"), out var positionId)
             ? positionId
@@ -37,6 +40,8 @@ public class CreatePosition
 
         var currentNumber = 2;
         var myDict = new Dictionary<string, Guid>();
+
+        Console.WriteLine($"AdminPositionName:{AdminPositionName}");
 
         foreach (var name in namesPosition)
         {
