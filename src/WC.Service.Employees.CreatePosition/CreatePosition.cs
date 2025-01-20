@@ -17,7 +17,7 @@ public class CreatePosition
         _logger = logger;
     }
 
-    private const string PositionName = "Position";
+    private const string PositionName = "Администратор";
 
     public async Task Create(
         CancellationToken cancellationToken = default)
