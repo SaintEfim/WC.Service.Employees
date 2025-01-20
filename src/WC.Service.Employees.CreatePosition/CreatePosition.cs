@@ -17,7 +17,7 @@ public class CreatePosition
         _logger = logger;
     }
 
-    private static readonly string AdminPositionName = Environment.GetEnvironmentVariable("POSITION_NAMES") ?? "Администратор";
+    private static readonly string AdminPositionName = Environment.GetEnvironmentVariable("ADMIN_POSITION_NAME") ?? "Администратор";
 
     public async Task Create(
         CancellationToken cancellationToken = default)
@@ -27,21 +27,12 @@ public class CreatePosition
             .Select(domain => domain.Trim())
             .ToArray();
 
-        foreach (var position in namesPosition)
-        {
-            Console.WriteLine($"names,{position}");
-        }
-
         var adminId = Guid.TryParse(Environment.GetEnvironmentVariable("ADMIN_POSITION_ID"), out var positionId)
             ? positionId
             : Guid.Parse("00000000-0000-0000-0000-000000000001");
 
-        Console.WriteLine($"adminId,{adminId}");
-
         var currentNumber = 2;
         var myDict = new Dictionary<string, Guid>();
-
-        Console.WriteLine($"AdminPositionName:{AdminPositionName}");
 
         foreach (var name in namesPosition)
         {
@@ -59,7 +50,7 @@ public class CreatePosition
 
         foreach (var position in myDict)
         {
-            Console.WriteLine($"{position.Key}: {position.Value}");
+            _logger.LogInformation($"{position.Key}: {position.Value}");
         }
 
         var positionModels = myDict.Select(entry => new PositionModel
