@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
@@ -35,6 +36,7 @@ public class EmployeeController
     /// <param name="withIncludes">Specifies whether related entities should be included in the query.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpGet]
+    [Authorize(Roles = "Admin, User")]
     [OpenApiOperation(nameof(EmployeeGet))]
     [SwaggerResponse(Status200OK, typeof(List<EmployeeDto>))]
     public async Task<ActionResult<List<EmployeeDto>>> EmployeeGet(
@@ -50,6 +52,7 @@ public class EmployeeController
     /// <param name="id">The ID of the employee to retrieve.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpGet("{id:guid}", Name = nameof(EmployeeGetById))]
+    [Authorize(Roles = "Admin, User")]
     [OpenApiOperation(nameof(EmployeeGetById))]
     [SwaggerResponse(Status200OK, typeof(EmployeeDetailDto))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
@@ -67,6 +70,7 @@ public class EmployeeController
     /// <param name="cancellationToken">The operation cancellation token</param>
     /// <returns>The result of creation. <see cref="CreateActionResultDto"/></returns>
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [OpenApiOperation(nameof(EmployeeCreate))]
     [SwaggerResponse(Status201Created, typeof(CreateActionResultDto))]
     public async Task<IActionResult> EmployeeCreate(
@@ -87,6 +91,7 @@ public class EmployeeController
     /// <param name="patchDocument">The JSON patch document containing updates.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpPatch("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     [OpenApiOperation(nameof(EmployeeUpdate))]
     [SwaggerResponse(Status200OK, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
@@ -104,6 +109,7 @@ public class EmployeeController
     /// <param name="id">The ID of the employee to delete.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpDelete("{id:guid}")]
+    [Authorize(Roles = "Admin, User")]
     [OpenApiOperation(nameof(EmployeeDelete))]
     [SwaggerResponse(Status204NoContent, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]

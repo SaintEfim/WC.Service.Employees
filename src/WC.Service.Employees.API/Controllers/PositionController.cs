@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
@@ -51,6 +52,7 @@ public class PositionController
     /// <param name="cancellationToken">The operation cancellation token.</param>
     /// <returns></returns>
     [HttpGet("{id:guid}", Name = nameof(PositionGetById))]
+    [Authorize(Roles = "Admin, User")]
     [OpenApiOperation(nameof(PositionGetById))]
     [SwaggerResponse(Status200OK, typeof(PositionDto))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
@@ -68,6 +70,7 @@ public class PositionController
     /// <param name="cancellationToken">The operation cancellation token</param>
     /// <returns>The result of creation. <see cref="CreateActionResultDto"/></returns>
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [OpenApiOperation(nameof(PositionCreate))]
     [SwaggerResponse(Status201Created, typeof(CreateActionResultDto))]
     public Task<IActionResult> PositionCreate(
@@ -86,6 +89,7 @@ public class PositionController
     /// <param name="cancellationToken">The operation cancellation token.</param>
     /// <returns></returns>
     [HttpPatch("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     [OpenApiOperation(nameof(PositionUpdate))]
     [SwaggerResponse(Status200OK, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
@@ -104,6 +108,7 @@ public class PositionController
     /// <param name="cancellationToken">The operation cancellation token.</param>
     /// <returns></returns>
     [HttpDelete("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     [OpenApiOperation(nameof(PositionDelete))]
     [SwaggerResponse(Status204NoContent, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
