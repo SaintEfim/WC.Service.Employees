@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
+using Sieve.Models;
 using WC.Library.Web.Controllers;
 using WC.Library.Web.Models;
 using WC.Service.Employees.API.Models.Employee;
@@ -33,6 +34,7 @@ public class EmployeeController
     /// <summary>
     ///     Retrieves a list of employees.
     /// </summary>
+    /// <param name="filter"></param>
     /// <param name="withIncludes">Specifies whether related entities should be included in the query.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpGet]
@@ -40,10 +42,11 @@ public class EmployeeController
     [OpenApiOperation(nameof(EmployeeGet))]
     [SwaggerResponse(Status200OK, typeof(List<EmployeeDto>))]
     public async Task<ActionResult<List<EmployeeDto>>> EmployeeGet(
+        [FromQuery] SieveModel? filter = default,
         bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetMany(withIncludes, cancellationToken: cancellationToken));
+        return Ok(await GetMany(filter, withIncludes, cancellationToken: cancellationToken));
     }
 
     /// <summary>

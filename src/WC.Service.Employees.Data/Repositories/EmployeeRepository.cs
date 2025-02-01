@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Sieve.Services;
 using WC.Library.Data.Repository;
 using WC.Service.Employees.Data.Models;
 
@@ -12,8 +13,9 @@ public class EmployeeRepository<TDbContext>
 {
     protected EmployeeRepository(
         TDbContext context,
-        ILogger<EmployeeRepository<TDbContext>> logger)
-        : base(context, logger)
+        ILogger<EmployeeRepository<TDbContext>> logger,
+        ISieveProcessor sieveProcessor)
+        : base(context, logger, sieveProcessor)
     {
     }
 

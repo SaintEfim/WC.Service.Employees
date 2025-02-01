@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
+using Sieve.Models;
 using WC.Library.Web.Controllers;
 using WC.Library.Web.Models;
 using WC.Service.Employees.API.Models.Position;
@@ -33,16 +34,18 @@ public class PositionController
     ///     Retrieves a list of positions.
     /// </summary>
     /// <param name="cancellationToken">The operation cancellation token.</param>
+    /// <param name="filter"></param>
     /// <param name="withIncludes">Specifies whether related entities should be included in the query.</param>
     /// <returns></returns>
     [HttpGet]
     [OpenApiOperation(nameof(PositionGet))]
     [SwaggerResponse(Status200OK, typeof(List<PositionDto>))]
     public async Task<ActionResult<List<PositionDto>>> PositionGet(
+        [FromQuery] SieveModel? filter = default,
         bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetMany(withIncludes, cancellationToken: cancellationToken));
+        return Ok(await GetMany(filter, withIncludes, cancellationToken: cancellationToken));
     }
 
     /// <summary>
