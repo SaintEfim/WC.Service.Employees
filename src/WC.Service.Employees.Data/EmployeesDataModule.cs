@@ -12,15 +12,7 @@ public class EmployeesDataModule : Module
     {
         builder.RegisterModule<WcLibraryDataModule>();
 
-        builder.RegisterType<ColleagueEntityFilterProfile>()
-            .As<ISieveProcessor>()
-            .InstancePerLifetimeScope();
-
-        builder.RegisterType<EmployeeEntityFilterProfile>()
-            .As<ISieveProcessor>()
-            .InstancePerLifetimeScope();
-
-        builder.RegisterType<PositionEntityFilterProfile>()
+        builder.RegisterType<EmployeeServiceFilterProfile>()
             .As<ISieveProcessor>()
             .InstancePerLifetimeScope();
     }

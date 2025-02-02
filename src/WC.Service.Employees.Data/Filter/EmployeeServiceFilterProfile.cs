@@ -5,9 +5,9 @@ using WC.Service.Employees.Data.Models;
 
 namespace WC.Service.Employees.Data.Filter;
 
-public class EmployeeEntityFilterProfile : SieveProcessor
+public class EmployeeServiceFilterProfile : SieveProcessor
 {
-    public EmployeeEntityFilterProfile(
+    public EmployeeServiceFilterProfile(
         IOptions<SieveOptions> options)
         : base(options)
     {
@@ -33,6 +33,26 @@ public class EmployeeEntityFilterProfile : SieveProcessor
 
         mapper.Property<EmployeeEntity>(p => p.PositionId)
             .CanFilter();
+
+        mapper.Property<ColleagueEntity>(p => p.Id)
+            .CanFilter();
+
+        mapper.Property<ColleagueEntity>(p => p.EmployeeId)
+            .CanFilter();
+
+        mapper.Property<ColleagueEntity>(p => p.ColleagueEmployeeId)
+            .CanFilter();
+
+        mapper.Property<PositionEntity>(p => p.Id)
+            .CanFilter();
+
+        mapper.Property<PositionEntity>(p => p.Name)
+            .CanFilter()
+            .CanSort();
+
+        mapper.Property<PositionEntity>(p => p.Description)
+            .CanFilter()
+            .CanSort();
 
         return mapper;
     }
