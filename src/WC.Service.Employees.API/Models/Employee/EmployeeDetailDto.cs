@@ -16,6 +16,9 @@ public class EmployeeDetailDto : DtoBase
     public string? Patronymic { get; set; }
 
     [Required]
+    public required string Email { get; set; }
+
+    [Required]
     public required PositionDto Position { get; set; }
 
     public List<ColleagueDetailDto> Colleagues { get; set; } = [];

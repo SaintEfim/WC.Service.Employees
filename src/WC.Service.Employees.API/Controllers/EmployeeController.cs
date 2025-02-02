@@ -46,7 +46,7 @@ public class EmployeeController
         bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {
-        return Ok(await GetMany(filter, withIncludes, cancellationToken: cancellationToken));
+        return Ok(await GetMany(filter, true, cancellationToken: cancellationToken));
     }
 
     /// <summary>

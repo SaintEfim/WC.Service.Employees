@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using WC.Library.Web.Models;
+using WC.Service.Employees.API.Models.Position;
 
 namespace WC.Service.Employees.API.Models.Employee;
 
@@ -14,5 +15,5 @@ public class EmployeeDto : DtoBase
     public string? Patronymic { get; set; }
 
     [Required]
-    public required Guid PositionId { get; set; }
+    public required PositionDto Position { get; set; }
 }

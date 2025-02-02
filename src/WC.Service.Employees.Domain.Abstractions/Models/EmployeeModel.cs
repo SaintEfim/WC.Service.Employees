@@ -10,6 +10,8 @@ public class EmployeeModel : ModelBase
 
     public string? Patronymic { get; set; }
 
+    public string Email { get; set; } = string.Empty;
+
     public Guid PositionId { get; set; }
 
     public PositionModel Position { get; set; } = null!;
