@@ -8,7 +8,7 @@ public interface IGreeterEmployeesClient
         EmployeeCreateRequestModel request,
         CancellationToken cancellationToken = default);
 
-    Task<SearchResponseModel> GetOneById(
+    Task<SearchResponseModel> Search(
         SearchRequestModel request,
         CancellationToken cancellationToken = default);
 }

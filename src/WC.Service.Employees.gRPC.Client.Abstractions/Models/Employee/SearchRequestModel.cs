@@ -2,5 +2,5 @@
 
 public class SearchRequestModel
 {
-    public required Guid Id { get; set; }
+    public required List<Guid> Ids { get; set; }
 }

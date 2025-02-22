@@ -31,19 +31,27 @@ public class GreeterEmployeesClient : IGreeterEmployeesClient
         return new EmployeeCreateResponseModel { Id = Guid.Parse(createResult.Id) };
     }
 
-    public async Task<SearchResponseModel> GetOneById(
+    public async Task<SearchResponseModel> Search(
         SearchRequestModel request,
         CancellationToken cancellationToken = default)
     {
-        var searchResult = await _client.GetOneByIdAsync(new SearchRequest { Id = request.Id.ToString() },
-            cancellationToken: cancellationToken);
+        var searchRequest = new SearchRequest();
+        searchRequest.Ids.AddRange(request.Ids.Select(id => id.ToString()));
 
-        return new SearchResponseModel
+        var searchResponse = await _client.SearchAsync(searchRequest, cancellationToken: cancellationToken);
+
+        var responseModel = new SearchResponseModel
         {
-            Id = Guid.Parse(searchResult.Id),
-            Name = searchResult.Name,
-            Surname = searchResult.Surname,
-            Patronymic = searchResult.Patronymic,
+            Employees = searchResponse.Employees.Select(employee => new EmployeeResponseModel
+            {
+                Id = Guid.Parse(employee.Id),
+                Name = employee.Name,
+                Surname = employee.Surname,
+                Patronymic = employee.Patronymic,
+            }).ToList()
         };
+
+        return responseModel;
     }
+
 }

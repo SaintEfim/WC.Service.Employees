@@ -45,31 +45,40 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
         }
     }
 
-    public override async Task<SearchResponse> GetOneById(
+    public override async Task<SearchResponse> Search(
         SearchRequest request,
         ServerCallContext context)
     {
         try
         {
-            var searchResult =
-                await _provider.GetOneById(Guid.Parse(request.Id), cancellationToken: context.CancellationToken);
+            var employees = new List<Employee>();
 
-            if (searchResult == null)
+            foreach (var id in request.Ids)
             {
-                throw new RpcException(new Status(StatusCode.NotFound, $"Not found employee with id: {request.Id}"));
+                var searchResult =
+                    await _provider.GetOneById(Guid.Parse(id), cancellationToken: context.CancellationToken);
+
+                if (searchResult == null)
+                {
+                    throw new RpcException(new Status(StatusCode.NotFound, $"Не найден сотрудник с id: {id}"));
+                }
+
+                employees.Add(new Employee
+                {
+                    Id = searchResult.Id.ToString(),
+                    Name = searchResult.Name,
+                    Surname = searchResult.Surname,
+                    Patronymic = searchResult.Patronymic
+                });
             }
 
-            return new SearchResponse
-            {
-                Id = searchResult.Id.ToString(),
-                Name = searchResult.Name,
-                Surname = searchResult.Surname,
-                Patronymic = searchResult.Patronymic
-            };
+            var response = new SearchResponse();
+            response.Employees.AddRange(employees);
+            return response;
         }
         catch (Exception e)
         {
-            throw new RpcException(new Status(StatusCode.Internal, $"{e.Message}"));
+            throw new RpcException(new Status(StatusCode.Internal, e.Message));
         }
     }
 }

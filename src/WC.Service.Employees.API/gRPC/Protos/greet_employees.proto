@@ -6,7 +6,7 @@ package employees;
 
 service GreeterEmployees {
   rpc Create (EmployeeCreateRequest) returns (EmployeeCreateResponse);
-  rpc GetOneById (SearchRequest) returns (SearchResponse);
+  rpc Search (SearchRequest) returns (SearchResponse);
 }
 
 message EmployeeCreateRequest {
@@ -23,12 +23,16 @@ message EmployeeCreateResponse {
 }
 
 message SearchRequest {
-  string Id = 1;
+  repeated string ids = 1;
 }
 
-message SearchResponse {
+message Employee {
   string id = 1;
   string name = 2;
   string surname = 3;
   string patronymic = 4;
+}
+
+message SearchResponse {
+  repeated Employee employees = 1;
 }
