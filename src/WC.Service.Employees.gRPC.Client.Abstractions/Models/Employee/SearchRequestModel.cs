@@ -1,6 +1,6 @@
 ﻿namespace WC.Service.Employees.gRPC.Client.Models.Employee;
 
-public class EmployeeCreateResponseModel
+public class SearchRequestModel
 {
     public required Guid Id { get; set; }
 }

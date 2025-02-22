@@ -2,10 +2,9 @@ syntax = "proto3";
 
 option csharp_namespace = "WC.Service.Employees.gRPC.Client.Clients";
 
-package employees;
-
 service GreeterEmployees {
   rpc Create (EmployeeCreateRequest) returns (EmployeeCreateResponse);
+  rpc GetOneById (SearchRequest) returns (SearchResponse);
 }
 
 message EmployeeCreateRequest {
@@ -18,5 +17,16 @@ message EmployeeCreateRequest {
 }
 
 message EmployeeCreateResponse {
-  string employeeId = 1;
+  string Id = 1;
+}
+
+message SearchRequest {
+  string Id = 1;
+}
+
+message SearchResponse {
+  string id = 1;
+  string name = 2;
+  string surname = 3;
+  string patronymic = 4;
 }
