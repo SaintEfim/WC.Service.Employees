@@ -2,6 +2,8 @@ syntax = "proto3";
 
 option csharp_namespace = "WC.Service.Employees.gRPC.Client.Clients";
 
+package employees;
+
 service GreeterEmployees {
   rpc Create (EmployeeCreateRequest) returns (EmployeeCreateResponse);
   rpc Search (SearchRequest) returns (SearchResponse);
