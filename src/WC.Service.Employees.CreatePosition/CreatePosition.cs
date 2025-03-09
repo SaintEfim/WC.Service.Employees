@@ -8,35 +8,31 @@ public class CreatePosition
 {
     private readonly IPositionManager _positionManager;
     private readonly ILogger<CreatePosition> _logger;
+    private readonly AdminSettingsOptions _options;
 
     public CreatePosition(
         ILogger<CreatePosition> logger,
-        IPositionManager positionManager)
+        IPositionManager positionManager,
+        AdminSettingsOptions options)
     {
         _positionManager = positionManager;
+        _options = options;
         _logger = logger;
     }
-
-    private static readonly string AdminPositionName = Environment.GetEnvironmentVariable("ADMIN_POSITION_NAME") ?? "Администратор";
 
     public async Task Create(
         CancellationToken cancellationToken = default)
     {
-        var namesPosition = (Environment.GetEnvironmentVariable("POSITION_NAMES") ?? AdminPositionName)
-            .Split(',', StringSplitOptions.RemoveEmptyEntries)
-            .Select(domain => domain.Trim())
-            .ToArray();
+        var namesPosition = _options.PositionNames;
 
-        var adminId = Guid.TryParse(Environment.GetEnvironmentVariable("ADMIN_POSITION_ID"), out var positionId)
-            ? positionId
-            : Guid.Parse("00000000-0000-0000-0000-000000000001");
+        var adminId = _options.AdminPositionId;
 
         var currentNumber = 2;
         var myDict = new Dictionary<string, Guid>();
 
         foreach (var name in namesPosition)
         {
-            if (name == AdminPositionName)
+            if (name == "Администратор")
             {
                 myDict[name] = adminId;
             }

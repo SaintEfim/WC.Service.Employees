@@ -17,7 +17,7 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -38,7 +38,8 @@ namespace WC.Service.Employees.Data.PostgreSql.Migrations
 
                     b.HasIndex("ColleagueEmployeeId");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("EmployeeId", "ColleagueEmployeeId")
+                        .IsUnique();
 
                     b.ToTable("Colleagues");
                 });
