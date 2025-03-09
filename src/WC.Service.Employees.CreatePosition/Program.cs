@@ -38,9 +38,20 @@ internal static class Program
         builder.Register(context =>
             {
                 var configuration = context.Resolve<IConfiguration>();
-                var options = new AdminSettingsOptions();
-                configuration.GetSection("AdminSettings").Bind(options);
-                return options;
+                var adminSection = configuration.GetSection("AdminSettings");
+
+                var positionNames = adminSection.GetSection("PositionNames")
+                    .GetChildren()
+                    .Select(x => x.Value)
+                    .ToArray();
+
+                var adminPositionId = adminSection.GetValue<string>("AdminPositionId");
+
+                return new AdminSettingsOptions
+                {
+                    PositionNames = positionNames!,
+                    AdminPositionId = Guid.Parse(adminPositionId!)
+                };
             })
             .As<AdminSettingsOptions>()
             .SingleInstance();
