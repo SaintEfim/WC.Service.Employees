@@ -51,30 +51,26 @@ public class GreeterEmployeesService : GreeterEmployees.GreeterEmployeesBase
     {
         try
         {
-            var employees = new List<Employee>();
+            var ids = request.Ids
+                .Select(Guid.Parse)
+                .ToList();
 
-            foreach (var id in request.Ids)
-            {
-                var searchResult =
-                    await _provider.GetOneById(Guid.Parse(id), cancellationToken: context.CancellationToken);
-
-                if (searchResult == null)
-                {
-                    throw new RpcException(new Status(StatusCode.NotFound, $"Не найден сотрудник с id: {id}"));
-                }
-
-                employees.Add(new Employee
-                {
-                    Id = searchResult.Id.ToString(),
-                    Name = searchResult.Name,
-                    Surname = searchResult.Surname,
-                    Patronymic = searchResult.Patronymic
-                });
-            }
+            var employees = await _provider.Search(ids, cancellationToken: context.CancellationToken);
 
             var response = new SearchResponse();
-            response.Employees.AddRange(employees);
+            response.Employees.AddRange(employees.Select(e => new Employee
+            {
+                Id = e.Id.ToString(),
+                Name = e.Name,
+                Surname = e.Surname,
+                Patronymic = e.Patronymic
+            }));
+
             return response;
+        }
+        catch (RpcException)
+        {
+            throw;
         }
         catch (Exception e)
         {
