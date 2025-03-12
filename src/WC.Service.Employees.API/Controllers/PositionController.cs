@@ -41,7 +41,7 @@ public class PositionController
     [OpenApiOperation(nameof(PositionGet))]
     [SwaggerResponse(Status200OK, typeof(List<PositionDto>))]
     public async Task<ActionResult<List<PositionDto>>> PositionGet(
-        [FromQuery] SieveModel? filter = default,
+        [FromQuery] SieveModel filter,
         bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {
