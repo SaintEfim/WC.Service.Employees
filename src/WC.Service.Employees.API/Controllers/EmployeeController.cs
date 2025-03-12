@@ -42,7 +42,7 @@ public class EmployeeController
     [OpenApiOperation(nameof(EmployeeGet))]
     [SwaggerResponse(Status200OK, typeof(List<EmployeeDto>))]
     public async Task<ActionResult<List<EmployeeDto>>> EmployeeGet(
-        [FromQuery] SieveModel? filter = default,
+        [FromQuery] SieveModel filter,
         bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {

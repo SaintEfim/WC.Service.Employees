@@ -1,5 +1,5 @@
 {
-  "x-generator": "NSwag v14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))",
+  "x-generator": "NSwag v14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))",
   "openapi": "3.0.0",
   "info": {
     "title": "NSwag.AspNetCore.Launcher",
@@ -15,6 +15,48 @@
         "operationId": "ColleagueGet",
         "parameters": [
           {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          },
+          {
+            "name": "Sorts",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 2147483647.0,
+              "minimum": 1.0,
+              "nullable": true
+            },
+            "x-position": 3
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 2147483647.0,
+              "minimum": 1.0,
+              "nullable": true
+            },
+            "x-position": 4
+          },
+          {
             "name": "withIncludes",
             "in": "query",
             "description": "Specifies whether related entities should be included in the query.",
@@ -22,7 +64,7 @@
               "type": "boolean",
               "default": false
             },
-            "x-position": 1
+            "x-position": 5
           }
         ],
         "responses": {
@@ -39,7 +81,15 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin",
+              " User"
+            ]
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -71,7 +121,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin"
+            ]
+          }
+        ]
       }
     },
     "/api/v1/colleagues/{id}": {
@@ -115,7 +172,15 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin",
+              " User"
+            ]
+          }
+        ]
       },
       "patch": {
         "tags": [
@@ -166,7 +231,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin"
+            ]
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -211,7 +283,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin"
+            ]
+          }
+        ]
       }
     },
     "/api/v1/employees": {
@@ -223,6 +302,48 @@
         "operationId": "EmployeeGet",
         "parameters": [
           {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          },
+          {
+            "name": "Sorts",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 2147483647.0,
+              "minimum": 1.0,
+              "nullable": true
+            },
+            "x-position": 3
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 2147483647.0,
+              "minimum": 1.0,
+              "nullable": true
+            },
+            "x-position": 4
+          },
+          {
             "name": "withIncludes",
             "in": "query",
             "description": "Specifies whether related entities should be included in the query.",
@@ -230,7 +351,7 @@
               "type": "boolean",
               "default": false
             },
-            "x-position": 1
+            "x-position": 5
           }
         ],
         "responses": {
@@ -247,7 +368,15 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin",
+              " User"
+            ]
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -279,7 +408,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin"
+            ]
+          }
+        ]
       }
     },
     "/api/v1/employees/{id}": {
@@ -323,7 +459,15 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin",
+              " User"
+            ]
+          }
+        ]
       },
       "patch": {
         "tags": [
@@ -374,7 +518,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin"
+            ]
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -419,7 +570,15 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin",
+              " User"
+            ]
+          }
+        ]
       }
     },
     "/api/v1/positions": {
@@ -431,6 +590,48 @@
         "operationId": "PositionGet",
         "parameters": [
           {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          },
+          {
+            "name": "Sorts",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 2147483647.0,
+              "minimum": 1.0,
+              "nullable": true
+            },
+            "x-position": 3
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 2147483647.0,
+              "minimum": 1.0,
+              "nullable": true
+            },
+            "x-position": 4
+          },
+          {
             "name": "withIncludes",
             "in": "query",
             "description": "Specifies whether related entities should be included in the query.",
@@ -438,7 +639,7 @@
               "type": "boolean",
               "default": false
             },
-            "x-position": 1
+            "x-position": 5
           }
         ],
         "responses": {
@@ -487,7 +688,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin"
+            ]
+          }
+        ]
       }
     },
     "/api/v1/positions/{id}": {
@@ -531,7 +739,15 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin",
+              " User"
+            ]
+          }
+        ]
       },
       "patch": {
         "tags": [
@@ -582,7 +798,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin"
+            ]
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -627,7 +850,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "Admin"
+            ]
+          }
+        ]
       }
     }
   },
@@ -704,6 +934,7 @@
             "required": [
               "name",
               "surname",
+              "email",
               "position"
             ],
             "properties": {
@@ -718,6 +949,10 @@
               "patronymic": {
                 "type": "string",
                 "nullable": true
+              },
+              "email": {
+                "type": "string",
+                "minLength": 1
               },
               "position": {
                 "$ref": "#/components/schemas/PositionDto"
@@ -865,7 +1100,7 @@
             "required": [
               "name",
               "surname",
-              "positionId"
+              "position"
             ],
             "properties": {
               "name": {
@@ -880,10 +1115,8 @@
                 "type": "string",
                 "nullable": true
               },
-              "positionId": {
-                "type": "string",
-                "format": "guid",
-                "minLength": 1
+              "position": {
+                "$ref": "#/components/schemas/PositionDto"
               }
             }
           }

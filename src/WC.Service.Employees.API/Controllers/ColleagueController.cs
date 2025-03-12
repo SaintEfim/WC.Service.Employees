@@ -42,7 +42,7 @@ public class ColleagueController
     [OpenApiOperation(nameof(ColleagueGet))]
     [SwaggerResponse(Status200OK, typeof(List<ColleagueDto>))]
     public async Task<ActionResult<List<ColleagueDto>>> ColleagueGet(
-        [FromQuery] SieveModel? filter = default,
+        [FromQuery] SieveModel filter,
         bool withIncludes = false,
         CancellationToken cancellationToken = default)
     {
