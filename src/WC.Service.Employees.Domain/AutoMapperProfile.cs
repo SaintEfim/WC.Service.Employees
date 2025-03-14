@@ -9,9 +9,6 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
-        CreateMap<ColleagueModel, ColleagueEntity>()
-            .ReverseMap();
-
         CreateMap<EmployeeModel, EmployeeEntity>()
             .ReverseMap();
 

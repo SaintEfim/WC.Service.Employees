@@ -34,15 +34,6 @@ public class EmployeeServiceFilterProfile : SieveProcessor
         mapper.Property<EmployeeEntity>(p => p.PositionId)
             .CanFilter();
 
-        mapper.Property<ColleagueEntity>(p => p.Id)
-            .CanFilter();
-
-        mapper.Property<ColleagueEntity>(p => p.EmployeeId)
-            .CanFilter();
-
-        mapper.Property<ColleagueEntity>(p => p.ColleagueEmployeeId)
-            .CanFilter();
-
         mapper.Property<PositionEntity>(p => p.Id)
             .CanFilter();
 
