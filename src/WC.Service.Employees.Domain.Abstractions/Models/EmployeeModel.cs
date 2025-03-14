@@ -15,6 +15,4 @@ public class EmployeeModel : ModelBase
     public Guid PositionId { get; set; }
 
     public PositionModel Position { get; set; } = null!;
-
-    public List<ColleagueModel> Colleagues { get; set; } = [];
 }

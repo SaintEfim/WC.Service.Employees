@@ -13,6 +13,4 @@ public class EmployeeEntity : EntityBase
     public Guid PositionId { get; set; }
 
     public PositionEntity Position { get; set; } = null!;
-
-    public List<ColleagueEntity> Colleagues { get; set; } = [];
 }

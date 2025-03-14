@@ -6,293 +6,6 @@
     "version": "v1"
   },
   "paths": {
-    "/api/v1/colleagues": {
-      "get": {
-        "tags": [
-          "Colleague"
-        ],
-        "summary": "Retrieves a list of colleagues.",
-        "operationId": "ColleagueGet",
-        "parameters": [
-          {
-            "name": "Filters",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 1
-          },
-          {
-            "name": "Sorts",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 2
-          },
-          {
-            "name": "Page",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 3
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 4
-          },
-          {
-            "name": "withIncludes",
-            "in": "query",
-            "description": "Specifies whether related entities should be included in the query.",
-            "schema": {
-              "type": "boolean",
-              "default": false
-            },
-            "x-position": 5
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ColleagueDto"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": [
-              "Admin",
-              " User"
-            ]
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Colleague"
-        ],
-        "summary": "Creates a new colleague.",
-        "operationId": "ColleagueCreate",
-        "requestBody": {
-          "x-name": "payload",
-          "description": "The colleague data.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ColleagueCreateDto"
-              }
-            }
-          },
-          "required": true,
-          "x-position": 1
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateActionResultDto"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": [
-              "Admin"
-            ]
-          }
-        ]
-      }
-    },
-    "/api/v1/colleagues/{id}": {
-      "get": {
-        "tags": [
-          "Colleague"
-        ],
-        "summary": "Retrieves a colleague by its ID.",
-        "operationId": "ColleagueGetById",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "The ID of the colleague to retrieve.",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ColleagueDetailDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": [
-              "Admin",
-              " User"
-            ]
-          }
-        ]
-      },
-      "patch": {
-        "tags": [
-          "Colleague"
-        ],
-        "summary": "Updates a colleague by ID.",
-        "operationId": "ColleagueUpdate",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "The ID of the colleague to update.",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "requestBody": {
-          "x-name": "patchDocument",
-          "description": "The JSON patch document containing updates.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
-              }
-            }
-          },
-          "required": true,
-          "x-position": 2
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": [
-              "Admin"
-            ]
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Colleague"
-        ],
-        "summary": "Deletes a colleague by ID.",
-        "operationId": "Colleague_ColleagueDelete",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "The ID of the colleague to delete.",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": [
-              "Admin"
-            ]
-          }
-        ]
-      }
-    },
     "/api/v1/employees": {
       "get": {
         "tags": [
@@ -863,7 +576,7 @@
   },
   "components": {
     "schemas": {
-      "ColleagueDto": {
+      "EmployeeDto": {
         "allOf": [
           {
             "$ref": "#/components/schemas/DtoBase"
@@ -872,19 +585,49 @@
             "type": "object",
             "additionalProperties": false,
             "required": [
-              "employeeId",
-              "colleagueEmployeeId"
+              "name",
+              "surname",
+              "position"
             ],
             "properties": {
-              "employeeId": {
+              "name": {
                 "type": "string",
-                "format": "guid",
                 "minLength": 1
               },
-              "colleagueEmployeeId": {
+              "surname": {
                 "type": "string",
-                "format": "guid",
                 "minLength": 1
+              },
+              "patronymic": {
+                "type": "string",
+                "nullable": true
+              },
+              "position": {
+                "$ref": "#/components/schemas/PositionDto"
+              }
+            }
+          }
+        ]
+      },
+      "PositionDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DtoBase"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "nullable": true
               }
             }
           }
@@ -903,25 +646,6 @@
             "minLength": 1
           }
         }
-      },
-      "ColleagueDetailDto": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/DtoBase"
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "colleagueEmployee"
-            ],
-            "properties": {
-              "colleagueEmployee": {
-                "$ref": "#/components/schemas/EmployeeDetailDto"
-              }
-            }
-          }
-        ]
       },
       "EmployeeDetailDto": {
         "allOf": [
@@ -956,36 +680,6 @@
               },
               "position": {
                 "$ref": "#/components/schemas/PositionDto"
-              },
-              "colleagues": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/ColleagueDetailDto"
-                }
-              }
-            }
-          }
-        ]
-      },
-      "PositionDto": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/DtoBase"
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "name"
-            ],
-            "properties": {
-              "name": {
-                "type": "string",
-                "minLength": 1
-              },
-              "description": {
-                "type": "string",
-                "nullable": true
               }
             }
           }
@@ -1035,20 +729,38 @@
           }
         }
       },
-      "ColleagueCreateDto": {
+      "EmployeeCreateDto": {
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "employeeId",
-          "colleagueEmployeeId"
+          "name",
+          "surname",
+          "email",
+          "password",
+          "positionId"
         ],
         "properties": {
-          "employeeId": {
+          "name": {
             "type": "string",
-            "format": "guid",
             "minLength": 1
           },
-          "colleagueEmployeeId": {
+          "surname": {
+            "type": "string",
+            "minLength": 1
+          },
+          "patronymic": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "minLength": 1
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1
+          },
+          "positionId": {
             "type": "string",
             "format": "guid",
             "minLength": 1
@@ -1086,77 +798,6 @@
           "from": {
             "type": "string",
             "nullable": true
-          }
-        }
-      },
-      "EmployeeDto": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/DtoBase"
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "name",
-              "surname",
-              "position"
-            ],
-            "properties": {
-              "name": {
-                "type": "string",
-                "minLength": 1
-              },
-              "surname": {
-                "type": "string",
-                "minLength": 1
-              },
-              "patronymic": {
-                "type": "string",
-                "nullable": true
-              },
-              "position": {
-                "$ref": "#/components/schemas/PositionDto"
-              }
-            }
-          }
-        ]
-      },
-      "EmployeeCreateDto": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "name",
-          "surname",
-          "email",
-          "password",
-          "positionId"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "minLength": 1
-          },
-          "surname": {
-            "type": "string",
-            "minLength": 1
-          },
-          "patronymic": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "minLength": 1
-          },
-          "password": {
-            "type": "string",
-            "minLength": 1
-          },
-          "positionId": {
-            "type": "string",
-            "format": "guid",
-            "minLength": 1
           }
         }
       },
