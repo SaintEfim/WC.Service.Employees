@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
-using Sieve.Models;
 using WC.Library.Data.Services;
 using WC.Library.Domain.Services;
 using WC.Service.Employees.Data.Models;
@@ -53,10 +52,7 @@ public class EmployeeProvider
         IWcTransaction? transaction = default,
         CancellationToken cancellationToken = default)
     {
-        var filter = new SieveModel { Filters = $"Id@={string.Join(",", ids)}" };
-
-        var employees = await Get(filter, transaction: transaction, cancellationToken: cancellationToken);
-
-        return employees.ToList();
+        var employees = await Get(transaction: transaction, cancellationToken: cancellationToken);
+        return employees.Where(x => ids.Contains(x.Id)).ToList();
     }
 }
