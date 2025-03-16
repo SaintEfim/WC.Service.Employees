@@ -14,14 +14,12 @@ public sealed class EmployeeDbContext : DbContext
     }
 
     public DbSet<EmployeeEntity> Employees { get; set; } = null!;
-    public DbSet<ColleagueEntity> Colleagues { get; set; } = null!;
     public DbSet<PositionEntity> Positions { get; set; } = null!;
 
     protected override void OnModelCreating(
         ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new EmployeeEntityConfiguration());
-        modelBuilder.ApplyConfiguration(new ColleagueEntityConfiguration());
         modelBuilder.ApplyConfiguration(new PositionEntityConfiguration());
 
         base.OnModelCreating(modelBuilder);
