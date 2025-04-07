@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WC.Service.Employees.gRPC.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WC.Service.Employees.CreatePosition", "src\WC.Service.Employees.CreatePosition\WC.Service.Employees.CreatePosition.csproj", "{757D18EC-7400-4FBA-B2F2-3A6583F1B359}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{40A84536-9FE1-4482-BE4E-D87D1D965713}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WC.Service.Employees.Domain.Tests", "WC.Service.Employees.Domain.Tests\WC.Service.Employees.Domain.Tests.csproj", "{5F46B8F6-4254-4EA3-AAFD-9F8755A40637}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,5 +70,12 @@ Global
 		{757D18EC-7400-4FBA-B2F2-3A6583F1B359}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{757D18EC-7400-4FBA-B2F2-3A6583F1B359}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{757D18EC-7400-4FBA-B2F2-3A6583F1B359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F46B8F6-4254-4EA3-AAFD-9F8755A40637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F46B8F6-4254-4EA3-AAFD-9F8755A40637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F46B8F6-4254-4EA3-AAFD-9F8755A40637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F46B8F6-4254-4EA3-AAFD-9F8755A40637}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F46B8F6-4254-4EA3-AAFD-9F8755A40637} = {40A84536-9FE1-4482-BE4E-D87D1D965713}
 	EndGlobalSection
 EndGlobal

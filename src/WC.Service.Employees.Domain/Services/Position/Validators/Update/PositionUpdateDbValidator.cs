@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using WC.Service.Employees.Data.Repositories;
 using WC.Service.Employees.Domain.Models;
 
 namespace WC.Service.Employees.Domain.Services.Position.Validators.Update;
@@ -6,7 +7,7 @@ namespace WC.Service.Employees.Domain.Services.Position.Validators.Update;
 public sealed class PositionUpdateDbValidator : AbstractValidator<PositionModel>
 {
     public PositionUpdateDbValidator(
-        IPositionProvider positionProvider)
+        IPositionRepository positionRepository)
     {
         RuleFor(x => x)
             .CustomAsync(async (
@@ -14,7 +15,7 @@ public sealed class PositionUpdateDbValidator : AbstractValidator<PositionModel>
                 context,
                 cancellationToken) =>
             {
-                var positions = await positionProvider.Get(cancellationToken: cancellationToken);
+                var positions = await positionRepository.Get(cancellationToken: cancellationToken);
                 var duplicatePosition = positions.Any(x => x.Name == positionModel.Name);
 
                 if (duplicatePosition)
