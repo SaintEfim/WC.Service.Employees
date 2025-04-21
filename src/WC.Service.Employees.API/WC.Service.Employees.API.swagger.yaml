@@ -1,0 +1,540 @@
+x-generator: NSwag v14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))
+openapi: 3.0.0
+info:
+  title: NSwag.AspNetCore.Launcher
+  version: v1
+paths:
+  /api/v1/employees:
+    get:
+      tags:
+      - Employee
+      summary: Retrieves a list of employees.
+      operationId: EmployeeGet
+      parameters:
+      - name: Filters
+        in: query
+        schema:
+          type: string
+          nullable: true
+        x-position: 1
+      - name: Sorts
+        in: query
+        schema:
+          type: string
+          nullable: true
+        x-position: 2
+      - name: Page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+        x-position: 3
+      - name: PageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+        x-position: 4
+      - name: withIncludes
+        in: query
+        description: Specifies whether related entities should be included in the query.
+        schema:
+          type: boolean
+          default: false
+        x-position: 5
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmployeeDto'
+      security:
+      - JWT:
+        - Admin
+        - ' User'
+    post:
+      tags:
+      - Employee
+      summary: Creates new employee.
+      operationId: EmployeeCreate
+      requestBody:
+        x-name: payload
+        description: The employee content.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeCreateDto'
+        required: true
+        x-position: 1
+      responses:
+        201:
+          description: The result of creation. CreateActionResultDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateActionResultDto'
+      security:
+      - JWT:
+        - Admin
+  /api/v1/employees/{id}:
+    get:
+      tags:
+      - Employee
+      summary: Retrieves a employee by its ID.
+      operationId: EmployeeGetById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the employee to retrieve.
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeDetailDto'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+      security:
+      - JWT:
+        - Admin
+        - ' User'
+    patch:
+      tags:
+      - Employee
+      summary: Updates a employee by ID.
+      operationId: EmployeeUpdate
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the employee to update.
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      requestBody:
+        x-name: patchDocument
+        description: The JSON patch document containing updates.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+        required: true
+        x-position: 2
+      responses:
+        200:
+          description: ''
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+      security:
+      - JWT:
+        - Admin
+    delete:
+      tags:
+      - Employee
+      summary: Deletes a employee by ID.
+      operationId: EmployeeDelete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the employee to delete.
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        204:
+          description: ''
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+        409:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+      security:
+      - JWT:
+        - Admin
+        - ' User'
+  /api/v1/positions:
+    get:
+      tags:
+      - Position
+      summary: Retrieves a list of positions.
+      operationId: PositionGet
+      parameters:
+      - name: Filters
+        in: query
+        schema:
+          type: string
+          nullable: true
+        x-position: 1
+      - name: Sorts
+        in: query
+        schema:
+          type: string
+          nullable: true
+        x-position: 2
+      - name: Page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+        x-position: 3
+      - name: PageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+        x-position: 4
+      - name: withIncludes
+        in: query
+        description: Specifies whether related entities should be included in the query.
+        schema:
+          type: boolean
+          default: false
+        x-position: 5
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PositionDto'
+    post:
+      tags:
+      - Position
+      summary: Creates new position.
+      operationId: PositionCreate
+      requestBody:
+        x-name: payload
+        description: The position content.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PositionCreateDto'
+        required: true
+        x-position: 1
+      responses:
+        201:
+          description: The result of creation. CreateActionResultDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateActionResultDto'
+      security:
+      - JWT:
+        - Admin
+  /api/v1/positions/{id}:
+    get:
+      tags:
+      - Position
+      summary: Retrieves a position by its ID.
+      operationId: PositionGetById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the position to retrieve.
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PositionDto'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+      security:
+      - JWT:
+        - Admin
+        - ' User'
+    patch:
+      tags:
+      - Position
+      summary: Updates a position by ID.
+      operationId: PositionUpdate
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the position to update.
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      requestBody:
+        x-name: patchDocument
+        description: The JSON patch document containing updates.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+        required: true
+        x-position: 2
+      responses:
+        200:
+          description: ''
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+      security:
+      - JWT:
+        - Admin
+    delete:
+      tags:
+      - Position
+      summary: Deletes a position by ID.
+      operationId: PositionDelete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the position to delete.
+        schema:
+          type: string
+          format: guid
+        x-position: 1
+      responses:
+        204:
+          description: ''
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+        409:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+      security:
+      - JWT:
+        - Admin
+components:
+  schemas:
+    EmployeeDto:
+      allOf:
+      - $ref: '#/components/schemas/DtoBase'
+      - type: object
+        additionalProperties: false
+        required:
+        - name
+        - surname
+        - position
+        properties:
+          name:
+            type: string
+            minLength: 1
+          surname:
+            type: string
+            minLength: 1
+          patronymic:
+            type: string
+            nullable: true
+          position:
+            $ref: '#/components/schemas/PositionDto'
+    PositionDto:
+      allOf:
+      - $ref: '#/components/schemas/DtoBase'
+      - type: object
+        additionalProperties: false
+        required:
+        - name
+        properties:
+          name:
+            type: string
+            minLength: 1
+          description:
+            type: string
+            nullable: true
+    DtoBase:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          format: guid
+          minLength: 1
+    EmployeeDetailDto:
+      allOf:
+      - $ref: '#/components/schemas/DtoBase'
+      - type: object
+        additionalProperties: false
+        required:
+        - name
+        - surname
+        - email
+        - position
+        properties:
+          name:
+            type: string
+            minLength: 1
+          surname:
+            type: string
+            minLength: 1
+          patronymic:
+            type: string
+            nullable: true
+          email:
+            type: string
+            minLength: 1
+          position:
+            $ref: '#/components/schemas/PositionDto'
+    ErrorDto:
+      type: object
+      additionalProperties: false
+      required:
+      - status
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        description:
+          type: string
+          nullable: true
+        stackTrace:
+          type: array
+          items:
+            type: string
+        extensions:
+          type: object
+          additionalProperties: {}
+    CreateActionResultDto:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          format: guid
+          minLength: 1
+    EmployeeCreateDto:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      - surname
+      - email
+      - password
+      - positionId
+      properties:
+        name:
+          type: string
+          minLength: 1
+        surname:
+          type: string
+          minLength: 1
+        patronymic:
+          type: string
+          nullable: true
+        email:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+        positionId:
+          type: string
+          format: guid
+          minLength: 1
+    Operation:
+      allOf:
+      - $ref: '#/components/schemas/OperationBase'
+      - type: object
+        additionalProperties: false
+        properties:
+          value:
+            nullable: true
+    OperationBase:
+      type: object
+      additionalProperties: false
+      properties:
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+    PositionCreateDto:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          nullable: true
+  securitySchemes:
+    JWT:
+      type: apiKey
+      description: 'Type into the textbox: Bearer {your JWT token}.'
+      name: Authorization
+      in: header
+      scheme: Bearer
+      bearerFormat: JWT
