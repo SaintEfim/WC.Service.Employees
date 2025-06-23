@@ -112,7 +112,7 @@ public class EmployeeController
     /// <param name="id">The ID of the employee to delete.</param>
     /// <param name="cancellationToken">The operation cancellation token.</param>
     [HttpDelete("{id:guid}")]
-    [Authorize(Roles = "Admin, User")]
+    [Authorize(Roles = "Admin")]
     [OpenApiOperation(nameof(EmployeeDelete))]
     [SwaggerResponse(Status204NoContent, typeof(void))]
     [SwaggerResponse(Status404NotFound, typeof(ErrorDto))]
